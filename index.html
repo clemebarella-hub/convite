@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catalina Riutort — Fotografía, salidas y talleres por Chile" />
+  <title>Catalina Riutort — Fotografía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:      #FAFAF7;
+      --text:    #1A1916;
+      --accent:  #B8955A;
+      --muted:   #9A9189;
+      --border:  #E5DED5;
+      --dark:    #100F0E;
+      --card-bg: #F3EDE3;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .section-label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-up.visible        { opacity: 1; transform: translateY(0); }
+    .fade-up.delay-1        { transition-delay: 0.1s; }
+    .fade-up.delay-2        { transition-delay: 0.22s; }
+    .fade-up.delay-3        { transition-delay: 0.34s; }
+    .fade-up.delay-4        { transition-delay: 0.46s; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 999;
+      height: 72px;
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s, height 0.3s;
+    }
+
+    #navbar.scrolled {
+      background: rgba(250,250,247,0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: white;
+      transition: color 0.4s;
+    }
+    #navbar.scrolled .nav-logo { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.25s;
+    }
+    #navbar.scrolled .nav-links a         { color: var(--muted); }
+    .nav-links a:hover,
+    #navbar.scrolled .nav-links a:hover   { color: var(--accent); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: white;
+      transition: all 0.3s;
+      transform-origin: center;
+    }
+    #navbar.scrolled .hamburger span            { background: var(--text); }
+    .hamburger.open span:nth-child(1)  { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2)  { opacity: 0; }
+    .hamburger.open span:nth-child(3)  { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 998;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: white;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #inicio {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* Reemplazar con tu foto: background-image: url('portada.jpg'); */
+      background: linear-gradient(155deg, #1c1408 0%, #0e0e0e 50%, #0d1614 100%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      padding: 0 2rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 300;
+      color: white;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-name span {
+      display: block;
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin: 1.8rem 0 3rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .scroll-cue p {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: lineDown 2.2s ease-in-out infinite;
+    }
+    @keyframes lineDown {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── SOBRE ────────────────────────────────────── */
+    #sobre {
+      padding: 8rem 0;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .sobre-img-wrap {
+      position: relative;
+    }
+
+    .sobre-img {
+      aspect-ratio: 3/4;
+      /* Reemplazar con: background-image: url('catalina.jpg'); */
+      background: linear-gradient(155deg, #2c1e12 0%, #8b7355 100%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .sobre-img-wrap::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: -14px;
+      bottom: -14px;
+      border: 1px solid var(--accent);
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    .sobre-text .section-title { margin-bottom: 1.5rem; }
+
+    .divider {
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+      margin: 2rem 0;
+    }
+
+    .sobre-text p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .sobre-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat span {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SERVICIOS ────────────────────────────────── */
+    #servicios {
+      padding: 8rem 0;
+      background: var(--dark);
+    }
+
+    #servicios .section-label { color: var(--accent); }
+    #servicios .section-title { color: white; }
+
+    .servicios-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .servicios-intro {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+    }
+
+    .servicios-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .card:last-child { border-right: none; }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .card:hover               { background: #191812; }
+    .card:hover::after        { transform: scaleX(1); }
+
+    .card-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: white;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .card-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.85;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card-link::after { content: ' →'; }
+
+    /* ── GALERÍA ──────────────────────────────────── */
+    #galeria {
+      padding: 8rem 0;
+    }
+
+    .galeria-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .galeria-cols {
+      columns: 3;
+      column-gap: 6px;
+      padding: 0 6px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      display: block;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    /* Reemplazar background con background-image: url('foto.jpg') en cada ítem */
+    .gallery-item:nth-child(1) { height: 380px; background: linear-gradient(160deg, #2C3E50 20%, #8B7355 100%); }
+    .gallery-item:nth-child(2) { height: 240px; background: linear-gradient(200deg, #3D5A52  0%, #8B9E6B 100%); }
+    .gallery-item:nth-child(3) { height: 320px; background: linear-gradient(140deg, #3D2B1F  0%, #A07850 100%); }
+    .gallery-item:nth-child(4) { height: 300px; background: linear-gradient(180deg, #1A2A3A  0%, #5A7A6A 100%); }
+    .gallery-item:nth-child(5) { height: 360px; background: linear-gradient(160deg, #6B4423  0%, #C4956A 100%); }
+    .gallery-item:nth-child(6) { height: 260px; background: linear-gradient(220deg, #2B3A4A  0%, #7B9B8B 100%); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(16,15,14,0);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.4rem;
+      transition: background 0.35s;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(16,15,14,0.62); }
+
+    .gallery-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: white;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s, transform 0.35s;
+    }
+    .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
+
+    /* ── TESTIMONIOS ──────────────────────────────── */
+    #testimonios {
+      padding: 8rem 0;
+      background: var(--card-bg);
+    }
+
+    .testi-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testi-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      border-top: 2px solid var(--accent);
+    }
+
+    .testi-mark {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 4rem;
+      color: var(--accent);
+      line-height: 0.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .testi-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-style: italic;
+      margin-bottom: 1.6rem;
+    }
+
+    .testi-author strong {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+    .testi-author span {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── CONTACTO ─────────────────────────────────── */
+    #contacto {
+      padding: 8rem 0;
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contacto-left .section-title { margin-bottom: 1.5rem; }
+
+    .contacto-left > p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .contact-item span:first-child {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .contact-item span:last-child {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .form-group { margin-bottom: 1.6rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.55rem 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-bottom-color: var(--accent); }
+    .form-group textarea     { resize: vertical; min-height: 96px; }
+    .form-group select       { cursor: pointer; }
+    .form-group select option { background: var(--bg); color: var(--text); }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 0.9rem 2.8rem;
+      background: var(--text);
+      color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--accent); }
+
+    .form-success {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1rem 1.4rem;
+      border-left: 2px solid var(--accent);
+      background: rgba(184,149,90,0.08);
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: white;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 960px) {
+      #navbar            { padding: 0 1.5rem; }
+      .nav-links         { display: none; }
+      .hamburger         { display: flex; }
+
+      .sobre-grid,
+      .contacto-grid     { grid-template-columns: 1fr; gap: 3.5rem; }
+      .sobre-img         { aspect-ratio: 4/3; }
+
+      .servicios-header  { grid-template-columns: 1fr; gap: 1.5rem; }
+      .servicios-cards   { grid-template-columns: 1fr; }
+      .card              { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .card:last-child   { border-bottom: none; }
+
+      .galeria-cols      { columns: 2; }
+      .testi-grid        { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .hero-name         { font-size: clamp(3.2rem, 14vw, 5rem); }
+      .galeria-cols      { columns: 1; }
+      .sobre-stats       { gap: 1.8rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#inicio" class="nav-logo">Catalina Riutort</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre"       class="mob-link">Sobre mí</a>
+    <a href="#servicios"   class="mob-link">Servicios</a>
+    <a href="#galeria"     class="mob-link">Galería</a>
+    <a href="#testimonios" class="mob-link">Testimonios</a>
+    <a href="#contacto"    class="mob-link">Contacto</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fotografía · Chile</p>
+      <h1 class="hero-name">
+        Catalina<span>Riutort</span>
+      </h1>
+      <p class="hero-tagline">Salidas fotográficas &nbsp;·&nbsp; Arte &nbsp;·&nbsp; Naturaleza</p>
+      <a href="#servicios" class="btn-outline">Descubre las salidas</a>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <div class="fade-up">
+          <div class="sobre-img-wrap">
+            <div class="sobre-img"></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="section-label fade-up">Sobre mí</span>
+          <h2 class="section-title fade-up delay-1">
+            Ver el mundo<br><em>a través del lente</em>
+          </h2>
+          <div class="divider fade-up delay-2"></div>
+          <p class="fade-up delay-2">
+            Soy Catalina Riutort, fotógrafa y guía visual apasionada por los paisajes de Chile.
+            Desde el desierto de Atacama hasta los glaciares de la Patagonia, he recorrido este
+            país con una cámara en mano y el deseo de compartir esa experiencia.
+          </p>
+          <p class="fade-up delay-3">
+            Creo que la fotografía no es solo técnica: es una manera de mirar, de detenerse y
+            de conectar con el entorno. En cada salida busco que quienes me acompañan descubran
+            su propio ojo fotográfico mientras exploramos juntos rincones únicos de Chile.
+          </p>
+          <div class="sobre-stats fade-up delay-4">
+            <div class="stat">
+              <strong>8+</strong>
+              <span>Años de experiencia</span>
+            </div>
+            <div class="stat">
+              <strong>30+</strong>
+              <span>Destinos en Chile</span>
+            </div>
+            <div class="stat">
+              <strong>200+</strong>
+              <span>Alumnos acompañados</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+
+      <div class="servicios-header">
+        <div>
+          <span class="section-label fade-up">Servicios</span>
+          <h2 class="section-title fade-up delay-1">
+            Experiencias que<br><em>dejan huella</em>
+          </h2>
+        </div>
+        <p class="servicios-intro fade-up delay-2">
+          Cada salida es una invitación a salir de lo cotidiano, aprender a mirar diferente
+          y regresar con imágenes que cuenten una historia. Grupos pequeños, destinos únicos.
+        </p>
+      </div>
+
+      <div class="servicios-cards">
+        <div class="card fade-up">
+          <div class="card-num">01</div>
+          <h3 class="card-title">Salidas Fotográficas</h3>
+          <p class="card-text">
+            Expediciones en grupo a distintos paisajes de Chile. Caminamos, observamos y
+            fotografiamos mientras comparto técnica, composición y mirada creativa.
+            Para todos los niveles.
+          </p>
+          <a href="#contacto" class="card-link">Reservar lugar</a>
+        </div>
+        <div class="card fade-up delay-1">
+          <div class="card-num">02</div>
+          <h3 class="card-title">Talleres en Terreno</h3>
+          <p class="card-text">
+            Workshops intensivos donde la teoría y la práctica se funden con el paisaje.
+            Aprende iluminación natural, composición y narrativa visual en un entorno real.
+          </p>
+          <a href="#contacto" class="card-link">Más información</a>
+        </div>
+        <div class="card fade-up delay-2">
+          <div class="card-num">03</div>
+          <h3 class="card-title">Mentoría Personal</h3>
+          <p class="card-text">
+            Acompañamiento para quienes quieren profundizar su camino fotográfico.
+            Revisión de portafolio, retroalimentación y guía para desarrollar un estilo propio.
+          </p>
+          <a href="#contacto" class="card-link">Agendar sesión</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="galeria-header">
+        <span class="section-label fade-up">Galería</span>
+        <h2 class="section-title fade-up delay-1">Fragmentos de Chile</h2>
+      </div>
+    </div>
+    <div class="galeria-cols">
+      <div class="gallery-item fade-up">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Atacama · Desierto</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-up delay-1">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Torres del Paine</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-up delay-2">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Chiloé · Palafitos</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-up delay-3">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Valle Central</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-up delay-1">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Valle del Elqui</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-up delay-2">
+        <div class="gallery-overlay">
+          <span class="gallery-label">Carretera Austral</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="testi-header">
+        <span class="section-label fade-up">Testimonios</span>
+        <h2 class="section-title fade-up delay-1">
+          Lo que dicen<br><em>quienes vivieron la experiencia</em>
+        </h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card fade-up">
+          <div class="testi-mark">"</div>
+          <p class="testi-text">
+            Fui sin saber nada de fotografía y volví con las imágenes más hermosas de mi vida.
+            Catalina tiene una paciencia y una pasión que se contagian. Sin duda la experiencia
+            más especial que he vivido en Chile.
+          </p>
+          <div class="testi-author">
+            <strong>Valentina M.</strong>
+            <span>Salida · Atacama</span>
+          </div>
+        </div>
+        <div class="testi-card fade-up delay-1">
+          <div class="testi-mark">"</div>
+          <p class="testi-text">
+            El taller en Torres del Paine fue transformador. No solo aprendí técnica,
+            aprendí a ver de manera diferente. Catalina guía con generosidad y un ojo
+            artístico increíble.
+          </p>
+          <div class="testi-author">
+            <strong>Rodrigo S.</strong>
+            <span>Taller · Patagonia</span>
+          </div>
+        </div>
+        <div class="testi-card fade-up delay-2">
+          <div class="testi-mark">"</div>
+          <p class="testi-text">
+            La mentoría con Catalina cambió completamente cómo entiendo mi portafolio.
+            Su retroalimentación es honesta, cálida y muy concreta. Estoy agradecida
+            de haber encontrado su trabajo.
+          </p>
+          <div class="testi-author">
+            <strong>Isidora T.</strong>
+            <span>Mentoría Personal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="contacto-grid">
+
+        <div>
+          <span class="section-label fade-up">Contacto</span>
+          <h2 class="section-title fade-up delay-1">
+            ¿Lista para<br><em>la próxima salida?</em>
+          </h2>
+          <p class="fade-up delay-2">
+            Escríbeme y te cuento sobre las próximas salidas, fechas disponibles y todo
+            lo que necesitas saber para unirte. Los grupos son pequeños y los cupos limitados.
+          </p>
+          <div class="contact-info fade-up delay-3">
+            <div class="contact-item">
+              <span>Email</span>
+              <span>contacto@catalinariutort.cl</span>
+            </div>
+            <div class="contact-item">
+              <span>Instagram</span>
+              <span>@catalinariutort</span>
+            </div>
+            <div class="contact-item">
+              <span>Ubicación</span>
+              <span>Chile — viajando siempre</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up delay-2">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo" />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="servicio">Me interesa</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona un servicio</option>
+                <option value="salida">Salida Fotográfica</option>
+                <option value="taller">Taller en Terreno</option>
+                <option value="mentoria">Mentoría Personal</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntame sobre ti y qué te gustaría vivir…"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar mensaje</button>
+            <div class="form-success" id="formSuccess">
+              ¡Gracias por escribir! Te respondo a la brevedad.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-name">Catalina Riutort</p>
+    <p class="footer-tagline">Fotografía · Arte · Chile</p>
+    <div class="footer-links">
+      <a href="#sobre">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 Catalina Riutort. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Parallax hero
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+      }
+    }, { passive: true });
+
+    // Form
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const msg = document.getElementById('formSuccess');
+      msg.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { msg.style.display = 'none'; }, 5000);
+    });
+  </script>
+
+</body>
+</html>
