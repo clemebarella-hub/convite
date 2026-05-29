@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería — Catalina Riutort</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #FAFAF7; --text: #1A1916; --accent: #B8955A;
+      --muted: #9A9189; --border: #E5DED5; --dark: #100F0E; --card-bg: #F3EDE3;
+    }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: var(--dark); color: var(--text); font-size: 16px; line-height: 1.7; font-weight: 300; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+
+    #navbar { position: fixed; inset: 0 0 auto 0; z-index: 999; height: 72px; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; background: transparent; transition: background 0.4s, box-shadow 0.4s; }
+    #navbar.scrolled { background: rgba(16,15,14,0.95); backdrop-filter: blur(16px); box-shadow: 0 1px 0 rgba(255,255,255,0.05); }
+    .nav-logo { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.06em; color: white; }
+    .nav-links { display: flex; list-style: none; gap: 2.2rem; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.25s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-back { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+
+    .page-hero { padding: 9rem 0 4rem; text-align: center; }
+    .hero-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1.2rem; }
+    .hero-title { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; color: white; line-height: 1.05; }
+    .hero-title em { font-style: italic; }
+
+    .filters { display: flex; justify-content: center; gap: 0.5rem; padding: 2rem 0 3rem; flex-wrap: wrap; }
+    .filter-btn { padding: 0.5rem 1.4rem; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.45); font-family: inherit; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: var(--accent); }
+
+    .galeria-cols { columns: 3; column-gap: 4px; padding: 0 4px 4px; }
+    .gallery-item { break-inside: avoid; display: block; width: 100%; position: relative; overflow: hidden; margin-bottom: 4px; cursor: pointer; }
+    .gallery-item:nth-child(1)  { height: 420px; background: linear-gradient(160deg, #2C3E50 20%, #8B7355 100%); }
+    .gallery-item:nth-child(2)  { height: 280px; background: linear-gradient(200deg, #3D5A52 0%, #8B9E6B 100%); }
+    .gallery-item:nth-child(3)  { height: 360px; background: linear-gradient(140deg, #3D2B1F 0%, #A07850 100%); }
+    .gallery-item:nth-child(4)  { height: 340px; background: linear-gradient(180deg, #1A2A3A 0%, #5A7A6A 100%); }
+    .gallery-item:nth-child(5)  { height: 400px; background: linear-gradient(160deg, #6B4423 0%, #C4956A 100%); }
+    .gallery-item:nth-child(6)  { height: 300px; background: linear-gradient(220deg, #2B3A4A 0%, #7B9B8B 100%); }
+    .gallery-item:nth-child(7)  { height: 260px; background: linear-gradient(160deg, #4A3728 0%, #9A7B5A 100%); }
+    .gallery-item:nth-child(8)  { height: 380px; background: linear-gradient(200deg, #1E3A2A 0%, #5A8B6B 100%); }
+    .gallery-item:nth-child(9)  { height: 310px; background: linear-gradient(140deg, #3A2020 0%, #8B5050 100%); }
+    .gallery-item:nth-child(10) { height: 350px; background: linear-gradient(180deg, #2A3040 0%, #6A7A9A 100%); }
+    .gallery-item:nth-child(11) { height: 290px; background: linear-gradient(160deg, #50380A 0%, #B08A2A 100%); }
+    .gallery-item:nth-child(12) { height: 440px; background: linear-gradient(220deg, #1A2820 0%, #4A6A55 100%); }
+
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(16,15,14,0); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem; transition: background 0.35s; }
+    .gallery-item:hover .gallery-overlay { background: rgba(16,15,14,0.65); }
+    .gallery-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: white; opacity: 0; transform: translateY(8px); transition: opacity 0.35s, transform 0.35s; margin-bottom: 0.2rem; }
+    .gallery-place { font-size: 0.62rem; letter-spacing: 0.08em; color: var(--accent); opacity: 0; transform: translateY(8px); transition: opacity 0.35s 0.05s, transform 0.35s 0.05s; }
+    .gallery-item:hover .gallery-label,
+    .gallery-item:hover .gallery-place { opacity: 1; transform: translateY(0); }
+
+    footer { background: var(--dark); padding: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4px; }
+    .footer-name { font-size: 1.4rem; font-weight: 300; color: white; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.18); margin-top: 1.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1rem 0; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 960px) {
+      #navbar { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .galeria-cols { columns: 2; }
+    }
+    @media (max-width: 580px) {
+      .galeria-cols { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">Catalina Riutort</a>
+    <ul class="nav-links">
+      <li><a href="index.html#sobre">Sobre mí</a></li>
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+    <a href="index.html" class="nav-back">← Inicio</a>
+  </nav>
+
+  <div class="page-hero">
+    <span class="hero-label">Galería</span>
+    <h1 class="hero-title">Fragmentos<br><em>de Chile</em></h1>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active">Todos</button>
+    <button class="filter-btn">Atacama</button>
+    <button class="filter-btn">Patagonia</button>
+    <button class="filter-btn">Sur</button>
+    <button class="filter-btn">Norte</button>
+    <button class="filter-btn">Valle Central</button>
+  </div>
+
+  <div class="galeria-cols">
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Atacama · Amanecer</span>
+        <span class="gallery-place">Desierto de Atacama</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Torres del Paine</span>
+        <span class="gallery-place">Patagonia</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Palafitos</span>
+        <span class="gallery-place">Chiloé</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Valle Central</span>
+        <span class="gallery-place">Región del Maule</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Valle del Elqui</span>
+        <span class="gallery-place">Región de Coquimbo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Carretera Austral</span>
+        <span class="gallery-place">Aysén</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Salar de Atacama</span>
+        <span class="gallery-place">Desierto de Atacama</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Lago General Carrera</span>
+        <span class="gallery-place">Patagonia</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Cascadas del Sur</span>
+        <span class="gallery-place">Los Lagos</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Viñedos</span>
+        <span class="gallery-place">Valle de Colchagua</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Geiseres del Tatio</span>
+        <span class="gallery-place">Desierto de Atacama</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay">
+        <span class="gallery-label">Bosque Nativo</span>
+        <span class="gallery-place">Araucanía</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="footer-name">Catalina Riutort</p>
+    <div class="footer-links">
+      <a href="index.html">Inicio</a>
+      <a href="salidas.html">Salidas</a>
+      <a href="talleres.html">Talleres</a>
+      <a href="mentoria.html">Mentoría</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 Catalina Riutort. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>

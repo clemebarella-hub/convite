@@ -1,0 +1,404 @@
+/* ── VARIABLES ───────────────────────────────────────── */
+
+:root {
+  --bg:        #f0ede8;
+  --text:      #1c1c1c;
+  --muted:     #8a8880;
+  --subtle:    #b8b4ae;
+  --border:    rgba(0,0,0,0.09);
+  --sidebar-w: 300px;
+  --serif:     'EB Garamond', Georgia, 'Times New Roman', serif;
+}
+
+/* ── RESET ───────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+ul   { list-style: none; }
+a    { text-decoration: none; color: inherit; }
+img  { display: block; max-width: 100%; height: auto; }
+
+::selection { background: var(--text); color: var(--bg); }
+
+body {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ── SIDEBAR ─────────────────────────────────────────── */
+
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--bg);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  padding: 52px 48px;
+}
+
+.site-name {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 52px;
+}
+.site-name a { color: var(--text); transition: color 0.3s; }
+.site-name a:hover { color: var(--muted); }
+
+.nav-menu { flex: 1; }
+.nav-menu li { margin-bottom: 7px; }
+.nav-menu a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+.nav-menu a:hover,
+.nav-menu a.active { color: var(--text); }
+
+.curatorial-phrase {
+  margin-top: auto;
+  padding-top: 48px;
+}
+.curatorial-phrase p {
+  font-size: 11.5px;
+  font-style: italic;
+  color: var(--subtle);
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+}
+
+
+/* ── MAIN ────────────────────────────────────────────── */
+
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+
+/* ── HOMEPAGE SEQUENCE ───────────────────────────────── */
+
+.home-sequence {
+  padding: 80px 80px 200px 64px;
+}
+
+.work-item {
+  position: relative;
+  margin-bottom: 160px;
+  cursor: pointer;
+}
+
+/* Curatorial layout: 6 fixed works, each placed individually */
+.work-item--xl     { width: 74%; margin-left: auto; }
+.work-item--lg-r   { width: 56%; margin-left: auto; margin-right: 8%; }
+.work-item--sm-c   { width: 38%; margin-left: 24%; }
+.work-item--sm-r   { width: 34%; margin-left: auto; margin-right: 20%; }
+.work-item--lg-l   { width: 60%; margin-left: 6%; }
+.work-item--md-cr  { width: 52%; margin-left: auto; margin-right: 14%; }
+
+.work-item figure { position: relative; overflow: hidden; }
+
+.work-item figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.6s ease;
+}
+.work-item:hover figure img { opacity: 0.92; }
+
+.work-hover {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 40px 18px 18px;
+  background: linear-gradient(to bottom, transparent, rgba(240,237,232,0.72));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.work-item:hover .work-hover { opacity: 1; }
+
+.work-hover-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.4;
+}
+.work-hover-meta {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+
+/* ── INNER PAGE SHELL ────────────────────────────────── */
+
+.page-wrap {
+  padding: 80px 80px 160px 64px;
+}
+
+.page-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 80px;
+}
+
+
+/* ── LAS MESAS PAGE ──────────────────────────────────── */
+
+.project-opening {
+  margin-bottom: 88px;
+}
+.project-opening img {
+  width: 88%;
+  margin-left: auto;
+}
+
+.project-text {
+  max-width: 440px;
+  margin: 0 auto 96px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.project-works { }
+
+.project-work-item {
+  position: relative;
+  margin-bottom: 96px;
+  cursor: pointer;
+}
+
+/* Alternating rhythm for project works */
+.project-work-item:nth-child(odd)  { width: 68%; margin-left: auto; }
+.project-work-item:nth-child(even) { width: 52%; margin-left: 14%; }
+
+.project-work-item figure { position: relative; overflow: hidden; }
+
+.project-work-item figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.6s ease;
+}
+.project-work-item:hover figure img { opacity: 0.92; }
+.project-work-item:hover .work-hover { opacity: 1; }
+
+
+/* ── SOBRE MÍ ────────────────────────────────────────── */
+
+.bio-content {
+  max-width: 500px;
+}
+.bio-content p {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text);
+  margin-bottom: 1.4em;
+}
+.bio-content em { font-style: italic; }
+
+.bio-exhibitions {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.bio-exhibitions h2 {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 36px;
+}
+.exhibition-entry { margin-bottom: 24px; }
+.ex-title  { font-size: 13px; color: var(--text); }
+.ex-venue  { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.ex-year   { font-size: 12px; color: var(--subtle); margin-top: 2px; }
+
+
+/* ── EXPOSICIONES ────────────────────────────────────── */
+
+.expo-list { max-width: 480px; }
+.expo-entry {
+  margin-bottom: 52px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid var(--border);
+}
+.expo-entry:last-child { border-bottom: none; margin-bottom: 0; }
+
+.expo-project {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 10px;
+}
+.expo-venue    { font-size: 14px; color: var(--text); }
+.expo-location { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.expo-year     { font-size: 12px; color: var(--subtle); margin-top: 4px; }
+
+
+/* ── CONTACTO ────────────────────────────────────────── */
+
+.contact-content { max-width: 360px; }
+
+.contact-intro {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 60px;
+}
+
+.contact-link-group { margin-bottom: 28px; }
+.contact-label {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 5px;
+}
+.contact-link-group a {
+  font-size: 14px;
+  color: var(--text);
+  transition: color 0.3s;
+}
+.contact-link-group a:hover { color: var(--muted); }
+
+
+/* ── LIGHTBOX ────────────────────────────────────────── */
+
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(240,237,232,0.97);
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  cursor: default;
+}
+#lightbox.open { display: flex; }
+
+.lb-close {
+  position: fixed;
+  top: 28px;
+  right: 40px;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  cursor: pointer;
+  z-index: 9001;
+  transition: color 0.3s;
+}
+.lb-close:hover { color: var(--text); }
+
+.lightbox-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  cursor: default;
+}
+
+#lightbox-img {
+  display: block;
+  max-width: 66vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.lightbox-info {
+  min-width: 160px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+.lb-title {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.lb-year {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.lb-meta {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 2.1;
+}
+
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+
+@media (max-width: 960px) {
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 32px;
+    padding: 24px 24px 20px;
+  }
+
+  .site-name   { margin-bottom: 0; }
+  .nav-menu    { flex: none; }
+  .nav-menu li { display: inline-block; margin-right: 18px; margin-bottom: 0; }
+  .curatorial-phrase { display: none; }
+
+  .main { margin-left: 0; }
+
+  .home-sequence { padding: 40px 24px 80px; }
+
+  .work-item { margin-bottom: 64px; }
+  .work-item--xl,
+  .work-item--lg-r,
+  .work-item--sm-c,
+  .work-item--sm-r,
+  .work-item--lg-l,
+  .work-item--md-cr {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .page-wrap { padding: 40px 24px 80px; }
+
+  .project-work-item:nth-child(odd),
+  .project-work-item:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .project-opening img { width: 100%; }
+
+  .lightbox-inner { flex-direction: column; gap: 24px; }
+  #lightbox-img   { max-width: 90vw; max-height: 60vh; }
+  #lightbox { padding: 80px 24px 40px; }
+
+}

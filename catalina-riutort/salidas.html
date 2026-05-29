@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salidas Fotográficas — Catalina Riutort</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #FAFAF7; --text: #1A1916; --accent: #B8955A;
+      --muted: #9A9189; --border: #E5DED5; --dark: #100F0E; --card-bg: #F3EDE3;
+    }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; font-weight: 300; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* NAV */
+    #navbar { position: fixed; inset: 0 0 auto 0; z-index: 999; height: 72px; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; background: rgba(250,250,247,0.95); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border); }
+    .nav-logo { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--text); }
+    .nav-links { display: flex; list-style: none; gap: 2.2rem; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color 0.25s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-back { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.4rem; }
+
+    /* HERO */
+    .page-hero { padding: 10rem 0 5rem; background: var(--dark); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(155deg, #1c1408 0%, #0e0e0e 100%); }
+    .page-hero .container { position: relative; }
+    .hero-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1.2rem; }
+    .hero-title { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; color: white; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+    .hero-title em { font-style: italic; }
+    .hero-sub { font-size: 0.92rem; color: rgba(255,255,255,0.42); max-width: 540px; line-height: 1.9; }
+
+    /* SECCIÓN */
+    .section { padding: 6rem 0; }
+    .section-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.9rem; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; }
+
+    /* DESTINOS */
+    .destinos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .destino-card { background: var(--card-bg); padding: 2.5rem 2rem; border-top: 2px solid var(--accent); }
+    .destino-num { font-size: 3rem; font-weight: 300; color: rgba(26,25,22,0.06); line-height: 1; margin-bottom: 1rem; }
+    .destino-nombre { font-size: 1.25rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+    .destino-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.85; }
+
+    /* INFO */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .info-item { padding: 2rem; border: 1px solid var(--border); }
+    .info-label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.5rem; }
+    .info-val { font-size: 1rem; font-weight: 400; color: var(--text); }
+
+    /* CTA */
+    .cta-block { padding: 6rem 0; background: var(--dark); text-align: center; }
+    .cta-block h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: white; margin-bottom: 1rem; }
+    .cta-block h2 em { font-style: italic; }
+    .cta-block p { font-size: 0.88rem; color: rgba(255,255,255,0.4); margin-bottom: 2.5rem; }
+    .btn-cta { display: inline-block; padding: 0.9rem 2.8rem; background: var(--accent); color: white; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; transition: background 0.3s; }
+    .btn-cta:hover { background: #a0803d; }
+
+    /* FOOTER */
+    footer { background: var(--dark); padding: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-name { font-size: 1.4rem; font-weight: 300; color: white; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.18); margin-top: 1.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1rem 0; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 960px) {
+      #navbar { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .destinos-grid, .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Catalina Riutort</a>
+    <ul class="nav-links">
+      <li><a href="index.html#sobre">Sobre mí</a></li>
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+    <a href="index.html#servicios" class="nav-back">← Volver</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="hero-label">Servicio 01</span>
+      <h1 class="hero-title">Salidas<br><em>Fotográficas</em></h1>
+      <p class="hero-sub">Expediciones en grupo a los paisajes más únicos de Chile. Caminamos, observamos y fotografiamos juntos mientras comparto técnica, composición y mirada creativa. Para todos los niveles.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Destinos</span>
+      <h2 class="section-title">Lugares que<br><em>te van a dejar sin palabras</em></h2>
+      <div class="destinos-grid">
+        <div class="destino-card">
+          <div class="destino-num">01</div>
+          <h3 class="destino-nombre">Desierto de Atacama</h3>
+          <p class="destino-desc">El desierto más árido del mundo ofrece amaneceres únicos, salares infinitos y cielos estrellados incomparables. Una experiencia visual transformadora.</p>
+        </div>
+        <div class="destino-card">
+          <div class="destino-num">02</div>
+          <h3 class="destino-nombre">Torres del Paine</h3>
+          <p class="destino-desc">Glaciares, montañas y lagos de colores imposibles. La Patagonia en su máxima expresión fotográfica, con luz cambiante en cada hora del día.</p>
+        </div>
+        <div class="destino-card">
+          <div class="destino-num">03</div>
+          <h3 class="destino-nombre">Chiloé</h3>
+          <p class="destino-desc">Palafitos, niebla, colores vivos y una cultura única. Chiloé es una isla que parece salida de un cuento, perfecta para la fotografía de paisaje y vida cotidiana.</p>
+        </div>
+        <div class="destino-card">
+          <div class="destino-num">04</div>
+          <h3 class="destino-nombre">Valle del Elqui</h3>
+          <p class="destino-desc">Cielos limpios reconocidos por la UNESCO, viñedos terracota y pueblitos de adobe. Un destino íntimo y luminoso en el norte chico de Chile.</p>
+        </div>
+        <div class="destino-card">
+          <div class="destino-num">05</div>
+          <h3 class="destino-nombre">Carretera Austral</h3>
+          <p class="destino-desc">Miles de kilómetros de bosques, fiordos y cascadas sin fin. La ruta más fotogénica de Chile, donde la naturaleza se muestra en estado puro.</p>
+        </div>
+        <div class="destino-card">
+          <div class="destino-num">06</div>
+          <h3 class="destino-nombre">Valle Central</h3>
+          <p class="destino-desc">Viñedos, colinas doradas y haciendas históricas. A solo horas de Santiago, este valle ofrece luz cálida y paisajes que cambian con las estaciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--card-bg);">
+    <div class="container">
+      <span class="section-label">¿Cómo funciona?</span>
+      <h2 class="section-title">Todo lo que necesitas<br><em>saber antes de venir</em></h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Nivel requerido</span>
+          <div class="info-val">Todos los niveles. No necesitas experiencia previa.</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tamaño del grupo</span>
+          <div class="info-val">Máximo 8 personas por salida.</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Duración</span>
+          <div class="info-val">Entre 1 y 5 días según el destino.</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Equipo</span>
+          <div class="info-val">Cualquier cámara sirve, incluido el teléfono.</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Incluye</span>
+          <div class="info-val">Guía fotográfica, retroalimentación en terreno y edición básica.</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Próximas fechas</span>
+          <div class="info-val">Escríbeme para conocer el calendario actualizado.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <div class="container">
+      <h2>¿Lista para<br><em>la próxima salida?</em></h2>
+      <p>Los cupos son limitados. Escríbeme y te cuento todo.</p>
+      <a href="index.html#contacto" class="btn-cta">Reservar mi lugar</a>
+    </div>
+  </div>
+
+  <footer>
+    <p class="footer-name">Catalina Riutort</p>
+    <div class="footer-links">
+      <a href="index.html">Inicio</a>
+      <a href="talleres.html">Talleres</a>
+      <a href="mentoria.html">Mentoría</a>
+      <a href="galeria.html">Galería</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 Catalina Riutort. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
