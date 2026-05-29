@@ -1,0 +1,892 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Convite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8FAFC; --card: #fff; --text: #0F172A; --muted: #64748B;
+      --border: #E2E8F0; --accent: #D97706; --red: #EF4444; --green: #22C55E;
+      --indigo: #6366F1; --purple: #8B5CF6;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .login-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 360px; }
+    .login-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 0.25rem; }
+    .login-logo span { color: var(--accent); }
+    .login-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
+    .login-box label { font-size: 0.72rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+    .login-box input { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; margin-bottom: 0.75rem; }
+    .login-box input:focus { border-color: var(--accent); }
+    .login-btn { width: 100%; padding: 0.75rem; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+    .login-btn:hover { background: #B45309; }
+    .login-error { font-size: 0.78rem; color: var(--red); margin-top: 0.5rem; display: none; }
+
+    /* ── LAYOUT ── */
+    .app { display: none; flex-direction: column; min-height: 100vh; }
+    .topbar { background: var(--card); border-bottom: 1px solid var(--border); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; position: sticky; top: 0; z-index: 10; }
+    .topbar-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.04em; }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-tabs { display: flex; gap: 0; }
+    .tab-btn { padding: 0.4rem 1rem; font-family: inherit; font-size: 0.82rem; font-weight: 600; border: none; background: none; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+    .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+    .topbar-badge { font-size: 0.72rem; color: var(--muted); }
+    .btn-logout { font-size: 0.78rem; font-weight: 600; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.7rem; cursor: pointer; }
+    .btn-logout:hover { color: var(--text); }
+
+    /* ── MAIN ── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; width: 100%; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.4rem; }
+    .kpi-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text); }
+    .kpi-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+    .kpi-card.accent .kpi-value { color: var(--accent); }
+    .kpi-card.green .kpi-value { color: var(--green); }
+    .kpi-card.indigo .kpi-value { color: var(--indigo); }
+
+    /* ── DASHBOARD GRID ── */
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .dash-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .dash-card.full { grid-column: 1 / -1; }
+    .dash-card-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 1rem; }
+
+    /* ── BAR CHART ── */
+    .bar-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.75rem; }
+    .bar-name { font-size: 0.78rem; font-weight: 500; width: 160px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar-track { flex: 1; height: 22px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.6s ease; display: flex; align-items: center; padding-left: 6px; }
+    .bar-fill.blue { background: var(--indigo); }
+    .bar-count { font-size: 0.72rem; font-weight: 700; color: var(--muted); width: 28px; text-align: right; flex-shrink: 0; }
+
+    /* ── CTR TABLE ── */
+    .ctr-table { width: 100%; border-collapse: collapse; }
+    .ctr-table th { text-align: left; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .ctr-table td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.82rem; vertical-align: middle; }
+    .ctr-table tr:last-child td { border-bottom: none; }
+    .ctr-table tr:hover td { background: #F8FAFC; }
+    .ctr-pill { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; }
+    .ctr-high { background: #DCFCE7; color: #15803D; }
+    .ctr-mid { background: #FEF9C3; color: #854D0E; }
+    .ctr-low { background: #FEF2F2; color: #991B1B; }
+
+    /* ── RECENT COTIZACIONES ── */
+    .recent-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .recent-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+    .recent-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-top: 5px; flex-shrink: 0; }
+    .recent-body { flex: 1; }
+    .recent-vendor { font-size: 0.78rem; font-weight: 700; color: var(--accent); }
+    .recent-name { font-size: 0.84rem; font-weight: 600; }
+    .recent-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+    .recent-ts { font-size: 0.68rem; color: var(--muted); white-space: nowrap; }
+    .empty-dash { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; }
+
+    /* ── ACTION BAR ── */
+    .action-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .action-bar h2 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; }
+    .action-bar-right { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.1rem; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 0.83rem; font-weight: 700; cursor: pointer; }
+    .btn-primary:hover { background: #B45309; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.1rem; background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.83rem; font-weight: 600; cursor: pointer; }
+    .btn-secondary:hover { background: var(--bg); }
+    .btn-dark { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.1rem; background: #0F172A; color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 0.83rem; font-weight: 700; cursor: pointer; }
+    .btn-dark:hover { background: #1E293B; }
+
+    /* ── VENDOR TABLE ── */
+    .vendor-table { width: 100%; border-collapse: collapse; }
+    .vendor-table th { text-align: left; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .vendor-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.84rem; vertical-align: middle; }
+    .vendor-table tr:last-child td { border-bottom: none; }
+    .vendor-table tr:hover td { background: #F8FAFC; }
+    .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+    .vendor-color-dot { width: 22px; height: 22px; border-radius: 50%; display: inline-block; border: 2px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+    .vendor-name-cell { font-weight: 600; }
+    .vendor-category-cell { color: var(--muted); font-size: 0.75rem; }
+    .badge-verified { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 4px; background: #DCFCE7; color: #15803D; }
+    .badge-no { background: #F1F5F9; color: var(--muted); }
+    .td-actions { display: flex; gap: 0.4rem; }
+    .btn-edit { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 6px; background: #FEF9C3; color: #92400E; border: none; cursor: pointer; }
+    .btn-edit:hover { background: #FDE68A; }
+    .btn-delete { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 6px; background: #FEF2F2; color: var(--red); border: none; cursor: pointer; }
+    .btn-delete:hover { background: #FEE2E2; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+    /* ── DRAWER ── */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.5); z-index: 100; display: none; justify-content: flex-end; }
+    .drawer-overlay.open { display: flex; }
+    .drawer { background: var(--card); width: 100%; max-width: 500px; height: 100%; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; }
+    .drawer-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.03em; }
+    .drawer-close { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--muted); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.15s; }
+    .drawer-close:hover { background: var(--border); }
+    .form-section { border-top: 1px solid var(--border); padding-top: 1rem; }
+    .form-section-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 0.72rem; font-weight: 600; color: var(--text); }
+    .form-label .opt { font-weight: 400; color: var(--muted); }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 7px; font-family: inherit; font-size: 0.84rem; color: var(--text); background: #fff; outline: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { resize: vertical; min-height: 60px; }
+    .color-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+    .color-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .color-group label { font-size: 0.72rem; font-weight: 600; color: var(--text); }
+    .color-input-wrap { display: flex; gap: 0.4rem; align-items: center; }
+    .color-input-wrap input[type=color] { width: 36px; height: 34px; padding: 2px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+    .color-hex { width: 100%; padding: 0.5rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; font-family: monospace; }
+    .checkbox-group { display: flex; align-items: center; gap: 0.5rem; }
+    .checkbox-group input { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
+    .checkbox-group label { font-size: 0.84rem; font-weight: 500; cursor: pointer; }
+    .drawer-actions { display: flex; gap: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .btn-save { flex: 1; padding: 0.7rem; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+    .btn-save:hover { background: #B45309; }
+    .btn-cancel { padding: 0.7rem 1.2rem; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+    .btn-cancel:hover { background: var(--border); }
+
+    /* ── CODE MODAL ── */
+    .code-modal { position: fixed; inset: 0; background: rgba(15,23,42,0.6); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .code-modal.open { display: flex; }
+    .code-box { background: var(--card); border-radius: 14px; width: 100%; max-width: 700px; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden; }
+    .code-box-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .code-box-header h3 { font-size: 1rem; font-weight: 700; }
+    .code-box-body { padding: 1rem 1.25rem; overflow-y: auto; flex: 1; }
+    .code-box-body p { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .code-pre { background: #0F172A; color: #E2E8F0; padding: 1rem; border-radius: 8px; font-size: 0.73rem; font-family: monospace; white-space: pre-wrap; word-break: break-all; max-height: 300px; overflow-y: auto; }
+    .code-box-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border); display: flex; gap: 0.6rem; justify-content: flex-end; }
+
+    /* ── RESET MODAL ── */
+    .reset-info { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+    /* ── TOAST ── */
+    .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: #0F172A; color: #fff; padding: 0.65rem 1.2rem; border-radius: 8px; font-size: 0.84rem; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 999; white-space: nowrap; }
+    .toast.show { opacity: 1; }
+
+    @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .dash-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .topbar-tabs { display: none; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .drawer { max-width: 100%; }
+      .form-grid { grid-template-columns: 1fr; }
+      .color-row { grid-template-columns: 1fr 1fr; }
+      .action-bar { flex-direction: column; align-items: flex-start; }
+      .bar-name { width: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">Conv<span>ite</span></div>
+      <p class="login-sub">Panel de administración</p>
+      <label>Usuario</label>
+      <input type="text" id="userInput" placeholder="usuario" autocomplete="username" />
+      <label>Contraseña</label>
+      <input type="password" id="pwInput" placeholder="••••••••" autocomplete="current-password" />
+      <button class="login-btn" onclick="doLogin()">Entrar</button>
+      <p class="login-error" id="loginError">Usuario o contraseña incorrectos</p>
+      <p style="font-size:0.68rem;color:var(--muted);margin-top:1.25rem;text-align:center;">
+        Prueba con <strong>test / test</strong> para ver el panel en modo demo
+      </p>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div class="app" id="appScreen">
+    <div class="topbar">
+      <div class="topbar-logo">Conv<span>ite</span> <span style="font-size:0.7rem;font-weight:500;color:var(--muted);margin-left:0.4rem">Admin</span></div>
+      <div id="demoBanner" style="display:none;background:#FEF9C3;color:#92400E;font-size:0.72rem;font-weight:700;padding:0.25rem 0.85rem;border-radius:99px;letter-spacing:0.04em;">MODO DEMO — solo lectura</div>
+      <div class="topbar-tabs">
+        <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+        <button class="tab-btn" onclick="switchTab('vendors')">Proveedores</button>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge" id="vendorCount">—</span>
+        <button class="btn-logout" onclick="doLogout()">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <!-- ── DASHBOARD ── -->
+      <div class="tab-panel active" id="panel-dashboard">
+        <div class="kpi-grid" id="kpiGrid"></div>
+        <div class="dash-grid">
+          <div class="dash-card">
+            <div class="dash-card-title">Cotizaciones por proveedor</div>
+            <div class="bar-list" id="barCotiz"></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title">Vistas de modal por proveedor</div>
+            <div class="bar-list" id="barViews"></div>
+          </div>
+          <div class="dash-card full">
+            <div class="dash-card-title">Conversión por proveedor (vistas → cotización)</div>
+            <table class="ctr-table" id="ctrTable">
+              <thead><tr><th>Proveedor</th><th>Vistas</th><th>Cotizaciones</th><th>Conversión</th></tr></thead>
+              <tbody id="ctrBody"></tbody>
+            </table>
+          </div>
+          <div class="dash-card full">
+            <div class="dash-card-title">Cotizaciones recientes</div>
+            <div id="recentList"></div>
+          </div>
+        </div>
+        <div class="reset-info">
+          <strong>Conectar a Netlify</strong> — para ver cotizaciones de todos los dispositivos en tiempo real, ingresa tu Site ID y Access Token de Netlify. Las cotizaciones se capturan automáticamente desde el formulario de cada proveedor.
+          <div style="margin-top:0.85rem;display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;">
+            <input type="text" id="nlSite" placeholder="Site ID (ej: abc123)" style="padding:0.4rem 0.7rem;border:1px solid var(--border);border-radius:6px;font-size:0.78rem;font-family:inherit;width:200px;outline:none;" />
+            <input type="text" id="nlToken" placeholder="Access Token" style="padding:0.4rem 0.7rem;border:1px solid var(--border);border-radius:6px;font-size:0.78rem;font-family:inherit;width:240px;outline:none;" />
+            <button onclick="saveNLConfig()" style="padding:0.4rem 0.9rem;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Conectar</button>
+            <span id="nlStatus" style="font-size:0.72rem;color:var(--muted);"></span>
+          </div>
+          <div style="margin-top:0.75rem;display:flex;align-items:center;gap:1rem;">
+            <button onclick="renderDashboard()" style="font-size:0.72rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600;">Actualizar ahora</button>
+            <button onclick="clearMetrics()" style="font-size:0.72rem;color:var(--red);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600;">Limpiar métricas locales</button>
+            <span id="lastRefresh" style="font-size:0.68rem;color:var(--muted);"></span>
+          </div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;color:var(--muted);">
+            Site ID y Access Token en: Netlify → User settings → Applications → Personal access tokens. El Site ID lo encuentras en Site configuration → General.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROVEEDORES ── -->
+      <div class="tab-panel" id="panel-vendors">
+        <div class="action-bar">
+          <h2>Proveedores</h2>
+          <div class="action-bar-right">
+            <button class="btn-secondary" onclick="openCodeModal()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Exportar código
+            </button>
+            <button class="btn-primary" onclick="openDrawer(null)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nuevo proveedor
+            </button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="vendor-table">
+            <thead>
+              <tr>
+                <th>Proveedor</th>
+                <th>Ciudad</th>
+                <th>WhatsApp</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="vendorTableBody"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" style="display:none">No hay proveedores. Crea el primero arriba.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="handleOverlayClick(event)">
+    <div class="drawer">
+      <div class="drawer-header">
+        <span class="drawer-title" id="drawerTitle">Nuevo proveedor</span>
+        <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Información básica</div>
+        <div class="form-grid">
+          <div class="form-group full"><label class="form-label">Nombre</label><input class="form-input" id="fName" placeholder="Ej: K-Burgas" /></div>
+          <div class="form-group">
+            <label class="form-label">Tipo <span class="opt">(filtros)</span></label>
+            <select class="form-select" id="fType">
+              <option value="hamburguesas">Hamburguesas</option>
+              <option value="pizza">Pizza</option>
+              <option value="sandwiches">Sandwiches / Churrascos</option>
+              <option value="papas">Papas fritas</option>
+              <option value="hotdogs">Hot Dogs</option>
+              <option value="empanadas">Empanadas</option>
+              <option value="tacos">Tacos</option>
+              <option value="asados">Asados</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Categoría <span class="opt">(visible)</span></label><input class="form-input" id="fCategory" placeholder="Ej: Smash Burgers" /></div>
+          <div class="form-group full"><label class="form-label">Ciudad / Zona</label><input class="form-input" id="fCity" placeholder="Ej: Santiago Oriente" /></div>
+          <div class="form-group full"><label class="form-label">Tags <span class="opt">(separados por coma)</span></label><input class="form-input" id="fTags" placeholder="Matrimonios, Cumpleaños, Corporativo" /></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Precios y capacidad</div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Precio mínimo</label><input class="form-input" id="fPriceMin" type="number" placeholder="1000" /></div>
+          <div class="form-group"><label class="form-label">Precio máximo</label><input class="form-input" id="fPriceMax" type="number" placeholder="5000" /></div>
+          <div class="form-group"><label class="form-label">Mín. personas</label><input class="form-input" id="fMinPeople" type="number" placeholder="20" /></div>
+          <div class="form-group"><label class="form-label">Capacidad</label><input class="form-input" id="fCapacity" placeholder="Hasta 300 personas" /></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Contacto y página</div>
+        <div class="form-grid">
+          <div class="form-group full"><label class="form-label">WhatsApp <span class="opt">(sin + ni espacios)</span></label><input class="form-input" id="fWhatsapp" placeholder="56912345678" /></div>
+          <div class="form-group full"><label class="form-label">Página de perfil <span class="opt">(opcional)</span></label><input class="form-input" id="fProfilePage" placeholder="nombre-vendor.html" /></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Imagen</div>
+        <div class="form-grid">
+          <div class="form-group full"><label class="form-label">Archivo de imagen</label><input class="form-input" id="fImage" placeholder="mi-imagen.jpg" /></div>
+          <div class="form-group full">
+            <label class="form-label">Ajuste</label>
+            <select class="form-select" id="fImageFit">
+              <option value="cover">Cover — rellena (fotos de comida)</option>
+              <option value="contain">Contain — completa (logos)</option>
+            </select>
+          </div>
+          <div class="form-group full"><label class="form-label">Fondo del logo <span class="opt">(logoBg)</span></label><input class="form-input" id="fLogoBg" placeholder="#000 o #fff" /></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Colores de la tarjeta</div>
+        <div class="color-row">
+          <div class="color-group">
+            <label>Fondo</label>
+            <div class="color-input-wrap">
+              <input type="color" id="fBrandBgPicker" value="#1A1A1A" oninput="syncColor('fBrandBgPicker','fBrandBg')" />
+              <input type="text" class="color-hex" id="fBrandBg" value="#1A1A1A" maxlength="7" oninput="syncPicker('fBrandBg','fBrandBgPicker')" />
+            </div>
+          </div>
+          <div class="color-group">
+            <label>Texto</label>
+            <div class="color-input-wrap">
+              <input type="color" id="fBrandTextPicker" value="#FFFFFF" oninput="syncColor('fBrandTextPicker','fBrandText')" />
+              <input type="text" class="color-hex" id="fBrandText" value="#FFFFFF" maxlength="7" oninput="syncPicker('fBrandText','fBrandTextPicker')" />
+            </div>
+          </div>
+          <div class="color-group">
+            <label>Acento</label>
+            <div class="color-input-wrap">
+              <input type="color" id="fBrandAccentPicker" value="#F5A623" oninput="syncColor('fBrandAccentPicker','fBrandAccent')" />
+              <input type="text" class="color-hex" id="fBrandAccent" value="#F5A623" maxlength="7" oninput="syncPicker('fBrandAccent','fBrandAccentPicker')" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Estado</div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="fVerified" checked />
+          <label for="fVerified">Proveedor verificado</label>
+        </div>
+      </div>
+      <div class="drawer-actions">
+        <button class="btn-cancel" onclick="closeDrawer()">Cancelar</button>
+        <button class="btn-save" onclick="saveVendor()">Guardar proveedor</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE MODAL -->
+  <div class="code-modal" id="codeModal">
+    <div class="code-box">
+      <div class="code-box-header">
+        <h3>Exportar código de proveedores</h3>
+        <button class="drawer-close" onclick="closeCodeModal()">&#x2715;</button>
+      </div>
+      <div class="code-box-body">
+        <p>Copia este bloque y reemplaza el array <code>let vendors = [...]</code> en <strong>index.html</strong> para publicar los cambios.</p>
+        <pre class="code-pre" id="codePre"></pre>
+      </div>
+      <div class="code-box-footer">
+        <button class="btn-secondary" onclick="closeCodeModal()">Cerrar</button>
+        <button class="btn-primary" onclick="copyCode()">Copiar código</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const CREDENTIALS = {
+      admin: "convite2026",
+      test:  "test"
+    };
+    const LS_VENDORS = "convite_admin_vendors";
+    let isDemo = false;
+
+    const SEED_VENDORS = [
+      { id:"a-la-medida", name:"A la Medida Gourmet", type:["hamburguesas","sandwiches","pizza","tacos","hotdogs","papas"], category:"Catering Multiformato", city:"Santiago y alrededores", rating:5.0, reviews:0, capacity:"A coordinar según evento", priceRange:{min:3400,max:12000}, minPeople:70, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56971258275", verified:true, brandCard:true, brandBg:"#1A1200", brandText:"#FFF8E0", brandAccent:"#C9A227", profilePage:"a-la-medida.html", image:"A-la-medida.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"el-club", name:"El Club Gourmet", type:["hamburguesas","pizza","sandwiches","hotdogs","papas"], category:"Todo en uno", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:3500,max:7500}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56973781047", verified:true, brandCard:true, brandBg:"#0D1F0D", brandText:"#E8F5E0", brandAccent:"#96C93D", profilePage:"el-club.html", image:"El-club.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"de-niros", name:"De Niro's Pizza", type:"pizza", category:"Pizza Artesanal", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 200+ personas", priceRange:{min:3500,max:11990}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56932012310", verified:true, brandCard:true, brandBg:"#1E0808", brandText:"#FDF5E6", brandAccent:"#E8432A", profilePage:"de-niros.html", image:"De-niros-pizza.png.jpeg", imageFit:"contain" },
+      { id:"wild-smash", name:"Wild Smash", type:["hamburguesas","papas","hotdogs"], category:"Smash & Hot Dogs", city:"Santiago", rating:5.0, reviews:0, capacity:"Flexible", priceRange:{min:5500,max:6000}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56963413321", verified:true, brandCard:true, brandBg:"#0F1A0A", brandText:"#E8F5E0", brandAccent:"#7BC043", profilePage:"wild-smash.html", image:"wild-smash.png.jpeg" },
+      { id:"entrepanes", name:"Entrepanes", type:["sandwiches","hamburguesas"], category:"Churrascos & Burgers", city:"Región Metropolitana", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:1200,max:5500}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56961111667", verified:true, brandCard:true, brandBg:"#2A1A0E", brandText:"#F5EDD4", brandAccent:"#E8610A", profilePage:"entrepanes.html", image:"Entre-panes.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"crispy-fries", name:"Crispy Fries & Burgers", type:["hamburguesas","papas"], category:"Papas & Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:850,max:2200}, minPeople:40, tags:["Matrimonios","Corporativo","Cumpleaños"], whatsapp:"56974888028", verified:true, brandCard:true, brandBg:"#454545", brandText:"#EEE9D6", brandAccent:"#D4A417", profilePage:"crispy-fries.html", image:"Crispy-fries-and-burgers.png.jpeg" },
+      { id:"k-burgas", name:"K-Burgas", type:["hamburguesas","papas"], category:"Smash Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300+ personas", priceRange:{min:4000,max:5500}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas de curso"], whatsapp:"56966546898", verified:true, brandCard:true, brandBg:"#1E1412", brandText:"#FAF0E6", brandAccent:"#E8A020", profilePage:"k-burgas.html", image:"k-burgas.jpeg" },
+      { id:"el-frito-jack", name:"El Frito Jack", type:["papas","empanadas"], category:"Papas & Frituras", city:"Región Metropolitana", rating:5.0, reviews:0, capacity:"Consultar", priceRange:{min:1000,max:1800}, priceUnit:"cono", minPeople:50, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56993890867", verified:true, brandCard:true, brandBg:"#1C1100", brandText:"#FFF3D0", brandAccent:"#F5A623", profilePage:"el-frito-jack.html", image:"El-frito-jack.png.jpeg", imageFit:"80%", logoBg:"#000" },
+      { id:"grillers", name:"Grillers", type:["hamburguesas","sandwiches","papas"], category:"Smash & Parrilla", city:"Santiago · Buin · Pirque", rating:5.0, reviews:0, capacity:"Hasta 300 personas", priceRange:{min:4000,max:6500}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56994102074", verified:true, brandCard:true, brandBg:"#1A0C00", brandText:"#FFF0E0", brandAccent:"#E06A1A", profilePage:"grillers.html", image:"Grillers.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"nunos-smash", name:"Nuno's Smash", type:"hamburguesas", category:"Smash Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300 hamburguesas", priceRange:{min:5000,max:7500}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56961614383", verified:true, brandCard:true, brandBg:"#1C0A00", brandText:"#FFF0E0", brandAccent:"#E8341A", profilePage:"nunos-smash.html", image:"nunos-smash.png.jpeg", imageFit:"contain", logoBg:"#fff" },
+      { id:"el-buen-mordisco", name:"El Buen Mordisco", type:["sandwiches","hamburguesas","hotdogs"], category:"Churrascos & Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Eventos masivos", priceRange:{min:1500,max:6000}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56996184239", verified:true, brandCard:true, brandBg:"#1A0800", brandText:"#FFF0E0", brandAccent:"#E85D04", profilePage:"el-buen-mordisco.html", image:"El-buen-mordisco.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"dirty-smash", name:"Dirty Smash", type:"hamburguesas", category:"Smash Burgers", city:"Santiago Oriente · Rancagua", rating:5.0, reviews:0, capacity:"Hasta 700 personas", priceRange:{min:4500,max:6000}, minPeople:50, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56944995639", verified:true, brandCard:true, brandBg:"#1A1A1A", brandText:"#F0EBE0", brandAccent:"#DC2626", profilePage:"dirty-smash.html", image:"Dirty-Smash-2.png.jpeg.jpeg" },
+      { id:"tacon-todo", name:"Taco'n Todo", type:"tacos", category:"Tacos Mexicanos", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300 personas", priceRange:{min:3500,max:6000}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56952353821", verified:true, brandCard:true, brandBg:"#1F0A00", brandText:"#FFF5E0", brandAccent:"#D4861A", profilePage:"tacon-todo.html", image:"tacon-todo.png.jpeg", imageFit:"contain", logoBg:"#fff" },
+      { id:"el-compadre-parrillero", name:"El Compadre Parrillero", type:"asados", category:"Asados & Parrilla", city:"Región de Valparaíso · Santiago", rating:5.0, reviews:0, capacity:"Hasta 500 personas", priceRange:{min:8000,max:35000}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56964145553", verified:true, brandCard:true, brandBg:"#1A0800", brandText:"#FFF5E0", brandAccent:"#C2410C", profilePage:"el-compadre-parrillero.html", image:"el-compadre-parrillero.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"salva-bajon", name:"Salva-Bajón", type:["hotdogs","sandwiches","hamburguesas","papas"], category:"Comida Rápida Urbana", city:"Región Metropolitana · Valparaíso · O'Higgins", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:3000,max:12000}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56964145553", verified:true, brandCard:true, brandBg:"#100800", brandText:"#FFF5E0", brandAccent:"#E53E1A", profilePage:"salva-bajon.html", image:"Salva-bajón.png.jpeg", imageFit:"contain", logoBg:"#FFD600" },
+    ];
+
+    let vendors = [];
+    let editingId = null;
+
+    /* ── AUTH ── */
+    function doLogin() {
+      const user = document.getElementById('userInput').value.trim().toLowerCase();
+      const pw   = document.getElementById('pwInput').value;
+      if (CREDENTIALS[user] && CREDENTIALS[user] === pw) {
+        isDemo = user === 'test';
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appScreen').style.display = 'flex';
+        document.getElementById('demoBanner').style.display = isDemo ? 'block' : 'none';
+        if (isDemo) injectDemoData();
+        loadVendors();
+        loadNLConfig();
+        renderDashboard();
+        clearInterval(window._refreshInterval);
+        window._refreshInterval = setInterval(() => {
+          if (document.getElementById('appScreen').style.display !== 'none') renderDashboard();
+        }, 60000);
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('pwInput').value = '';
+      }
+    }
+    document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+    document.getElementById('userInput').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('pwInput').focus(); });
+
+    function injectDemoData() {
+      const demoViews = { "el-club":32,"de-niros":28,"wild-smash":19,"k-burgas":24,"dirty-smash":15,"grillers":18,"tacon-todo":11,"el-compadre-parrillero":9,"salva-bajon":7,"nunos-smash":13,"crispy-fries":10,"entrepanes":8,"el-frito-jack":5,"el-buen-mordisco":6 };
+      const demoInquiries = {
+        "el-club": [
+          { name:"María González", contact:"56987654321", date:"2026-06-15", guests:"80", type:"Matrimonio", msg:"Necesito cotización", ts: Date.now()-3600000 },
+          { name:"Carlos Pérez",   contact:"56912345678", date:"2026-07-20", guests:"50", type:"Corporativo", msg:"Evento empresa",    ts: Date.now()-86400000 },
+          { name:"Ana Torres",     contact:"56998765432", date:"2026-05-30", guests:"120", type:"Cumpleaños", msg:"",                   ts: Date.now()-172800000 }
+        ],
+        "de-niros": [
+          { name:"Roberto Silva",  contact:"56965432100", date:"2026-06-10", guests:"60", type:"Cumpleaños", msg:"Quiero pizza artesanal", ts: Date.now()-7200000 },
+          { name:"Fernanda López", contact:"56945678901", date:"2026-08-05", guests:"200", type:"Matrimonio", msg:"",                    ts: Date.now()-259200000 }
+        ],
+        "k-burgas": [
+          { name:"Diego Muñoz",    contact:"56934567890", date:"2026-06-25", guests:"40", type:"Fiestas privadas", msg:"Cumple de 18",   ts: Date.now()-43200000 }
+        ],
+        "grillers": [
+          { name:"Valentina Rojo", contact:"56923456789", date:"2026-07-12", guests:"90", type:"Matrimonio", msg:"Asado y parrilla",    ts: Date.now()-10800000 }
+        ],
+        "dirty-smash": [
+          { name:"Pablo Castro",   contact:"56978901234", date:"2026-06-18", guests:"150", type:"Corporativo", msg:"Evento anual",      ts: Date.now()-21600000 }
+        ]
+      };
+      localStorage.setItem('convite_views',     JSON.stringify(demoViews));
+      localStorage.setItem('convite_inquiries', JSON.stringify(demoInquiries));
+    }
+
+    function doLogout() {
+      document.getElementById('appScreen').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('pwInput').value = '';
+    }
+
+    /* ── TABS ── */
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      event.currentTarget.classList.add('active');
+      if (tab === 'dashboard') renderDashboard();
+    }
+
+    /* ── VENDORS ── */
+    function loadVendors() {
+      const saved = localStorage.getItem(LS_VENDORS);
+      vendors = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(SEED_VENDORS));
+      saveVendorsLS();
+      renderTable();
+    }
+
+    function saveVendorsLS() {
+      localStorage.setItem(LS_VENDORS, JSON.stringify(vendors));
+      document.getElementById('vendorCount').textContent = vendors.length + ' proveedores';
+    }
+
+    /* ── NETLIFY CONFIG ── */
+    function getNLConfig() {
+      return {
+        token:  localStorage.getItem('convite_nl_token') || '',
+        siteId: localStorage.getItem('convite_nl_site')  || ''
+      };
+    }
+    function loadNLConfig() {
+      const { token, siteId } = getNLConfig();
+      document.getElementById('nlSite').value  = siteId;
+      document.getElementById('nlToken').value = token;
+    }
+    function saveNLConfig() {
+      localStorage.setItem('convite_nl_token', document.getElementById('nlToken').value.trim());
+      localStorage.setItem('convite_nl_site',  document.getElementById('nlSite').value.trim());
+      showToast('Configuración guardada');
+      renderDashboard();
+    }
+
+    /* ── DASHBOARD ── */
+    async function renderDashboard() {
+      let views     = JSON.parse(localStorage.getItem('convite_views') || '{}');
+      let rawInq    = JSON.parse(localStorage.getItem('convite_inquiries') || '{}');
+      let inquiries = Array.isArray(rawInq) ? {} : rawInq;
+
+      // Netlify Forms API
+      const { token, siteId } = getNLConfig();
+      const nlStatus = document.getElementById('nlStatus');
+      if (token && siteId) {
+        try {
+          nlStatus.textContent = 'Cargando...';
+          const formsRes = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/forms`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (!formsRes.ok) throw new Error('Token o Site ID inválido');
+          const forms = await formsRes.json();
+          const cotizForm = forms.find(f => f.name === 'cotizacion');
+          if (cotizForm) {
+            const subsRes = await fetch(`https://api.netlify.com/api/v1/forms/${cotizForm.id}/submissions?per_page=200`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            const subs = await subsRes.json();
+            inquiries = {};
+            subs.forEach(sub => {
+              const vendor = vendors.find(v => v.name === sub.data.vendedor);
+              if (!vendor) return;
+              if (!inquiries[vendor.id]) inquiries[vendor.id] = [];
+              inquiries[vendor.id].push({
+                name: sub.data.nombre, contact: sub.data.contacto,
+                date: sub.data.fecha,  guests:  sub.data.personas,
+                type: sub.data.tipo_evento, msg: sub.data.mensaje,
+                ts: new Date(sub.created_at).getTime()
+              });
+            });
+            nlStatus.textContent = `Conectado · ${subs.length} cotizaciones`;
+          } else {
+            nlStatus.textContent = 'Formulario "cotizacion" no encontrado en este sitio';
+          }
+        } catch (err) {
+          nlStatus.textContent = 'Error: ' + err.message;
+        }
+      } else if (nlStatus) {
+        nlStatus.textContent = 'Sin conectar — datos solo del dispositivo actual';
+      }
+      document.getElementById('lastRefresh').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+
+      const totalViews   = Object.values(views).reduce((a, b) => a + b, 0);
+      const totalCotiz   = Object.values(inquiries).reduce((a, arr) => a + (Array.isArray(arr) ? arr.length : 0), 0);
+      const conversion   = totalViews ? ((totalCotiz / totalViews) * 100).toFixed(1) : '0.0';
+      const vendorCount  = vendors.length;
+
+      // KPIs
+      document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi-card accent">
+          <div class="kpi-label">Cotizaciones enviadas</div>
+          <div class="kpi-value">${totalCotiz}</div>
+          <div class="kpi-sub">Total acumulado</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Vistas de modal</div>
+          <div class="kpi-value">${totalViews}</div>
+          <div class="kpi-sub">Aperturas de cotización</div>
+        </div>
+        <div class="kpi-card indigo">
+          <div class="kpi-label">Tasa de conversión</div>
+          <div class="kpi-value">${conversion}%</div>
+          <div class="kpi-sub">Vistas que cotizaron</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Proveedores activos</div>
+          <div class="kpi-value">${vendorCount}</div>
+          <div class="kpi-sub">En plataforma</div>
+        </div>
+      `;
+
+      // Bar charts
+      const sortedCotiz = vendors
+        .map(v => ({ name: v.name, val: Array.isArray(inquiries[v.id]) ? inquiries[v.id].length : 0 }))
+        .sort((a, b) => b.val - a.val);
+      const maxCotiz = Math.max(...sortedCotiz.map(x => x.val), 1);
+
+      document.getElementById('barCotiz').innerHTML = sortedCotiz.map(x => `
+        <div class="bar-row">
+          <div class="bar-name" title="${x.name}">${x.name}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${(x.val/maxCotiz)*100}%"></div></div>
+          <div class="bar-count">${x.val}</div>
+        </div>
+      `).join('') || '<div class="empty-dash">Sin datos aún</div>';
+
+      const sortedViews = vendors
+        .map(v => ({ name: v.name, val: views[v.id] || 0 }))
+        .sort((a, b) => b.val - a.val);
+      const maxViews = Math.max(...sortedViews.map(x => x.val), 1);
+
+      document.getElementById('barViews').innerHTML = sortedViews.map(x => `
+        <div class="bar-row">
+          <div class="bar-name" title="${x.name}">${x.name}</div>
+          <div class="bar-track"><div class="bar-fill blue" style="width:${(x.val/maxViews)*100}%"></div></div>
+          <div class="bar-count">${x.val}</div>
+        </div>
+      `).join('') || '<div class="empty-dash">Sin datos aún</div>';
+
+      // CTR table
+      const ctrRows = vendors.map(v => {
+        const v_views  = views[v.id] || 0;
+        const v_cotiz  = Array.isArray(inquiries[v.id]) ? inquiries[v.id].length : 0;
+        const pct      = v_views ? ((v_cotiz / v_views) * 100).toFixed(1) : '—';
+        const cls      = pct === '—' ? '' : (parseFloat(pct) >= 20 ? 'ctr-high' : parseFloat(pct) >= 8 ? 'ctr-mid' : 'ctr-low');
+        return { name: v.name, v_views, v_cotiz, pct, cls };
+      }).sort((a, b) => b.v_cotiz - a.v_cotiz);
+
+      document.getElementById('ctrBody').innerHTML = ctrRows.map(r => `
+        <tr>
+          <td style="font-weight:600">${r.name}</td>
+          <td>${r.v_views}</td>
+          <td>${r.v_cotiz}</td>
+          <td><span class="ctr-pill ${r.cls}">${r.pct}${r.pct !== '—' ? '%' : ''}</span></td>
+        </tr>
+      `).join('');
+
+      // Recent cotizaciones
+      const allRecent = [];
+      vendors.forEach(v => {
+        const arr = inquiries[v.id];
+        if (Array.isArray(arr)) arr.forEach(q => allRecent.push({ ...q, vendorName: v.name }));
+      });
+      allRecent.sort((a, b) => b.ts - a.ts);
+      const recent = allRecent.slice(0, 10);
+
+      document.getElementById('recentList').innerHTML = recent.length ? `
+        <div class="recent-list">
+          ${recent.map(q => `
+            <div class="recent-item">
+              <div class="recent-dot"></div>
+              <div class="recent-body">
+                <div class="recent-vendor">${q.vendorName}</div>
+                <div class="recent-name">${q.name} · ${q.contact}</div>
+                <div class="recent-meta">${q.guests} personas · ${q.type}${q.date ? ' · ' + q.date : ''}</div>
+              </div>
+              <div class="recent-ts">${fmtTs(q.ts)}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : '<div class="empty-dash">No hay cotizaciones registradas aún.</div>';
+    }
+
+    function fmtTs(ts) {
+      if (!ts) return '';
+      const d = new Date(ts);
+      return d.toLocaleDateString('es-CL', { day:'numeric', month:'short' }) + ' ' + d.toLocaleTimeString('es-CL', { hour:'2-digit', minute:'2-digit' });
+    }
+
+    function clearMetrics() {
+      if (!confirm('¿Limpiar todas las métricas? Esta acción no se puede deshacer.')) return;
+      localStorage.removeItem('convite_views');
+      localStorage.removeItem('convite_inquiries');
+      renderDashboard();
+      showToast('Métricas limpiadas');
+    }
+
+    /* ── TABLE ── */
+    function renderTable() {
+      const tbody = document.getElementById('vendorTableBody');
+      const empty = document.getElementById('emptyState');
+      document.getElementById('vendorCount').textContent = vendors.length + ' proveedores';
+      if (!vendors.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      const actions = isDemo
+        ? `<span style="font-size:0.72rem;color:var(--muted)">Solo lectura</span>`
+        : `<div class="td-actions"><button class="btn-edit" onclick="openDrawer('${'${v.id}'}')">Editar</button><button class="btn-delete" onclick="deleteVendor('${'${v.id}'}')">Eliminar</button></div>`;
+      tbody.innerHTML = vendors.map(v => `
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:0.6rem">
+              <span class="vendor-color-dot" style="background:${v.brandBg || '#ccc'}"></span>
+              <div>
+                <div class="vendor-name-cell">${v.name}</div>
+                <div class="vendor-category-cell">${v.category || ''}</div>
+              </div>
+            </div>
+          </td>
+          <td style="color:var(--muted);font-size:0.8rem">${v.city || '—'}</td>
+          <td style="font-family:monospace;font-size:0.78rem">${v.whatsapp || '—'}</td>
+          <td style="font-size:0.8rem">${v.priceRange ? '$' + v.priceRange.min.toLocaleString('es-CL') + '–$' + v.priceRange.max.toLocaleString('es-CL') : '—'}</td>
+          <td><span class="badge-verified ${v.verified ? '' : 'badge-no'}">${v.verified ? 'Verificado' : 'Pendiente'}</span></td>
+          <td>${isDemo ? '<span style="font-size:0.72rem;color:var(--muted)">Solo lectura</span>' : `<div class="td-actions"><button class="btn-edit" onclick="openDrawer('${v.id}')">Editar</button><button class="btn-delete" onclick="deleteVendor('${v.id}')">Eliminar</button></div>`}</td>
+        </tr>
+      `).join('');
+
+      // ocultar botón "Nuevo proveedor" y "Exportar" en demo
+      const actionBar = document.querySelector('#panel-vendors .action-bar-right');
+      if (actionBar) actionBar.style.display = isDemo ? 'none' : '';
+    }
+
+    /* ── DRAWER ── */
+    function openDrawer(id) {
+      editingId = id;
+      document.getElementById('drawerTitle').textContent = id ? 'Editar proveedor' : 'Nuevo proveedor';
+      if (id) {
+        const v = vendors.find(x => x.id === id);
+        if (!v) return;
+        document.getElementById('fName').value        = v.name || '';
+        document.getElementById('fType').value        = Array.isArray(v.type) ? v.type[0] : (v.type || 'hamburguesas');
+        document.getElementById('fCategory').value    = v.category || '';
+        document.getElementById('fCity').value        = v.city || '';
+        document.getElementById('fTags').value        = (v.tags || []).join(', ');
+        document.getElementById('fPriceMin').value    = v.priceRange?.min || '';
+        document.getElementById('fPriceMax').value    = v.priceRange?.max || '';
+        document.getElementById('fMinPeople').value   = v.minPeople || '';
+        document.getElementById('fCapacity').value    = v.capacity || '';
+        document.getElementById('fWhatsapp').value    = v.whatsapp || '';
+        document.getElementById('fProfilePage').value = v.profilePage || '';
+        document.getElementById('fImage').value       = v.image || '';
+        document.getElementById('fImageFit').value    = v.imageFit || 'cover';
+        document.getElementById('fLogoBg').value      = v.logoBg || '';
+        setColor('fBrandBg',     'fBrandBgPicker',     v.brandBg     || '#1A1A1A');
+        setColor('fBrandText',   'fBrandTextPicker',   v.brandText   || '#FFFFFF');
+        setColor('fBrandAccent', 'fBrandAccentPicker', v.brandAccent || '#F5A623');
+        document.getElementById('fVerified').checked  = !!v.verified;
+      } else {
+        ['fName','fCategory','fCity','fTags','fPriceMin','fPriceMax','fMinPeople','fCapacity','fWhatsapp','fProfilePage','fImage','fLogoBg'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('fType').value = 'hamburguesas';
+        document.getElementById('fImageFit').value = 'cover';
+        setColor('fBrandBg',     'fBrandBgPicker',     '#1A1A1A');
+        setColor('fBrandText',   'fBrandTextPicker',   '#FFFFFF');
+        setColor('fBrandAccent', 'fBrandAccentPicker', '#F5A623');
+        document.getElementById('fVerified').checked = true;
+      }
+      document.getElementById('drawerOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawerOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      editingId = null;
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('drawerOverlay')) closeDrawer();
+    }
+
+    /* ── SAVE ── */
+    function saveVendor() {
+      if (isDemo) { showToast('Modo demo — cambios deshabilitados'); return; }
+      const name = document.getElementById('fName').value.trim();
+      if (!name) { showToast('El nombre es obligatorio'); return; }
+      const wa = document.getElementById('fWhatsapp').value.trim();
+      if (!wa) { showToast('El WhatsApp es obligatorio'); return; }
+
+      const priceMin  = parseInt(document.getElementById('fPriceMin').value) || 0;
+      const priceMax  = parseInt(document.getElementById('fPriceMax').value) || 0;
+      const tags      = document.getElementById('fTags').value.split(',').map(t => t.trim()).filter(Boolean);
+      const image     = document.getElementById('fImage').value.trim();
+      const logoBg    = document.getElementById('fLogoBg').value.trim();
+      const profilePage = document.getElementById('fProfilePage').value.trim();
+
+      const vendor = {
+        id: editingId || slugify(name),
+        name,
+        type: document.getElementById('fType').value,
+        category: document.getElementById('fCategory').value.trim(),
+        city: document.getElementById('fCity').value.trim(),
+        rating: 5.0, reviews: 0,
+        capacity: document.getElementById('fCapacity').value.trim() || 'Consultar',
+        priceRange: priceMin || priceMax ? { min: priceMin, max: priceMax || priceMin } : null,
+        minPeople: parseInt(document.getElementById('fMinPeople').value) || null,
+        tags,
+        whatsapp: wa,
+        verified: document.getElementById('fVerified').checked,
+        brandCard: true,
+        brandBg:     document.getElementById('fBrandBg').value,
+        brandText:   document.getElementById('fBrandText').value,
+        brandAccent: document.getElementById('fBrandAccent').value,
+      };
+      if (profilePage) vendor.profilePage = profilePage;
+      if (image) { vendor.image = image; vendor.imageFit = document.getElementById('fImageFit').value; }
+      if (logoBg) vendor.logoBg = logoBg;
+
+      if (editingId) {
+        const idx = vendors.findIndex(v => v.id === editingId);
+        if (idx !== -1) vendors[idx] = vendor;
+      } else {
+        vendors.push(vendor);
+      }
+
+      saveVendorsLS();
+      renderTable();
+      closeDrawer();
+      showToast(editingId ? 'Proveedor actualizado ✓' : 'Proveedor creado — exporta el código para publicar');
+    }
+
+    /* ── DELETE ── */
+    function deleteVendor(id) {
+      if (isDemo) { showToast('Modo demo — cambios deshabilitados'); return; }
+      if (!confirm('¿Eliminar este proveedor?')) return;
+      vendors = vendors.filter(v => v.id !== id);
+      saveVendorsLS();
+      renderTable();
+      showToast('Proveedor eliminado — exporta el código para publicar');
+    }
+
+    /* ── EXPORT CODE ── */
+    function openCodeModal() {
+      const code = 'let vendors = ' + JSON.stringify(vendors, null, 2) + ';';
+      document.getElementById('codePre').textContent = code;
+      document.getElementById('codeModal').classList.add('open');
+    }
+    function closeCodeModal() { document.getElementById('codeModal').classList.remove('open'); }
+    function copyCode() {
+      const text = document.getElementById('codePre').textContent;
+      navigator.clipboard.writeText(text).then(() => showToast('Código copiado ✓')).catch(() => showToast('Selecciona y copia manualmente'));
+    }
+
+    /* ── HELPERS ── */
+    function slugify(str) {
+      return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+    function setColor(hexId, pickerId, val) {
+      document.getElementById(hexId).value = val;
+      try { document.getElementById(pickerId).value = val; } catch {}
+    }
+    function syncColor(pickerId, hexId) { document.getElementById(hexId).value = document.getElementById(pickerId).value; }
+    function syncPicker(hexId, pickerId) {
+      const val = document.getElementById(hexId).value;
+      if (/^#[0-9A-Fa-f]{6}$/.test(val)) document.getElementById(pickerId).value = val;
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+  </script>
+</body>
+</html>

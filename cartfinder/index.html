@@ -1,0 +1,2304 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convite — Catering y food trucks para eventos en Chile</title>
+  <meta name="description" content="Encuentra los mejores carritos de comida y catering para tu evento en Chile. Matrimonios, cumpleaños y eventos corporativos. Cotiza gratis directo por WhatsApp." />
+  <meta name="keywords" content="catering eventos Chile, food truck matrimonio Santiago, carrito de comida eventos, catering corporativo Santiago, banquetera Santiago" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://convite.cl/" />
+
+  <!-- Open Graph (WhatsApp, Facebook, Instagram) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://convite.cl/" />
+  <meta property="og:title" content="Convite — Catering y food trucks para eventos en Chile" />
+  <meta property="og:description" content="Encuentra los mejores carritos de comida y catering para tu evento. Matrimonios, cumpleaños y corporativos. Cotiza gratis por WhatsApp." />
+  <meta property="og:image" content="https://convite.cl/convite.png.jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:site_name" content="Convite" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Convite — Catering y food trucks para eventos en Chile" />
+  <meta name="twitter:description" content="Encuentra los mejores carritos de comida y catering para tu evento. Cotiza gratis por WhatsApp." />
+  <meta name="twitter:image" content="https://convite.cl/convite.png.jpeg" />
+
+  <!-- Datos estructurados para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Convite",
+    "url": "https://convite.cl",
+    "description": "Directorio de catering y food trucks para eventos en Chile",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://convite.cl/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="convite.png.jpeg" sizes="any" />
+  <link rel="apple-touch-icon" href="convite.png.jpeg" />
+  <link rel="apple-touch-icon" href="convite.png.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:           #FAFAFA;
+      --card:         #FFFFFF;
+      --text:         #0A0A0A;
+      --muted:        #707070;
+      --border:       #E5E5E5;
+      --accent:       #D97706;
+      --accent-hover: #B45309;
+      --accent-light: #FFFBEB;
+      --dark:         #000000;
+      --dark2:        #111111;
+      --amber:        #F59E0B;
+      --green:        #25D366;
+      --green-hover:  #1DAB53;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: 'Inter', sans-serif; cursor: pointer; }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 1rem;
+    }
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin: 0 0 0.75rem;
+    }
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+      margin: 0 0 0.5rem;
+    }
+    h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      margin: 0 0 0.5rem;
+    }
+
+    .hero-label, .hero-title, .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+    .hero-title { font-weight: 300; letter-spacing: 0.02em; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── NAV ──────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 999;
+      background: rgba(250,250,250,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.04em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-admin-link {
+      font-size: 0.72rem !important;
+      font-weight: 600 !important;
+      color: rgba(255,255,255,0.3) !important;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.28rem 0.65rem;
+      border-radius: 5px;
+      transition: color 0.2s, border-color 0.2s !important;
+    }
+    .nav-admin-link:hover { color: rgba(255,255,255,0.7) !important; border-color: rgba(255,255,255,0.3) !important; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 1.2rem;
+      background: var(--text);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #111111; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 64px 0 0 0;
+      background: var(--bg);
+      z-index: 998;
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu .btn-primary { align-self: flex-start; margin-top: 0.5rem; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #inicio {
+      background: var(--dark);
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #inicio .container { position: relative; z-index: 1; }
+
+    .hero-glow-1 {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,119,6,0.12) 0%, transparent 65%);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 65%);
+      bottom: -100px; left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(217,119,6,0.35);
+      padding: 0.3rem 0.85rem;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.9rem, 6vw, 5rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.4rem;
+      max-width: 680px;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+    }
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .search-bar {
+      display: flex;
+      max-width: 560px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 0.95rem 1.3rem;
+      font-size: 0.92rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      outline: none;
+      background: transparent;
+    }
+    .search-bar input::placeholder { color: var(--muted); }
+
+    .search-bar button {
+      padding: 0 1.6rem;
+      background: var(--accent);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .search-bar button:hover { background: var(--accent-hover); }
+
+    .search-wrap { position: relative; max-width: 560px; }
+    .search-suggestions {
+      display: none; position: absolute;
+      top: calc(100% + 6px); left: 0; right: 0;
+      background: white; border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      z-index: 50; overflow: hidden;
+    }
+    .suggestion-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1.1rem; font-size: 0.88rem;
+      color: var(--text); cursor: pointer; transition: background 0.12s;
+      border-top: 1px solid var(--border);
+    }
+    .suggestion-item:first-child { border-top: none; }
+    .suggestion-item:hover, .suggestion-item.sg-active { background: var(--bg); }
+    .suggestion-icon { flex-shrink: 0; width: 22px; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+    .suggestion-logo { flex-shrink: 0; width: 32px; height: 32px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .suggestion-label { flex: 1; }
+    .suggestion-type { font-size: 0.72rem; color: var(--muted); }
+
+    .hero-bg-logo {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-bg-logo img {
+      width: 70%; max-width: 700px;
+      opacity: 0.55; filter: blur(0px);
+      object-fit: contain;
+    }
+    @media (max-width: 680px) { .hero-bg-logo img { width: 95%; } }
+
+    .hero-contact {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .hero-contact-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .hero-contact-link:hover { color: rgba(255,255,255,0.85); }
+    .hero-contact-sep { color: rgba(255,255,255,0.2); font-size: 0.8rem; }
+
+    .hero-logo-corner {
+      position: absolute; top: 5rem; right: 2.5rem;
+      width: 130px; opacity: 0.92; pointer-events: none;
+    }
+    .hero-logo-corner img { width: 100%; height: auto; border-radius: 14px; }
+    @media (max-width: 680px) { .hero-logo-corner { width: 64px; top: 8rem; right: 1rem; } }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── CATÁLOGO ─────────────────────────────────── */
+    #catalogo { padding: 4.5rem 0 5rem; }
+
+    .catalogo-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .catalogo-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .results-count {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.18s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .filter-btn.active { background: var(--text); border-color: var(--text); color: white; }
+
+    /* ── CARDS ────────────────────────────────────── */
+    .vendor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+    .carousel-hint { display: none; }
+    .cat-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .cat-card {
+      border-radius: 12px; padding: 1rem 1.25rem;
+      display: flex; align-items: center; gap: 0.9rem;
+      border: 1px solid var(--border); background: var(--card);
+    }
+    .cat-card { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+    .cat-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+    .cat-salado { border-left: 3px solid #94A3B8; }
+    .cat-dulce  { border-left: 3px solid #7C3AED; }
+    .cat-salado.active { border-color: #64748B; background: #F1F5F9; }
+    .cat-dulce.active  { border-color: #7C3AED; background: #F8F5FF; }
+    .cat-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; }
+    .cat-info strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; }
+    .cat-info span   { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 560px) { .cat-split { grid-template-columns: 1fr; } }
+    .section-divider {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1rem 0 0.25rem;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .section-divider span {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+
+    .card-overlay-link { position: absolute; inset: 0; z-index: 0; }
+    .card-clickable { cursor: pointer; position: relative; }
+    .card-clickable .card-body > * { position: relative; z-index: 1; }
+    .vendor-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.22s, box-shadow 0.22s;
+      display: flex;
+      flex-direction: column;
+    }
+    .vendor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15,23,42,0.1);
+    }
+
+    .card-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #111111;
+    }
+
+    .card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15,23,42,0.06) 0%,
+        rgba(15,23,42,0) 35%,
+        rgba(15,23,42,0.62) 100%
+      );
+    }
+
+    .verified-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15,23,42,0.7);
+      backdrop-filter: blur(8px);
+      color: #4ADE80;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .card-img-bottom {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-category {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(15,23,42,0.65);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      border-radius: 4px;
+    }
+
+    .card-rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15,23,42,0.65);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.28rem 0.6rem;
+      border-radius: 4px;
+    }
+    .card-rating-badge .star { color: var(--amber); }
+
+    .card-body {
+      padding: 1.2rem 1.4rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    .card-location {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .card-info-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .card-info-item svg {
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.18rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--green);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: auto;
+      letter-spacing: 0.01em;
+    }
+    .btn-whatsapp:hover { background: var(--green-hover); transform: translateY(-1px); }
+
+    .brand-card-header {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .brand-card-header .brand-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .brand-card-header .brand-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .brand-card-header .verified-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+
+    .brand-card-header .card-img-bottom {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+    }
+
+    .btn-profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.65rem;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background 0.2s, border-color 0.2s;
+      margin-top: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    .btn-profile:hover { background: var(--bg); border-color: var(--text); }
+
+    /* ── MODAL ───────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-panel {
+      background: white;
+      border-radius: 16px;
+      padding: 2.4rem 2.5rem 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      animation: modalIn 0.2s cubic-bezier(.22,.68,0,1.2);
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes sheetIn {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      width: 30px; height: 30px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: none;
+      color: var(--muted);
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .modal-close-btn:hover { background: var(--bg); color: var(--text); }
+
+    .modal-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .modal-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.6rem;
+    }
+    .modal-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .modal-form .form-group { margin-bottom: 0.75rem; }
+    .modal-form label {
+      display: block;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.28rem;
+    }
+    .modal-form input,
+    .modal-form select,
+    .modal-form textarea {
+      width: 100%;
+      padding: 0.62rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .modal-form input:focus,
+    .modal-form select:focus,
+    .modal-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.08);
+    }
+    .modal-form textarea { resize: vertical; min-height: 72px; line-height: 1.55; }
+
+    .product-section-label {
+      display: block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .product-row {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.38rem 0; border-bottom: 1px solid var(--border); cursor: pointer;
+    }
+    .product-row:last-child { border-bottom: none; }
+    .product-check { display: none; }
+    .product-circle {
+      width: 17px; height: 17px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid #CBD5E1; background: white;
+      transition: border-color 0.12s, background 0.12s, box-shadow 0.12s;
+    }
+    .product-check:checked ~ .product-circle {
+      border-color: var(--accent); background: var(--accent);
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+    .product-name { flex: 1; font-size: 0.84rem; font-weight: 500; color: var(--text); user-select: none; }
+    .product-qty {
+      width: 52px; padding: 0.2rem 0.35rem;
+      border: 1px solid var(--border); border-radius: 5px;
+      font-size: 0.82rem; text-align: center; font-family: inherit;
+      background: transparent; color: var(--text); outline: none;
+      opacity: 0; pointer-events: none; transition: opacity 0.12s;
+    }
+    .product-qty:focus { border-color: var(--accent); }
+    .product-qty-unit { font-size: 0.7rem; color: var(--muted); opacity: 0; transition: opacity 0.12s; flex-shrink: 0; }
+    .product-row.active .product-qty,
+    .product-row.active .product-qty-unit { opacity: 1; pointer-events: auto; }
+
+    .btn-send-consult {
+      width: 100%;
+      padding: 0.82rem;
+      background: var(--green);
+      color: white;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.25rem;
+      letter-spacing: 0.01em;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-send-consult:hover { background: var(--green-hover); transform: translateY(-1px); }
+
+    .modal-success-view {
+      display: none;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+    }
+    .success-ring {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: rgba(37,211,102,0.08);
+      border: 2px solid rgba(37,211,102,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+      color: #16A34A;
+    }
+    .modal-success-view h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+    }
+    .modal-success-view p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .btn-modal-done {
+      padding: 0.62rem 2.2rem;
+      background: var(--text);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-modal-done:hover { background: var(--dark2); }
+
+    .btn-consultar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--text);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: auto;
+      letter-spacing: 0.01em;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-consultar:hover { background: var(--dark2); transform: translateY(-1px); }
+
+    /* ── PRECIO REFERENCIAL ── */
+    .price-main       { display: flex; align-items: baseline; gap: 3px; }
+    .price-unit       { font-size: 0.68rem; font-weight: 400; color: var(--muted); }
+    .price-range-note { font-size: 0.64rem; color: var(--muted); font-weight: 500; margin-top: 2px; display: block; }
+
+    .no-results {
+      text-align: center;
+      padding: 5rem 0;
+      color: var(--muted);
+      display: none;
+    }
+    .no-results svg { margin-bottom: 1rem; opacity: 0.4; }
+    .no-results p { font-size: 0.9rem; }
+
+    /* ── CÓMO FUNCIONA ────────────────────────────── */
+    #como-funciona {
+      padding: 6rem 0;
+      background: var(--dark);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: white;
+      line-height: 1.12;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .step {
+      padding: 2rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+    }
+
+    .step-num {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(217,119,6,0.12);
+      border: 1px solid rgba(217,119,6,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .step h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .step p { font-size: 0.83rem; color: rgba(255,255,255,0.38); line-height: 1.75; }
+
+    /* ── PARA VENDEDORES ──────────────────────────── */
+    #vendedores { padding: 6rem 0; }
+
+    .vendedores-inner {
+      background: var(--dark2);
+      border-radius: 16px;
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vendedores-inner::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,119,6,0.08) 0%, transparent 65%);
+      right: -150px; top: -150px;
+      pointer-events: none;
+    }
+
+    .vendedores-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .vendedores-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .vendedores-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    .perks { display: flex; flex-direction: column; gap: 1rem; }
+
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .perk-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(217,119,6,0.12);
+      border: 1px solid rgba(217,119,6,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .perk-text strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.1rem;
+    }
+    .perk-text span {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+
+    .free-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.2);
+      color: #4ADE80;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .vendedores-form {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .vendedores-form h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.1);
+    }
+    .form-group select { cursor: pointer; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.82rem;
+      background: var(--text);
+      color: white;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    .btn-submit:hover { background: #111111; transform: translateY(-1px); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.2rem;
+      background: rgba(74,222,128,0.06);
+      border: 1px solid rgba(74,222,128,0.25);
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-size: 0.83rem;
+      color: #16A34A;
+      font-weight: 500;
+    }
+
+    /* ── CIUDADES ─────────────────────────────────── */
+    #ciudades {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .ciudades-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .ciudades-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .ciudades-list {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .ciudad-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.38rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .ciudad-chip svg { color: var(--accent); }
+
+    /* ── TESTIMONIOS ──────────────────────────────── */
+    #testimonios { padding: 6rem 0; background: var(--bg); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .testi-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+    }
+    .testi-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1rem;
+      color: var(--amber);
+      font-size: 0.9rem;
+    }
+    .testi-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testi-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .testi-author-info strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testi-author-info span {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .ciudades-inner { gap: 1rem; } }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo { font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: -0.04em; }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.76rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links        { display: none; }
+      .hamburger        { display: flex; }
+      .steps            { grid-template-columns: 1fr; }
+      .vendedores-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem; }
+      .hero-stats       { gap: 2rem; }
+      .vendor-grid      { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      #inicio             { padding: 7rem 0 4rem; }
+      .hero-title         { font-size: 2.1rem; }
+      .hero-sub           { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+      .hero-stats         { gap: 1.5rem; flex-wrap: wrap; }
+      .hero-stat strong   { font-size: 1.45rem; }
+      /* carrusel */
+      .vendor-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+        scrollbar-width: none;
+        margin: 0 -1.4rem;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+      }
+      .vendor-grid::-webkit-scrollbar { display: none; }
+      .vendor-card {
+        flex: 0 0 78vw;
+        max-width: 320px;
+        scroll-snap-align: start;
+      }
+      .footer-inner       { flex-direction: column; align-items: flex-start; }
+      .footer-links       { flex-wrap: wrap; gap: 0.9rem; }
+      .vendedores-inner   { padding: 2rem; gap: 2rem; }
+      .vendedores-form    { padding: 2rem; }
+      .catalogo-header    { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+      .carousel-hint      { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+      .filters            { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+                            padding-bottom: 6px; scrollbar-width: none; }
+      .filters::-webkit-scrollbar { display: none; }
+      .filter-btn         { flex-shrink: 0; }
+      /* contacto hero en columna */
+      .hero-contact       { flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.5rem; }
+      .hero-contact-sep   { display: none; }
+      .hero-contact-link  { font-size: 0.82rem; color: rgba(255,255,255,0.75); }
+    }
+    @media (max-width: 480px) {
+      .search-bar         { flex-direction: column; }
+      .search-bar button  { padding: 0.9rem; }
+      .hero-title         { font-size: 1.85rem; }
+      .hero-label         { font-size: 0.6rem; }
+      /* Modal como bottom sheet */
+      .modal-overlay.open { align-items: flex-end; padding: 0; }
+      .modal-panel        { border-radius: 20px 20px 0 0; padding: 1.8rem 1.4rem 2.4rem;
+                            max-width: 100%; animation: sheetIn 0.28s cubic-bezier(.32,.72,0,1); }
+      .modal-two-col      { grid-template-columns: 1fr; }
+      .modal-close-btn    { top: 1rem; right: 1rem; }
+    }
+    @media (max-width: 360px) {
+      .hero-title         { font-size: 1.5rem; }
+      .hero-sub           { font-size: 0.82rem; }
+      .hero-stats         { gap: 1rem; }
+      .hero-stat strong   { font-size: 1.2rem; }
+      .container          { padding: 0 1.1rem; }
+      .filter-btn         { font-size: 0.72rem; padding: 0.38rem 0.85rem; }
+      .hero-contact-link  { font-size: 0.76rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#inicio" class="nav-logo"><img src="convite.png.jpeg" alt="Convite" style="height:32px;width:auto;display:block;" /></a>
+      <ul class="nav-links">
+        <li><a href="#catalogo">Explorar</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li id="navPanelLink" style="display:none"><a href="dashboard.html">Mi panel</a></li>
+        <li><a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank" class="btn-primary">Registra tu servicio</a></li>
+        <li><a href="admin.html" class="nav-admin-link">Admin</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#catalogo"      class="mob-link">Explorar</a>
+    <a href="#como-funciona" class="mob-link">Cómo funciona</a>
+    <a href="dashboard.html" class="mob-link" id="mobPanelLink" style="display:none">Mi panel</a>
+    <a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank" class="btn-primary mob-link">Registra tu servicio</a>
+    <a href="admin.html" class="mob-link" style="color:var(--muted);font-size:0.82rem;">Admin</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-bg-logo"><img src="convite.png.jpeg" alt="" /></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="container">
+      <span class="hero-label">Gastronomía para eventos · Chile</span>
+      <h1 class="hero-title">¿Tienes un evento y<br>no sabes <span>qué servir?</span></h1>
+      <p class="hero-sub">
+        Encuentra y cotiza carritos de comida, banqueteras y servicios gastronómicos
+        para tu matrimonio, cumpleaños o evento corporativo — en minutos, directo por WhatsApp.
+      </p>
+      <div class="hero-contact">
+        <a href="https://instagram.com/convite_cl" target="_blank" class="hero-contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @convite_cl
+        </a>
+        <span class="hero-contact-sep">·</span>
+        <a href="mailto:convitechile@gmail.com" class="hero-contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          convitechile@gmail.com
+        </a>
+        <span class="hero-contact-sep">·</span>
+        <a href="https://wa.me/56953838648" target="_blank" class="hero-contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.057 23.428a.5.5 0 0 0 .609.61l5.71-1.493A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.032-1.384l-.36-.214-3.733.976.997-3.64-.235-.374A9.808 9.808 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          +56 9 5383 8648
+        </a>
+      </div>
+      <div class="search-wrap">
+        <div class="search-bar">
+          <input type="text" id="heroSearch" placeholder="Tipo de comida, vendedor o ciudad..." autocomplete="off" />
+          <button onclick="doSearch()">Buscar</button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong id="vendor-count">7</strong>
+          <span>Proveedores verificados</span>
+        </div>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Gratis para cotizar</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Directo</strong>
+          <span>Cotiza vía WhatsApp</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section id="catalogo">
+    <div class="container">
+      <div class="catalogo-header">
+        <h2 class="catalogo-title">Explorar servicios</h2>
+        <span class="results-count" id="resultsCount"></span>
+        <span class="carousel-hint" id="carouselHint">Desliza para ver más →</span>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="hamburguesas">Hamburguesas</button>
+        <button class="filter-btn" data-filter="pizza">Pizza</button>
+        <button class="filter-btn" data-filter="sandwiches">Churrascos & Lomitos</button>
+        <button class="filter-btn" data-filter="papas">Papas fritas</button>
+        <button class="filter-btn" data-filter="empanadas">Empanadas</button>
+        <button class="filter-btn" data-filter="hotdogs">Hot Dogs</button>
+        <button class="filter-btn" data-filter="tacos">Tacos</button>
+        <button class="filter-btn" data-filter="asados">Asados</button>
+        <button class="filter-btn" data-filter="mechadas">Mechadas</button>
+        <button class="filter-btn" data-filter="aros">Aros de cebolla</button>
+      </div>
+      <div class="cat-split">
+        <div class="cat-card cat-salado" id="catSalado" onclick="setCatFilter('salado')">
+          <div class="cat-icon">🧂</div>
+          <div class="cat-info">
+            <strong>Salado</strong>
+            <span>Hamburguesas, sándwiches, pizzas, parrilla y más</span>
+          </div>
+        </div>
+        <div class="cat-card cat-dulce" id="catDulce" onclick="setCatFilter('dulce')">
+          <div class="cat-icon">🍬</div>
+          <div class="cat-info">
+            <strong>Dulce</strong>
+            <span>Açaí, bowls y opciones para endulzar tu evento</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vendor-grid" id="vendorGrid"></div>
+      <div class="no-results" id="noResults">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>No encontramos servicios con ese filtro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIUDADES -->
+  <section id="ciudades">
+    <div class="container">
+      <div class="ciudades-inner">
+        <span class="ciudades-label">Cobertura activa</span>
+        <div class="ciudades-list">
+          <span class="ciudad-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Santiago
+          </span>
+          <span class="ciudad-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rancagua
+          </span>
+          <span class="ciudad-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Buín
+          </span>
+          <span class="ciudad-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Pirque
+          </span>
+          <span class="ciudad-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Chicureo
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Cómo funciona</span>
+        <h2 class="section-title">Simple desde el primer paso</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Busca tu servicio</h3>
+          <p>Filtra por tipo de comida o ciudad. Revisa perfiles, fotos y reseñas verificadas.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Contacta al proveedor</h3>
+          <p>Escríbele por WhatsApp, cuéntale tu evento y coordinen todos los detalles.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Disfruta tu evento</h3>
+          <p>El proveedor llega, monta y se encarga de todo. Tú solo disfrutas con tus invitados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA VENDEDORES -->
+  <section id="vendedores">
+    <div class="container">
+      <div class="vendedores-inner">
+        <div>
+          <span class="vendedores-eyebrow">Para proveedores</span>
+          <h2 class="vendedores-title">¿Tienes un carrito<br>o banquetera?</h2>
+          <p class="vendedores-sub">
+            Personas buscando catering para matrimonios, cumpleaños y eventos corporativos. Pon tu servicio en el mapa. Gratis para empezar.
+          </p>
+          <div class="perks">
+            <div class="perk">
+              <div class="perk-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="perk-text">
+                <strong>Visibilidad en tu ciudad</strong>
+                <span>Apareces cuando alguien busca proveedores cerca de ti</span>
+              </div>
+            </div>
+            <div class="perk">
+              <div class="perk-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="perk-text">
+                <strong>Contacto directo por WhatsApp</strong>
+                <span>Los clientes te escriben a ti, sin intermediarios</span>
+              </div>
+            </div>
+            <div class="perk">
+              <div class="perk-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="perk-text">
+                <strong>Perfil verificado</strong>
+                <span>Badge de proveedor verificado que genera confianza en los clientes</span>
+              </div>
+            </div>
+            <div class="perk">
+              <div class="perk-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="perk-text">
+                <strong>Matrimonios, cumpleaños y corporativos</strong>
+                <span>Accede a eventos de mayor escala y ticket</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+            <span class="free-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gratis por ahora — sin tarjeta requerida
+            </span>
+          </div>
+        </div>
+        <div class="vendedores-form">
+          <h3>¿Listo para sumarte?</h3>
+          <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;">Escríbenos por WhatsApp con tu nombre y lo que ofreces — te agregamos en menos de 24 horas.</p>
+          <a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank" class="btn-submit" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Escribir por WhatsApp
+          </a>
+          <ul style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;list-style:none;padding:0;">
+            <li style="font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gratis durante la marcha blanca
+            </li>
+            <li style="font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Sin contrato de permanencia
+            </li>
+            <li style="font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Los clientes te contactan directo a ti
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Lo que dicen</span>
+        <h2 class="section-title" style="color:var(--text)">Eventos que quedaron en la memoria</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Encontré el servicio en minutos y en 10 minutos ya tenía el presupuesto confirmado por WhatsApp. El carrito llegó puntual, la comida estaba increíble y los 80 invitados quedaron felices."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">CP</div>
+            <div class="testi-author-info">
+              <strong>Camila Pérez</strong>
+              <span>Matrimonio · Santiago</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Para el almuerzo corporativo de fin de año necesitaba algo diferente. El proveedor fue súper profesional, llegó con todo montado antes de que llegaran los invitados. 100% lo recomiendo."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MR</div>
+            <div class="testi-author-info">
+              <strong>Martín Rojas</strong>
+              <span>Evento corporativo · Santiago</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Lo mejor fue que el precio me lo cotizaron según la cantidad exacta de personas. Sin sorpresas ni cobros extra. El cumpleaños de mi hija fue un éxito gracias al carrito de hamburguesas."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">VS</div>
+            <div class="testi-author-info">
+              <strong>Valentina Silva</strong>
+              <span>Cumpleaños · Rancagua</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">Conv<span>ite</span></span>
+        <div class="footer-links">
+          <a href="#catalogo">Explorar</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank">Para proveedores</a>
+          <a href="terminos.html">Términos y Privacidad</a>
+          <a href="https://instagram.com/convite_cl" target="_blank">@convite_cl</a>
+          <a href="https://wa.me/56953838648" target="_blank">+56 9 5383 8648</a>
+        </div>
+        <span class="footer-copy">© 2026 Convite. Hecho en Chile.</span>
+      </div>
+      <p style="font-size:0.68rem;color:rgba(255,255,255,0.15);margin-top:1.25rem;line-height:1.6;">
+        Convite es un directorio de proveedores independientes. No somos el prestador del servicio ni intermediamos en pagos. Los precios son referenciales — confirma siempre directamente con el proveedor.
+        <a href="terminos.html" style="color:rgba(255,255,255,0.25);text-decoration:underline">Ver términos completos.</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODAL CONSULTA -->
+  <div class="modal-overlay" id="consultModal">
+    <div class="modal-panel">
+      <button class="modal-close-btn" onclick="closeConsultModal()">&#x2715;</button>
+      <p class="modal-eyebrow" id="modalVendorName"></p>
+      <h3 class="modal-title">Solicitar cotización</h3>
+      <p class="modal-sub">Completa el formulario y el proveedor recibirá tu solicitud por WhatsApp con todos los detalles de tu evento.</p>
+
+      <form id="consultForm" class="modal-form">
+        <div class="modal-two-col">
+          <div class="form-group">
+            <label>Tu nombre</label>
+            <input type="text" id="cName" placeholder="Tu nombre completo" required />
+          </div>
+          <div class="form-group">
+            <label>Tu WhatsApp o email</label>
+            <input type="text" id="cContact" placeholder="+56 9 1234 5678" required />
+          </div>
+        </div>
+        <div class="modal-two-col">
+          <div class="form-group">
+            <label>Fecha del evento</label>
+            <input type="date" id="cDate" required />
+          </div>
+          <div class="form-group">
+            <label>N° de personas</label>
+            <input type="number" id="cGuests" placeholder="100" min="1" required />
+          </div>
+        </div>
+        <div class="modal-two-col">
+          <div class="form-group">
+            <label>Tipo de evento</label>
+            <select id="cType" required>
+              <option value="">Selecciona...</option>
+              <option>Cumpleaños</option>
+              <option>Matrimonio</option>
+              <option>Evento corporativo</option>
+              <option>Aniversario</option>
+              <option>Graduación</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Hora del evento</label>
+            <input type="time" id="cHora" required />
+          </div>
+        </div>
+        <div class="modal-two-col">
+          <div class="form-group">
+            <label>Comuna</label>
+            <select id="cComuna" required>
+              <option value="">Seleccionar</option>
+              <option>Las Condes</option>
+              <option>Vitacura</option>
+              <option>Providencia</option>
+              <option>Ñuñoa</option>
+              <option>Santiago Centro</option>
+              <option>Maipú</option>
+              <option>La Florida</option>
+              <option>Puente Alto</option>
+              <option>San Bernardo</option>
+              <option>Peñalolén</option>
+              <option>La Reina</option>
+              <option>Macul</option>
+              <option>San Miguel</option>
+              <option>Lo Barnechea</option>
+              <option>Huechuraba</option>
+              <option>Otra</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Espacio del evento</label>
+            <select id="cEspacio" required>
+              <option value="">Seleccionar</option>
+              <option>Interior (indoor)</option>
+              <option>Exterior (outdoor)</option>
+              <option>No lo sé aún</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" id="productSection"></div>
+        <div class="form-group">
+          <label>Mensaje <span style="font-weight:400;letter-spacing:0;text-transform:none;font-size:0.72rem">(opcional)</span></label>
+          <textarea id="cMsg" placeholder="Cuéntale al proveedor más detalles sobre tu evento..."></textarea>
+        </div>
+        <button type="submit" class="btn-send-consult">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar cotización por WhatsApp
+        </button>
+      </form>
+
+      <div class="modal-success-view" id="modalSuccessView">
+        <div class="success-ring">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4>¡Solicitud enviada!</h4>
+        <p>Se abrió WhatsApp con tu solicitud de cotización. El proveedor tiene todos los datos de tu evento y te responderá con un precio personalizado.</p>
+        <p style="font-size:0.73rem; color:var(--muted); margin-top:-0.75rem;">¿Necesitas corregir algo? Puedes mencionárselo directamente en la conversación de WhatsApp.</p>
+        <button class="btn-modal-done" onclick="closeConsultModal()">Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario oculto para que Netlify registre el form de cotizaciones -->
+  <form name="cotizacion" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="nombre" />
+    <input type="text" name="contacto" />
+    <input type="text" name="fecha" />
+    <input type="text" name="tipo_evento" />
+    <input type="number" name="personas" />
+    <input type="text" name="hora" />
+    <input type="text" name="comuna" />
+    <input type="text" name="espacio" />
+    <textarea name="mensaje"></textarea>
+    <input type="text" name="vendedor" />
+    <input name="bot-field" />
+  </form>
+
+  <script>
+    const norm = s => s.toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/['\-&.,]/g, " ").replace(/\s+/g, " ").trim();
+
+    // Mostrar "Mi panel" solo si hay sesión de vendedor activa
+    if (localStorage.getItem("convite_vendor_session")) {
+      document.getElementById("navPanelLink").style.display = "";
+      document.getElementById("mobPanelLink").style.display = "";
+    }
+
+    const WA_MSG = encodeURIComponent("Hola, vi tu servicio en Convite y me interesa para un evento.");
+
+    let vendors = [
+      { id:"beefy", name:"Beefy", type:["hamburguesas"], category:"Smash Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 500 hamburguesas", priceRange:{min:4000,max:6000}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo","Charlas"], whatsapp:"56935051613", verified:true, brandCard:true, brandBg:"#1A0000", brandText:"#FFF0E8", brandAccent:"#D4271A", profilePage:"beefy.html", image:"Beefy.png.jpeg" },
+      { id:"el-club", name:"El Club Gourmet", type:["hamburguesas","pizza","sandwiches","hotdogs","papas"], category:"Todo en uno", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:3500,max:7500}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56973781047", verified:true, brandCard:true, brandBg:"#0D1F0D", brandText:"#E8F5E0", brandAccent:"#96C93D", profilePage:"el-club.html", image:"El-club.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"agostinos", name:"Agostino's Pizza", type:"pizza", category:"Pizza Artesanal", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 100 personas", priceRange:{min:5000,max:12000}, minPeople:8, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56944434912", verified:true, brandCard:true, brandBg:"#1A0008", brandText:"#FFF0F2", brandAccent:"#8B1530", profilePage:"agostinos.html", image:"Agostinos.png.jpeg", imageFit:"65%", logoBg:"#000000" },
+      { id:"de-niros", name:"De Niro's Pizza", type:"pizza", category:"Pizza Artesanal", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 200+ personas", priceRange:{min:3500,max:11990}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56932012310", verified:true, brandCard:true, brandBg:"#1E0808", brandText:"#FDF5E6", brandAccent:"#E8432A", profilePage:"de-niros.html", image:"De-niros-pizza.png.jpeg", imageFit:"contain" },
+      { id:"brisket-in-law", name:"Brisket In Law", type:["sandwiches"], category:"BBQ & Brisket", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 200 personas", priceRange:{min:4200,max:5400}, minPeople:60, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56975555803", verified:true, brandCard:true, brandBg:"#1C0F00", brandText:"#FFF5E8", brandAccent:"#B45309", profilePage:"brisket-in-law.html", image:"brisket-in-law.png.jpeg", imageFit:"contain", logoBg:"#1E0A06" },
+      { id:"chili-fries", name:"Chili Fries", type:["papas"], category:"Papas Fritas Premium", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 350+ personas", priceRange:{min:1200,max:2875}, minPeople:80, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56966877747", verified:true, brandCard:true, brandBg:"#000000", brandText:"#FFF8E8", brandAccent:"#D4A020", profilePage:"chili-fries.html", image:"Chili.fries.png.jpeg", imageFit:"contain", logoBg:"#000000" },
+      { id:"naturapura", name:"Naturapura Açaí Bar", type:["postres"], category:"Açaí & Bowls", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 200 personas", priceRange:{min:4000,max:8500}, minPeople:10, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56923825434", verified:true, brandCard:true, brandBg:"#1A0A2E", brandText:"#EDE4FF", brandAccent:"#7C3AED", profilePage:"naturapura.html", image:"naturapura.png.jpeg", imageFit:"contain" },
+      { id:"wild-smash", name:"Wild Smash", type:["hamburguesas","papas","hotdogs"], category:"Smash & Hot Dogs", city:"Santiago", rating:5.0, reviews:0, capacity:"Flexible", priceRange:{min:5500,max:6000}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56963413321", verified:true, brandCard:true, brandBg:"#0F1A0A", brandText:"#E8F5E0", brandAccent:"#7BC043", profilePage:"wild-smash.html", image:"wild-smash.png.jpeg" },
+      { id:"a-la-medida", name:"A la Medida Gourmet", type:["hamburguesas","sandwiches","pizza","tacos","hotdogs","papas","mechadas","aros"], category:"Catering Multiformato", city:"Santiago y alrededores", rating:5.0, reviews:0, capacity:"A coordinar según evento", priceRange:{min:3400,max:8000}, minPeople:35, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56971258275", verified:true, brandCard:true, brandBg:"#1A1200", brandText:"#FFF8E0", brandAccent:"#C9A227", profilePage:"a-la-medida.html", image:"A-la-medida.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"entrepanes", name:"Entrepanes", type:["sandwiches","hamburguesas"], category:"Churrascos & Burgers", city:"Región Metropolitana", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:1200,max:5500}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56961111667", verified:true, brandCard:true, brandBg:"#2A1A0E", brandText:"#F5EDD4", brandAccent:"#E8610A", profilePage:"entrepanes.html", image:"Entre-panes.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"churrascos-patagonia", name:"Churrascos Patagonia", type:["sandwiches","papas"], category:"Churrascos & Papas", city:"Santiago", rating:5.0, reviews:0, capacity:"Sin límite", priceRange:{min:1690,max:3190}, minPeople:25, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56979913075", verified:true, brandCard:true, brandBg:"#0A0A0A", brandText:"#F5F0E8", brandAccent:"#C8B89A", profilePage:"churrascos-patagonia.html", image:"Churrascos-patagonia.png.jpeg", imageFit:"contain", logoBg:"#000000" },
+      { id:"crispy-fries", name:"Crispy Fries & Burgers", type:["hamburguesas","papas"], category:"Papas & Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:850,max:2200}, minPeople:40, tags:["Matrimonios","Corporativo","Cumpleaños"], whatsapp:"56974888028", verified:true, brandCard:true, brandBg:"#454545", brandText:"#EEE9D6", brandAccent:"#D4A417", profilePage:"crispy-fries.html", image:"Crispy-fries-and-burgers.png.jpeg", imageFit:"75%", logoBg:"#454545" },
+      { id:"k-burgas", name:"K-Burgas", type:["hamburguesas","papas"], category:"Smash Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300+ personas", priceRange:{min:4000,max:5500}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas de curso"], whatsapp:"56966546898", verified:true, brandCard:true, brandBg:"#1E1412", brandText:"#FAF0E6", brandAccent:"#E8A020", profilePage:"k-burgas.html", image:"k-burgas.jpeg" },
+      { id:"el-frito-jack", name:"El Frito Jack", type:["papas","empanadas"], category:"Papas & Frituras", city:"Región Metropolitana", rating:5.0, reviews:0, capacity:"Consultar", priceRange:{min:1000,max:1800}, priceUnit:"cono", minPeople:50, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56993890867", verified:true, brandCard:true, brandBg:"#1C1100", brandText:"#FFF3D0", brandAccent:"#F5A623", profilePage:"el-frito-jack.html", image:"El-frito-jack.png.jpeg", imageFit:"80%", logoBg:"#000" },
+      { id:"grillers", name:"Grillers", type:["hamburguesas","sandwiches","papas"], category:"Smash & Parrilla", city:"Santiago · Buin · Pirque", rating:5.0, reviews:0, capacity:"Hasta 300 personas", priceRange:{min:4000,max:6500}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56994102074", verified:true, brandCard:true, brandBg:"#1A0C00", brandText:"#FFF0E0", brandAccent:"#E06A1A", profilePage:"grillers.html", image:"Grillers.png.jpeg", imageFit:"contain", logoBg:"#000" },
+
+      { id:"nunos-smash", name:"Nuno's Smash", type:"hamburguesas", category:"Smash Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300 hamburguesas", priceRange:{min:5000,max:7500}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56961614383", verified:true, brandCard:true, brandBg:"#1C0A00", brandText:"#FFF0E0", brandAccent:"#E8341A", profilePage:"nunos-smash.html", image:"nunos-smash.png.jpeg", imageFit:"contain", logoBg:"#fff" },
+      { id:"el-buen-mordisco", name:"El Buen Mordisco", type:["sandwiches","hamburguesas","hotdogs"], category:"Churrascos & Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Eventos masivos", priceRange:{min:1500,max:6000}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56996184239", verified:true, brandCard:true, brandBg:"#1A0800", brandText:"#FFF0E0", brandAccent:"#E85D04", profilePage:"el-buen-mordisco.html", image:"El-buen-mordisco.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"dirty-smash", name:"Dirty Smash", type:"hamburguesas", category:"Smash Burgers", city:"Santiago Oriente · Rancagua", rating:5.0, reviews:0, capacity:"Hasta 700 personas", priceRange:{min:4500,max:6000}, minPeople:50, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56944995639", verified:true, brandCard:true, brandBg:"#1A1A1A", brandText:"#F0EBE0", brandAccent:"#DC2626", profilePage:"dirty-smash.html", image:"Dirty-Smash-2.png.jpeg.jpeg" },
+      { id:"tacon-todo", name:"Taco'n Todo", type:"tacos", category:"Tacos Mexicanos", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 300 personas", priceRange:{min:3500,max:6000}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56952353821", verified:true, brandCard:true, brandBg:"#1F0A00", brandText:"#FFF5E0", brandAccent:"#D4861A", profilePage:"tacon-todo.html", image:"tacon-todo.png.jpeg", imageFit:"contain", logoBg:"#fff" },
+      { id:"el-compadre-parrillero", name:"El Compadre Parrillero", type:"asados", category:"Asados & Parrilla", city:"Región de Valparaíso · Santiago", rating:5.0, reviews:0, capacity:"Hasta 500 personas", priceRange:{min:8000,max:35000}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56964145553", verified:true, brandCard:true, brandBg:"#1A0800", brandText:"#FFF5E0", brandAccent:"#C2410C", profilePage:"el-compadre-parrillero.html", image:"el-compadre-parrillero.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"salva-bajon", name:"Salva-Bajón", type:["hotdogs","sandwiches","hamburguesas","papas"], category:"Comida Rápida Urbana", city:"Región Metropolitana · Valparaíso · O'Higgins", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:3000,max:12000}, minPeople:40, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56964145553", verified:true, brandCard:true, brandBg:"#100800", brandText:"#FFF5E0", brandAccent:"#E53E1A", profilePage:"salva-bajon.html", image:"salva-bajon.png.jpeg", imageFit:"contain", logoBg:"#FFD600" },
+    ];
+
+    let currentFilter = "todos";
+    let currentSearch = "";
+    let currentCat = null;
+
+    function setCatFilter(cat) {
+      if (currentCat === cat) {
+        currentCat = null;
+        document.getElementById('catSalado').classList.remove('active');
+        document.getElementById('catDulce').classList.remove('active');
+      } else {
+        currentCat = cat;
+        document.getElementById('catSalado').classList.toggle('active', cat === 'salado');
+        document.getElementById('catDulce').classList.toggle('active', cat === 'dulce');
+      }
+      currentFilter = "todos";
+      currentSearch = "";
+      document.getElementById("heroSearch").value = "";
+      hideSuggestions();
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector(".filter-btn[data-filter='todos']").classList.add("active");
+      renderCards();
+    }
+
+    function renderCards() {
+      const grid      = document.getElementById("vendorGrid");
+      const noResults = document.getElementById("noResults");
+      const count     = document.getElementById("resultsCount");
+      const vc = document.getElementById("vendor-count");
+      if (vc) vc.textContent = vendors.length;
+
+      const filtered = vendors.filter(v => {
+        const types = Array.isArray(v.type) ? v.type : [v.type];
+        const matchType   = currentFilter === "todos" || types.includes(currentFilter);
+        const matchCat    = !currentCat || (currentCat === "dulce" ? types.includes("postres") : !types.includes("postres"));
+        const q = norm(currentSearch);
+        const SYNONYMS = {
+          "burger": "hamburguesas", "burguer": "hamburguesas", "hamburguesa": "hamburguesas",
+          "completo": "hotdogs", "hotdog": "hotdogs", "vienesa": "hotdogs",
+          "churrasco": "sandwiches", "lomito": "sandwiches", "mechada": "sandwiches",
+          "fritas": "papas", "papa": "papas", "papas fritas": "papas",
+          "empanada": "empanadas", "pizzas": "pizza", "pizzeria": "pizza",
+          "smash": "hamburguesas", "parrilla": "sandwiches",
+          "stgo": "santiago", "rm": "region metropolitana", "metropolitana": "region metropolitana",
+          "oriente": "santiago oriente", "rancagua": "rancagua",
+        };
+        const expanded = SYNONYMS[q] || q;
+        const searchIn = norm([v.name, v.category, v.city, ...types, ...(v.tags || [])].join(" "));
+        const matchSearch = !q || searchIn.includes(q) || searchIn.includes(expanded);
+        return matchType && matchSearch && matchCat;
+      });
+
+      count.textContent = `${filtered.length} resultado${filtered.length !== 1 ? "s" : ""}`;
+
+      if (!filtered.length) {
+        grid.innerHTML = "";
+        noResults.style.display = "block";
+        return;
+      }
+
+      noResults.style.display = "none";
+
+      const salado = filtered.filter(v => { const t = Array.isArray(v.type) ? v.type : [v.type]; return !t.includes("postres"); });
+      const dulce  = filtered.filter(v => { const t = Array.isArray(v.type) ? v.type : [v.type]; return  t.includes("postres"); });
+      const showDividers = salado.length > 0 && dulce.length > 0;
+
+      function cardHtml(v) {
+        const headerHtml = v.image
+          ? `<div class="brand-card-header" style="background:${v.logoBg ? v.logoBg : (v.imageFit === 'contain' ? '#fff' : (v.brandBg || '#111'))};background-image:url('${v.image}');background-size:${v.imageFit || 'cover'};background-position:center;background-repeat:no-repeat;">
+               ${v.verified ? `<div class="verified-badge">Verificado</div>` : ""}
+             </div>`
+          : v.brandCard
+          ? `<div class="brand-card-header" style="background:${v.brandBg};color:${v.brandText}">
+               ${v.verified ? `<div class="verified-badge">Verificado</div>` : ""}
+               <span class="brand-name">${v.name}</span>
+               <span class="brand-tag" style="color:${v.brandAccent}">${v.category}</span>
+               <div class="card-img-bottom">
+                 <span class="card-category">${v.category}</span>
+               </div>
+             </div>`
+          : `<div class="card-img" style="background-image:url('${v.img}'),${v.fallback}">
+               <div class="card-img-overlay"></div>
+               ${v.verified ? `<div class="verified-badge">Verificado</div>` : ""}
+               <div class="card-img-bottom">
+                 <span class="card-category">${v.category}</span>
+                 <span class="card-rating-badge"><span class="star">★</span> ${v.rating}</span>
+               </div>
+             </div>`;
+
+        const profileBtn = v.profilePage
+          ? `<a href="${v.profilePage}" class="btn-profile">
+               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+               Ver menú completo
+             </a>`
+          : "";
+
+        return `
+        <div class="vendor-card${v.profilePage ? ' card-clickable' : ''}" ${v.profilePage ? `onclick="window.location.href='${v.profilePage}'"` : ''}>
+          ${v.profilePage ? `<a href="${v.profilePage}" class="card-overlay-link" tabindex="-1" aria-hidden="true"></a>` : ''}
+          ${headerHtml}
+          <div class="card-body">
+            <h3 class="card-name">${v.name}</h3>
+            <div class="card-location">${v.city}${v.reviews ? ` &middot; ${v.reviews} reseñas` : ""}</div>
+            <div class="card-divider"></div>
+            <div class="card-info-row">
+              <div class="card-info-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                ${v.capacity}
+              </div>
+              <div class="card-info-item" style="flex-direction:column;align-items:flex-start;gap:1px">
+                <div class="price-main">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--muted)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <span style="font-weight:700">${v.priceRange ? `$${v.priceRange.min.toLocaleString("es-CL")}–$${v.priceRange.max.toLocaleString("es-CL")}` : "A cotizar"}</span>
+                  ${v.priceRange ? `<span class="price-unit">/ ${v.priceUnit || "persona"}</span>` : ""}
+                </div>
+                <span class="price-range-note">mín. ${v.minPeople || "—"} ${v.priceUnit || "personas"}</span>
+              </div>
+            </div>
+            <div class="card-tags">
+              ${v.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+            </div>
+            <p style="font-size:0.68rem;color:var(--muted);margin-top:0.5rem;">Precios referenciales · confirmar con el proveedor</p>
+            <button class="btn-consultar" onclick="event.stopPropagation(); openConsult('${v.id}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Solicitar cotización
+            </button>
+            ${profileBtn}
+          </div>
+        </div>`;
+      }
+
+      let html = "";
+      if (salado.length > 0) {
+        if (showDividers) html += `<div class="section-divider"><span>Salado</span></div>`;
+        html += salado.map(cardHtml).join("");
+      }
+      if (dulce.length > 0) {
+        if (showDividers) html += `<div class="section-divider"><span>Dulce</span></div>`;
+        html += dulce.map(cardHtml).join("");
+      }
+      grid.innerHTML = html;
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentFilter = btn.dataset.filter;
+        renderCards();
+      });
+    });
+
+    function doSearch() {
+      currentSearch = document.getElementById("heroSearch").value.trim();
+      currentFilter = "todos";
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector('[data-filter="todos"]').classList.add("active");
+      document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
+      renderCards();
+    }
+
+    // Autocomplete
+    const SVG_FOOD = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`;
+    const SVG_PIN  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+    const SVG_MAP  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`;
+
+    const SUGGESTION_POOL = [
+      { label: "Hamburguesas",         icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Pizza",                icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Churrascos & Lomitos", icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Hot Dogs",             icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Papas fritas",         icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Empanadas",            icon: SVG_FOOD, type: "Tipo de comida" },
+      { label: "Smash Burgers",        icon: SVG_FOOD, type: "Tipo de comida" },
+      ...vendors.map(v => ({ label: v.name, img: v.image, imgFit: v.imageFit, imgBg: v.logoBg, type: "Proveedor" })),
+      ...(() => {
+        const seen = new Set();
+        const zones = [];
+        vendors.forEach(v => {
+          v.city.split(/[·,]/).map(z => z.trim()).forEach(z => {
+            if (z && !seen.has(norm(z))) { seen.add(norm(z)); zones.push({ label: z, icon: SVG_MAP, type: "Zona" }); }
+          });
+        });
+        return zones;
+      })(),
+    ];
+
+    const suggestionsEl = document.getElementById("searchSuggestions");
+    let sgActiveIdx = -1;
+
+    function showSuggestions(raw) {
+      const q = norm(raw);
+      if (!q) { hideSuggestions(); return; }
+      const matches = SUGGESTION_POOL.filter(s => norm(s.label).includes(q)).slice(0, 6);
+      if (!matches.length) { hideSuggestions(); return; }
+      sgActiveIdx = -1;
+      suggestionsEl.innerHTML = matches.map((s, i) => {
+        const iconHtml = s.img
+          ? `<span class="suggestion-logo" style="background:${s.imgBg || (s.imgFit === 'contain' ? '#fff' : '#111')};"><img src="${s.img}" style="width:100%;height:100%;object-fit:${s.imgFit && s.imgFit !== 'cover' ? 'contain' : 'cover'};border-radius:5px;" /></span>`
+          : `<span class="suggestion-icon">${s.icon}</span>`;
+        return `<div class="suggestion-item" data-idx="${i}" onmousedown="selectSuggestion(event,'${s.label.replace(/'/g,"\\'")}')">
+          ${iconHtml}
+          <span class="suggestion-label">${s.label}</span>
+          <span class="suggestion-type">${s.type}</span>
+        </div>`;
+      }).join("");
+      suggestionsEl.style.display = "block";
+    }
+
+    function hideSuggestions() {
+      suggestionsEl.style.display = "none";
+      sgActiveIdx = -1;
+    }
+
+    function selectSuggestion(e, label) {
+      e.preventDefault();
+      document.getElementById("heroSearch").value = label;
+      hideSuggestions();
+      doSearch();
+    }
+
+    document.getElementById("heroSearch").addEventListener("keydown", e => {
+      const items = suggestionsEl.querySelectorAll(".suggestion-item");
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        sgActiveIdx = Math.min(sgActiveIdx + 1, items.length - 1);
+        items.forEach((el, i) => el.classList.toggle("sg-active", i === sgActiveIdx));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        sgActiveIdx = Math.max(sgActiveIdx - 1, -1);
+        items.forEach((el, i) => el.classList.toggle("sg-active", i === sgActiveIdx));
+      } else if (e.key === "Escape") {
+        hideSuggestions();
+      } else if (e.key === "Enter") {
+        if (sgActiveIdx >= 0 && items[sgActiveIdx]) {
+          const label = items[sgActiveIdx].querySelector(".suggestion-label").textContent;
+          document.getElementById("heroSearch").value = label;
+          hideSuggestions();
+        }
+        doSearch();
+      }
+    });
+
+    document.getElementById("heroSearch").addEventListener("input", () => {
+      const val = document.getElementById("heroSearch").value.trim();
+      currentSearch = val;
+      currentFilter = "todos";
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector('[data-filter="todos"]').classList.add("active");
+      if (val) {
+        currentCat = null;
+        document.getElementById('catSalado').classList.remove('active');
+        document.getElementById('catDulce').classList.remove('active');
+      }
+      showSuggestions(val);
+      renderCards();
+    });
+
+    document.getElementById("heroSearch").addEventListener("blur", () => {
+      setTimeout(hideSuggestions, 150);
+    });
+
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburger.addEventListener("click", () => {
+      const open = hamburger.classList.toggle("open");
+      mobileMenu.classList.toggle("open", open);
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    document.querySelectorAll(".mob-link").forEach(l => {
+      l.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+
+
+    /* ── MODAL DE CONSULTA ── */
+    let currentVendorModal = null;
+
+    function openConsult(vendorId) {
+      currentVendorModal = vendors.find(v => v.id === vendorId);
+      if (!currentVendorModal) return;
+
+      // Trackear vista en localStorage
+      const views = JSON.parse(localStorage.getItem("convite_views") || "{}");
+      views[vendorId] = (views[vendorId] || 0) + 1;
+      localStorage.setItem("convite_views", JSON.stringify(views));
+
+      // Resetear modal
+      document.getElementById("consultForm").style.display = "";
+      document.getElementById("modalSuccessView").style.display = "none";
+      document.getElementById("consultForm").reset();
+      document.getElementById("modalVendorName").textContent = currentVendorModal.name;
+
+      // Renderizar productos del proveedor
+      const TYPE_LABELS = {
+        hamburguesas:"Hamburguesas", sandwiches:"Churrascos / Sandwiches",
+        pizza:"Pizza", tacos:"Tacos", hotdogs:"Hot Dogs",
+        papas:"Papas fritas", empanadas:"Empanadas",
+        asados:"Asados / Parrilla", mechadas:"Mechadas", aros:"Aros de cebolla"
+      };
+      const types = Array.isArray(currentVendorModal.type)
+        ? currentVendorModal.type : [currentVendorModal.type];
+      const rows = types.map(t => `
+        <label class="product-row">
+          <input type="checkbox" class="product-check" />
+          <span class="product-circle"></span>
+          <span class="product-name">${TYPE_LABELS[t] || t}</span>
+          <input type="number" class="product-qty" min="1" placeholder="0" />
+          <span class="product-qty-unit">und.</span>
+        </label>`).join('');
+      document.getElementById('productSection').innerHTML =
+        `<span class="product-section-label">¿Qué productos necesitas?</span>${rows}`;
+      document.querySelectorAll('#productSection .product-check').forEach(cb => {
+        cb.addEventListener('change', function() {
+          const row = this.closest('.product-row');
+          row.classList.toggle('active', this.checked);
+          if (this.checked) {
+            const qty = row.querySelector('.product-qty');
+            if (!qty.value) qty.value = 1;
+            qty.focus();
+          }
+        });
+      });
+
+      // Mostrar modal
+      document.getElementById("consultModal").classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeConsultModal() {
+      document.getElementById("consultModal").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("consultModal").addEventListener("click", e => {
+      if (e.target === document.getElementById("consultModal")) closeConsultModal();
+    });
+
+    document.getElementById("consultForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (this._submitting) return;
+      this._submitting = true;
+      const submitBtn = this.querySelector('.btn-send-consult');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
+      const v = currentVendorModal;
+      const name    = document.getElementById("cName").value.trim();
+      const contact = document.getElementById("cContact").value.trim();
+      const date    = document.getElementById("cDate").value;
+      const guests  = document.getElementById("cGuests").value;
+      const type    = document.getElementById("cType").value;
+      const hora    = document.getElementById("cHora").value;
+      const comuna  = document.getElementById("cComuna").value;
+      const espacio = document.getElementById("cEspacio").value;
+      const msg     = document.getElementById("cMsg").value.trim();
+
+      const dateFormatted = date
+        ? new Date(date + "T12:00:00").toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" })
+        : "por definir";
+
+      const selectedProducts = [];
+      document.querySelectorAll('#productSection .product-check:checked').forEach(cb => {
+        const row = cb.closest('.product-row');
+        const pname = row.querySelector('.product-name').textContent;
+        const qty = row.querySelector('.product-qty').value || '?';
+        selectedProducts.push(`  • ${pname}: ${qty}`);
+      });
+      const productsLine = selectedProducts.length
+        ? `Productos:\n${selectedProducts.join('\n')}\n`
+        : '';
+
+      const waText = encodeURIComponent(
+        `Lead desde Convite\n` +
+        `--------------------\n` +
+        `Un cliente vio tu perfil en Convite y quiere cotizar:\n\n` +
+        `Nombre: ${name}\n` +
+        `Contacto: ${contact}\n` +
+        `Fecha del evento: ${dateFormatted}\n` +
+        `Hora: ${hora}\n` +
+        `Tipo de evento: ${type}\n` +
+        `Personas: ${guests}\n` +
+        `Comuna: ${comuna}\n` +
+        `Espacio: ${espacio}\n` +
+        productsLine +
+        (msg ? `Mensaje: ${msg}\n` : "") +
+        `\n--------------------\n` +
+        `Convite · convite.cl`
+      );
+
+      // Guardar consulta en localStorage
+      const rawInq = JSON.parse(localStorage.getItem("convite_inquiries") || "{}");
+      const inquiries = Array.isArray(rawInq) ? {} : rawInq;
+      if (!Array.isArray(inquiries[v.id])) inquiries[v.id] = [];
+      inquiries[v.id].push({ name, contact, date, guests, type, msg, ts: Date.now() });
+      localStorage.setItem("convite_inquiries", JSON.stringify(inquiries));
+
+      // Enviar a Netlify Forms
+      const fd = new FormData();
+      fd.append("form-name", "cotizacion");
+      fd.append("nombre", name);
+      fd.append("contacto", contact);
+      fd.append("fecha", dateFormatted);
+      fd.append("tipo_evento", type);
+      fd.append("personas", guests);
+      fd.append("hora", hora);
+      fd.append("comuna", comuna);
+      fd.append("espacio", espacio);
+      fd.append("mensaje", msg || "");
+      fd.append("vendedor", v.name);
+      fetch("/", { method: "POST", body: fd }).catch(() => {});
+
+      // Abrir WhatsApp
+      window.open(`https://wa.me/${v.whatsapp}?text=${waText}`, "_blank");
+
+      // Mostrar éxito
+      document.getElementById("consultForm").style.display = "none";
+      document.getElementById("modalSuccessView").style.display = "block";
+      this._submitting = false;
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = ''; }
+    });
+
+    renderCards();
+  </script>
+
+</body>
+</html>

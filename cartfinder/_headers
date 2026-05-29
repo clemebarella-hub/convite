@@ -1,0 +1,8 @@
+/*.png.jpeg
+  Content-Type: image/jpeg
+
+/*.jpeg.jpeg
+  Content-Type: image/jpeg
+
+/*.png.jpeg.jpeg
+  Content-Type: image/jpeg

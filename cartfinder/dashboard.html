@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel vendedor — Convite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:           #F8FAFC;
+      --card:         #FFFFFF;
+      --text:         #0F172A;
+      --muted:        #64748B;
+      --border:       #E2E8F0;
+      --accent:       #D97706;
+      --accent-light: #FFFBEB;
+      --dark:         #0F172A;
+      --dark2:        #1E293B;
+      --green:        #25D366;
+      --sidebar-w:    240px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--dark);
+      padding: 1.5rem;
+    }
+
+    .login-box {
+      background: white;
+      border-radius: 16px;
+      padding: 2.8rem 3rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+    }
+
+    .login-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .login-logo span { color: var(--accent); }
+
+    .login-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .login-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .login-select {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      margin-bottom: 1.2rem;
+      -webkit-appearance: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .login-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.1);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.82rem;
+      background: var(--text);
+      color: white;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-login:hover { background: var(--dark2); }
+
+    .login-note {
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── DASHBOARD LAYOUT ── */
+    #dashboardScreen { display: none; min-height: 100vh; }
+
+    .dash-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--dark);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 1.8rem 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: white;
+      padding: 0 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+    .sidebar-logo span { color: var(--accent); }
+
+    .sidebar-vendor {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      padding: 0 1.6rem;
+      margin-bottom: 2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar-section {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      padding: 0 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.6rem 1.6rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      border-radius: 0;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar-link:hover { color: white; background: rgba(255,255,255,0.05); }
+    .sidebar-link.active { color: white; background: rgba(217,119,6,0.12); border-right: 2px solid var(--accent); }
+    .sidebar-link svg { flex-shrink: 0; opacity: 0.7; }
+    .sidebar-link.active svg { opacity: 1; }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 1.2rem 1.6rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.2s;
+    }
+    .btn-back:hover { color: rgba(255,255,255,0.65); }
+    .btn-logout {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s;
+    }
+    .btn-logout:hover { color: rgba(255,255,255,0.65); }
+
+    /* Main content */
+    .dash-main {
+      flex: 1;
+      padding: 2.5rem 2.8rem;
+      overflow-y: auto;
+    }
+
+    .dash-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dash-greeting {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .dash-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Tabs */
+    .dash-tabs {
+      display: none;
+    }
+    .dash-tab-content { display: none; }
+    .dash-tab-content.active { display: block; }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .stat-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .stat-icon.amber { background: rgba(217,119,6,0.1); color: var(--accent); }
+    .stat-icon.blue  { background: rgba(59,130,246,0.1); color: #3B82F6; }
+    .stat-icon.green { background: rgba(37,211,102,0.1); color: #16A34A; }
+    .stat-icon.purple{ background: rgba(139,92,246,0.1); color: #7C3AED; }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .stat-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .stat-change.up { background: rgba(37,211,102,0.08); color: #16A34A; }
+    .stat-change.neutral { background: rgba(100,116,139,0.08); color: var(--muted); }
+
+    /* Content sections */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .section-card-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-card-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Inquiries table */
+    .inquiry-list { padding: 0; }
+
+    .inquiry-item {
+      display: grid;
+      grid-template-columns: 1fr 120px 110px 100px;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background 0.15s;
+    }
+    .inquiry-item:last-child { border-bottom: none; }
+    .inquiry-item:hover { background: var(--bg); }
+
+    .inq-name { font-size: 0.85rem; font-weight: 600; }
+    .inq-sub  { font-size: 0.73rem; color: var(--muted); margin-top: 1px; }
+
+    .inq-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .inq-date {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .inq-guests {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .inquiry-empty {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+    .inquiry-empty svg { margin-bottom: 0.75rem; opacity: 0.3; }
+
+    /* Chart bar (simulated) */
+    .chart-area {
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      height: 140px;
+    }
+
+    .chart-bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .chart-bar {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      background: var(--accent);
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      min-height: 4px;
+    }
+    .chart-bar:hover { opacity: 1; }
+    .chart-bar.secondary { background: #E2E8F0; }
+
+    .chart-label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Profile section */
+    .profile-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-item {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-key {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .info-val {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Tips */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+
+    .tip-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+    .tip-icon {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    .tip-title { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .tip-body  { font-size: 0.75rem; color: var(--muted); line-height: 1.65; }
+
+    /* Availability */
+    .avail-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      padding: 1.5rem;
+    }
+
+    .avail-day-header {
+      text-align: center;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding-bottom: 0.5rem;
+    }
+
+    .avail-day {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: white;
+    }
+    .avail-day:hover { border-color: var(--accent); }
+    .avail-day.today { font-weight: 800; border-color: var(--accent); color: var(--accent); }
+    .avail-day.booked { background: #FEE2E2; border-color: #FECACA; color: #DC2626; }
+    .avail-day.available { background: rgba(37,211,102,0.08); border-color: rgba(37,211,102,0.3); }
+    .avail-day.empty { border-color: transparent; background: transparent; cursor: default; }
+
+    .avail-legend {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 3px;
+    }
+
+    /* ── MOBILE TOPBAR ── */
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--dark);
+      padding: 0.9rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mob-top-logo { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.04em; color: white; }
+    .mob-top-logo span { color: var(--accent); }
+    .mob-top-vendor { font-size: 0.7rem; color: rgba(255,255,255,0.38); max-width: 160px;
+                      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .mob-top-logout {
+      background: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+      cursor: pointer; color: rgba(255,255,255,0.45); font-size: 0.7rem;
+      font-family: 'Inter',sans-serif; padding: 0.3rem 0.7rem; transition: all 0.15s;
+    }
+    .mob-top-logout:hover { color: white; border-color: rgba(255,255,255,0.3); }
+
+    /* ── MOBILE BOTTOM NAV ── */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: white;
+      border-top: 1px solid var(--border);
+      z-index: 200;
+      grid-template-columns: repeat(4, 1fr);
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: 0 -4px 20px rgba(15,23,42,0.06);
+    }
+    .mob-nav-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3px; padding: 0.65rem 0.5rem;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      color: var(--muted);
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .mob-nav-btn svg { flex-shrink: 0; }
+    .mob-nav-btn.active { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sidebar            { display: none; }
+      .mobile-topbar      { display: flex; }
+      .mobile-bottom-nav  { display: grid; }
+      .dash-main          { padding: 1.5rem 1.25rem calc(5rem + env(safe-area-inset-bottom)); }
+      .inquiry-item       { grid-template-columns: 1fr 90px; }
+      .inquiry-item .inq-date,
+      .inquiry-item .inq-guests { display: none; }
+      .profile-row        { grid-template-columns: 1fr; }
+      .tips-grid          { grid-template-columns: 1fr; }
+      .avail-grid         { padding: 1rem; gap: 3px; }
+      .avail-day          { font-size: 0.68rem; border-radius: 5px; }
+      .login-box          { padding: 2.2rem 1.8rem; }
+    }
+    @media (max-width: 500px) {
+      .stat-grid          { grid-template-columns: 1fr 1fr; }
+      .stat-value         { font-size: 1.5rem; }
+      .stat-card          { padding: 1.1rem; }
+      .section-card-header{ padding: 1rem 1.25rem; }
+      .inquiry-item       { padding: 0.85rem 1.25rem; }
+      .tips-grid          { padding: 1rem; }
+      .tip-card           { padding: 1rem; }
+    }
+    @media (max-width: 380px) {
+      .stat-grid          { grid-template-columns: 1fr; }
+      .avail-day-header   { font-size: 0.55rem; }
+      .avail-day          { font-size: 0.6rem; }
+      .dash-main          { padding-left: 1rem; padding-right: 1rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- PANTALLA DE LOGIN -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">Fest<span>ín</span></div>
+      <p class="login-sub">Panel de vendedor</p>
+
+      <label class="login-label" for="loginSelect">Tu servicio</label>
+      <select class="login-select" id="loginSelect">
+        <option value="">Selecciona tu servicio...</option>
+        <option value="crispy-fries">Crispy Fries & Burgers</option>
+        <option value="la-smash">La Smash Burger</option>
+        <option value="el-rincon">El Rincón del Tío</option>
+        <option value="hotdog-kingdom">Hot Dog Kingdom</option>
+        <option value="mr-hotdog">Mr. Hot Dog</option>
+        <option value="tacos-compadre">Tacos El Compadre</option>
+        <option value="taco-fusion">Taco Fusión</option>
+        <option value="pizza-road">Pizza Road</option>
+        <option value="sushi-wheels">Sushi On Wheels</option>
+        <option value="churros-co">Churros & Co</option>
+        <option value="el-lomo">El Lomo de Oro</option>
+      </select>
+
+      <button class="btn-login" onclick="doLogin()">Entrar al panel</button>
+
+      <p class="login-note">Panel de demostración — los datos son de tu sesión en este navegador</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboardScreen">
+
+    <!-- Barra superior móvil -->
+    <header class="mobile-topbar">
+      <div>
+        <div class="mob-top-logo">Fest<span>ín</span></div>
+        <div class="mob-top-vendor" id="mobTopVendor"></div>
+      </div>
+      <button class="mob-top-logout" onclick="doLogout()">Salir</button>
+    </header>
+
+    <div class="dash-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">Fest<span>ín</span></div>
+        <div class="sidebar-vendor" id="sidebarVendorName"></div>
+
+        <div class="sidebar-section">Panel</div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-link active" data-tab="resumen" onclick="showTab('resumen')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Resumen
+          </button>
+          <button class="sidebar-link" data-tab="consultas" onclick="showTab('consultas')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Consultas
+          </button>
+          <button class="sidebar-link" data-tab="disponibilidad" onclick="showTab('disponibilidad')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Disponibilidad
+          </button>
+          <button class="sidebar-link" data-tab="perfil" onclick="showTab('perfil')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Mi perfil
+          </button>
+        </nav>
+
+        <div class="sidebar-section">Consejos</div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-link" onclick="showTab('consejos')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Guía de éxito
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a href="index.html" class="btn-back">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Volver a Convite
+          </a>
+          <button class="btn-logout" onclick="doLogout()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="dash-main">
+
+        <!-- RESUMEN -->
+        <div class="dash-tab-content active" id="tab-resumen">
+          <div class="dash-topbar">
+            <div>
+              <h1 class="dash-greeting" id="greetingName">Hola</h1>
+              <p class="dash-date" id="dashDate"></p>
+            </div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-icon amber">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="stat-value" id="statViews">0</div>
+              <div class="stat-label">Vistas al perfil</div>
+              <div class="stat-change up" id="statViewsChange">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                este mes
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="stat-value" id="statInquiries">0</div>
+              <div class="stat-label">Consultas recibidas</div>
+              <div class="stat-change up" id="statInqChange">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                este mes
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="stat-value" id="statConversion">—</div>
+              <div class="stat-label">Tasa de conversión</div>
+              <div class="stat-change neutral">vistas → consultas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="stat-value" id="statPeople">0</div>
+              <div class="stat-label">Personas consultadas</div>
+              <div class="stat-change neutral">suma de eventos</div>
+            </div>
+          </div>
+
+          <!-- Gráfico de consultas por semana -->
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">Consultas por día (últimas 2 semanas)</span>
+            </div>
+            <div class="chart-area" id="chartArea"></div>
+          </div>
+
+          <!-- Últimas consultas -->
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">Últimas consultas</span>
+              <span class="section-card-badge" id="inquiryCountBadge">0 total</span>
+            </div>
+            <div class="inquiry-list" id="recentInquiries"></div>
+          </div>
+        </div>
+
+        <!-- CONSULTAS -->
+        <div class="dash-tab-content" id="tab-consultas">
+          <div class="dash-topbar">
+            <h1 class="dash-greeting">Todas las consultas</h1>
+          </div>
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">Historial completo</span>
+              <span class="section-card-badge" id="allInquiryBadge">0 total</span>
+            </div>
+            <div class="inquiry-list" id="allInquiries"></div>
+          </div>
+        </div>
+
+        <!-- DISPONIBILIDAD -->
+        <div class="dash-tab-content" id="tab-disponibilidad">
+          <div class="dash-topbar">
+            <h1 class="dash-greeting">Disponibilidad</h1>
+          </div>
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title" id="calMonthLabel"></span>
+              <div style="display:flex;gap:0.5rem">
+                <button onclick="changeMonth(-1)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.6rem;cursor:pointer;font-size:0.8rem">‹</button>
+                <button onclick="changeMonth(1)"  style="background:none;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.6rem;cursor:pointer;font-size:0.8rem">›</button>
+              </div>
+            </div>
+            <div class="avail-grid" id="availGrid"></div>
+            <div class="avail-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:rgba(37,211,102,0.2);border:1px solid rgba(37,211,102,0.3)"></div>Disponible</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#FEE2E2;border:1px solid #FECACA"></div>No disponible</div>
+              <div class="legend-item"><div class="legend-dot" style="background:white;border:1px solid var(--border)"></div>Sin marcar</div>
+            </div>
+            <div style="padding:0 1.5rem 1.5rem;font-size:0.75rem;color:var(--muted)">
+              Haz clic en una fecha para marcarla como disponible o no disponible. Esto se guarda en tu navegador.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERFIL -->
+        <div class="dash-tab-content" id="tab-perfil">
+          <div class="dash-topbar">
+            <h1 class="dash-greeting">Mi perfil</h1>
+          </div>
+          <div class="profile-row">
+            <div class="section-card">
+              <div class="section-card-header">
+                <span class="section-card-title">Datos del servicio</span>
+              </div>
+              <div id="profileInfo"></div>
+            </div>
+            <div class="section-card">
+              <div class="section-card-header">
+                <span class="section-card-title">Estado en la plataforma</span>
+              </div>
+              <div>
+                <div class="info-item">
+                  <span class="info-key">Estado</span>
+                  <span class="info-val" style="color:#16A34A">Activo</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-key">Verificación</span>
+                  <span class="info-val" id="profileVerified"></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-key">Visible en búsquedas</span>
+                  <span class="info-val">Sí</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-key">Plan</span>
+                  <span class="info-val">Gratis (beta)</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-key">Miembro desde</span>
+                  <span class="info-val">Mayo 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONSEJOS -->
+        <div class="dash-tab-content" id="tab-consejos">
+          <div class="dash-topbar">
+            <h1 class="dash-greeting">Guía de éxito</h1>
+          </div>
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">Cómo conseguir más eventos</span>
+            </div>
+            <div class="tips-grid">
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(217,119,6,0.1)">⚡</div>
+                <div class="tip-title">Responde rápido</div>
+                <div class="tip-body">Los clientes contactan a varios proveedores a la vez. Quien responde en menos de 1 hora tiene 3x más chances de cerrar el trato.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(59,130,246,0.1)">📸</div>
+                <div class="tip-title">Agrega fotos reales</div>
+                <div class="tip-body">Los perfiles con fotos propias de tu carrito y comida generan 5x más consultas. Sube fotos de tus mejores presentaciones.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(37,211,102,0.1)">💬</div>
+                <div class="tip-title">Pide reseñas</div>
+                <div class="tip-body">Después de cada evento, pídele al cliente que te deje una reseña. Las reseñas verificadas aumentan la confianza de nuevos clientes.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(139,92,246,0.1)">📅</div>
+                <div class="tip-title">Mantén tu disponibilidad</div>
+                <div class="tip-body">Marca las fechas bloqueadas en tu calendario. Los clientes con eventos en esas fechas sabrán buscarte en otra época.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(239,68,68,0.1)">🎯</div>
+                <div class="tip-title">Define tu nicho</div>
+                <div class="tip-body">Los proveedores especializados (ej: "solo matrimonios") ganan más que los que hacen de todo. Enfócate en lo que haces mejor.</div>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon" style="background:rgba(16,185,129,0.1)">💰</div>
+                <div class="tip-title">Precio justo</div>
+                <div class="tip-body">Un precio muy bajo genera desconfianza. Cobra lo que vale tu servicio e incluye el valor en la descripción de tu perfil.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Navegación inferior móvil -->
+    <nav class="mobile-bottom-nav">
+      <button class="mob-nav-btn active" data-tab="resumen" onclick="showTab('resumen')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Inicio
+      </button>
+      <button class="mob-nav-btn" data-tab="consultas" onclick="showTab('consultas')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Consultas
+      </button>
+      <button class="mob-nav-btn" data-tab="disponibilidad" onclick="showTab('disponibilidad')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Fechas
+      </button>
+      <button class="mob-nav-btn" data-tab="perfil" onclick="showTab('perfil')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Perfil
+      </button>
+    </nav>
+
+  </div>
+
+  <script>
+    const VENDORS_DATA = {
+      "crispy-fries":  { name: "Crispy Fries & Burgers", category: "Papas & Burgers", city: "Santiago", verified: true,  price: "Desde $80.000", capacity: "Hasta 400 personas", whatsapp: "56974888028" },
+      "la-smash":      { name: "La Smash Burger",        category: "Hamburguesas",    city: "Santiago", verified: true,  price: "Desde $75.000", capacity: "Hasta 100 personas", whatsapp: "56912345678" },
+      "el-rincon":     { name: "El Rincón del Tío",      category: "Hamburguesas",    city: "Viña del Mar", verified: false, price: "Desde $60.000", capacity: "Hasta 60 personas",  whatsapp: "56912345679" },
+      "hotdog-kingdom":{ name: "Hot Dog Kingdom",        category: "Hot Dogs",        city: "Valparaíso", verified: true, price: "Desde $45.000", capacity: "Hasta 80 personas",  whatsapp: "56987654321" },
+      "mr-hotdog":     { name: "Mr. Hot Dog",            category: "Hot Dogs",        city: "Temuco",   verified: false, price: "Desde $40.000", capacity: "Hasta 50 personas",  whatsapp: "56987654322" },
+      "tacos-compadre":{ name: "Tacos El Compadre",      category: "Tacos",           city: "Santiago", verified: true,  price: "Desde $85.000", capacity: "Hasta 120 personas", whatsapp: "56911111111" },
+      "taco-fusion":   { name: "Taco Fusión",            category: "Tacos",           city: "Concepción", verified: false,price: "Desde $70.000", capacity: "Hasta 70 personas",  whatsapp: "56922222222" },
+      "pizza-road":    { name: "Pizza Road",             category: "Pizza",           city: "Santiago", verified: true,  price: "Desde $80.000", capacity: "Hasta 90 personas",  whatsapp: "56933333333" },
+      "sushi-wheels":  { name: "Sushi On Wheels",        category: "Sushi",           city: "Santiago", verified: true,  price: "Desde $120.000",capacity: "Hasta 60 personas",  whatsapp: "56944444444" },
+      "churros-co":    { name: "Churros & Co",           category: "Postres",         city: "Viña del Mar", verified: false,price: "Desde $55.000",capacity: "Hasta 80 personas", whatsapp: "56955555555" },
+      "el-lomo":       { name: "El Lomo de Oro",         category: "Sandwiches",      city: "Santiago", verified: true,  price: "Desde $50.000", capacity: "Hasta 100 personas", whatsapp: "56966666666" }
+    };
+
+    let currentVendorId = null;
+    let calYear  = new Date().getFullYear();
+    let calMonth = new Date().getMonth();
+
+    // Auto-login si hay sesión guardada
+    const savedSession = localStorage.getItem("convite_vendor_session");
+    if (savedSession && VENDORS_DATA[savedSession]) {
+      document.getElementById("loginSelect").value = savedSession;
+      window.addEventListener("DOMContentLoaded", doLogin);
+    }
+
+    function doLogin() {
+      const sel = document.getElementById("loginSelect");
+      if (!sel.value) { sel.focus(); return; }
+      currentVendorId = sel.value;
+      const v = VENDORS_DATA[currentVendorId];
+      localStorage.setItem("convite_vendor_session", currentVendorId);
+
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("dashboardScreen").style.display = "block";
+
+      document.getElementById("sidebarVendorName").textContent = v.name;
+      document.getElementById("mobTopVendor").textContent = v.name;
+      document.getElementById("greetingName").textContent = "Hola, " + v.name.split(" ")[0];
+      document.getElementById("dashDate").textContent = new Date().toLocaleDateString("es-CL", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+
+      renderDashboard();
+    }
+
+    function doLogout() {
+      localStorage.removeItem("convite_vendor_session");
+      currentVendorId = null;
+      document.getElementById("dashboardScreen").style.display = "none";
+      document.getElementById("loginScreen").style.display = "flex";
+      document.getElementById("loginSelect").value = "";
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll(".dash-tab-content").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".sidebar-link, .mob-nav-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById("tab-" + tabId).classList.add("active");
+      document.querySelectorAll(`[data-tab="${tabId}"]`).forEach(b => b.classList.add("active"));
+      if (tabId === "disponibilidad") renderCalendar();
+      if (tabId === "perfil") renderProfile();
+    }
+
+    function renderDashboard() {
+      const views     = JSON.parse(localStorage.getItem("convite_views") || "{}");
+      const rawInq    = JSON.parse(localStorage.getItem("convite_inquiries") || "{}");
+      const inquiries = Array.isArray(rawInq) ? {} : rawInq;
+      const myViews   = views[currentVendorId] || 0;
+      const myInqs    = inquiries[currentVendorId] || [];
+
+      document.getElementById("statViews").textContent = myViews;
+      document.getElementById("statInquiries").textContent = myInqs.length;
+
+      const rate = myViews > 0 ? Math.round((myInqs.length / myViews) * 100) + "%" : "—";
+      document.getElementById("statConversion").textContent = rate;
+
+      const totalPeople = myInqs.reduce((s, i) => s + (parseInt(i.guests) || 0), 0);
+      document.getElementById("statPeople").textContent = totalPeople > 0 ? totalPeople.toLocaleString("es-CL") : "0";
+
+      const badge = myInqs.length + " total";
+      document.getElementById("inquiryCountBadge").textContent = badge;
+      document.getElementById("allInquiryBadge").textContent = badge;
+
+      renderInquiryList("recentInquiries",  myInqs.slice(-5).reverse());
+      renderInquiryList("allInquiries",     [...myInqs].reverse());
+      renderChart(myInqs);
+    }
+
+    function renderInquiryList(elId, list) {
+      const el = document.getElementById(elId);
+      if (!list.length) {
+        el.innerHTML = `<div class="inquiry-empty">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <p>Aún no tienes consultas. Cuando un cliente te contacte desde Convite, aparecerá aquí.</p>
+        </div>`;
+        return;
+      }
+      el.innerHTML = list.map(i => {
+        const d = i.date ? new Date(i.date + "T12:00:00").toLocaleDateString("es-CL", { day: "numeric", month: "short" }) : "fecha por def.";
+        return `
+        <div class="inquiry-item">
+          <div>
+            <div class="inq-name">${i.name}</div>
+            <div class="inq-sub">${i.contact}</div>
+          </div>
+          <span class="inq-tag">${i.type || "Evento"}</span>
+          <div class="inq-date">${d}</div>
+          <div class="inq-guests">${i.guests ? i.guests + " personas" : ""}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderChart(inqs) {
+      const chartEl = document.getElementById("chartArea");
+      const days = 14;
+      const counts = {};
+      const now = new Date();
+
+      for (let i = days - 1; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const key = d.toISOString().split("T")[0];
+        counts[key] = 0;
+      }
+
+      inqs.forEach(inq => {
+        if (inq.ts) {
+          const key = new Date(inq.ts).toISOString().split("T")[0];
+          if (counts[key] !== undefined) counts[key]++;
+        }
+      });
+
+      const maxVal = Math.max(...Object.values(counts), 1);
+      const dayNames = ["Do","Lu","Ma","Mi","Ju","Vi","Sá"];
+
+      chartEl.innerHTML = Object.entries(counts).map(([date, count]) => {
+        const d = new Date(date + "T12:00:00");
+        const pct = Math.round((count / maxVal) * 100);
+        const isToday = date === now.toISOString().split("T")[0];
+        return `
+        <div class="chart-bar-group">
+          <div class="chart-bar${count === 0 ? " secondary" : ""}" style="height:${Math.max(pct, 4)}%" title="${count} consultas el ${date}"></div>
+          <span class="chart-label" style="${isToday ? "color:var(--accent);font-weight:700" : ""}">${dayNames[d.getDay()]}</span>
+        </div>`;
+      }).join("");
+    }
+
+    function renderProfile() {
+      const v = VENDORS_DATA[currentVendorId];
+      document.getElementById("profileInfo").innerHTML = `
+        <div class="info-item"><span class="info-key">Nombre</span><span class="info-val">${v.name}</span></div>
+        <div class="info-item"><span class="info-key">Categoría</span><span class="info-val">${v.category}</span></div>
+        <div class="info-item"><span class="info-key">Ciudad</span><span class="info-val">${v.city}</span></div>
+        <div class="info-item"><span class="info-key">Precio base</span><span class="info-val">${v.price}</span></div>
+        <div class="info-item"><span class="info-key">Capacidad</span><span class="info-val">${v.capacity}</span></div>
+        <div class="info-item"><span class="info-key">WhatsApp</span><span class="info-val">+${v.whatsapp}</span></div>
+      `;
+      document.getElementById("profileVerified").innerHTML = v.verified
+        ? `<span style="color:#16A34A">Verificado</span>`
+        : `<span style="color:var(--muted)">Pendiente</span>`;
+    }
+
+    /* ── CALENDARIO DE DISPONIBILIDAD ── */
+    function renderCalendar() {
+      const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+      document.getElementById("calMonthLabel").textContent = `${monthNames[calMonth]} ${calYear}`;
+
+      const avail = JSON.parse(localStorage.getItem("convite_avail_" + currentVendorId) || "{}");
+      const grid  = document.getElementById("availGrid");
+      const today = new Date();
+      const todayStr = today.toISOString().split("T")[0];
+
+      const dayHeaders = ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
+      let html = dayHeaders.map(d => `<div class="avail-day-header">${d}</div>`).join("");
+
+      const firstDay = new Date(calYear, calMonth, 1);
+      let startWeekDay = firstDay.getDay(); // 0=Sun
+      startWeekDay = (startWeekDay + 6) % 7; // convert to Mon=0
+
+      for (let i = 0; i < startWeekDay; i++) {
+        html += `<div class="avail-day empty"></div>`;
+      }
+
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = `${calYear}-${String(calMonth + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+        const state = avail[dateStr] || "";
+        let cls = "avail-day";
+        if (dateStr === todayStr) cls += " today";
+        if (state === "available") cls += " available";
+        if (state === "booked")    cls += " booked";
+        html += `<div class="${cls}" onclick="toggleDay('${dateStr}')" title="${dateStr}">${d}</div>`;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function toggleDay(dateStr) {
+      const key   = "convite_avail_" + currentVendorId;
+      const avail = JSON.parse(localStorage.getItem(key) || "{}");
+      const cur   = avail[dateStr] || "";
+      if (cur === "")          avail[dateStr] = "available";
+      else if (cur === "available") avail[dateStr] = "booked";
+      else                     delete avail[dateStr];
+      localStorage.setItem(key, JSON.stringify(avail));
+      renderCalendar();
+    }
+
+    function changeMonth(dir) {
+      calMonth += dir;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      if (calMonth < 0)  { calMonth = 11; calYear--; }
+      renderCalendar();
+    }
+  </script>
+
+</body>
+</html>

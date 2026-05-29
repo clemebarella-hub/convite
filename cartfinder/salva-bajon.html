@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Salva-Bajon — Convite" />
+  <meta property="og:description" content="Hot dogs, churrascos y burgers para eventos en la RM." />
+  <meta property="og:image" content="https://convite.cl/salva-bajon.png.jpeg" />
+  <meta property="og:url" content="https://convite.cl/salva-bajon.html" />
+  <meta property="og:site_name" content="Convite" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salva-Bajon — Convite" />
+  <meta name="twitter:description" content="Hot dogs, churrascos y burgers para eventos en la RM." />
+  <meta name="twitter:image" content="https://convite.cl/salva-bajon.png.jpeg" />
+  <title>Salva-Bajón — Convite</title>
+  <link rel="icon" href="convite.png.jpeg" sizes="any" />
+  <link rel="apple-touch-icon" href="convite.png.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:           #FAFAFA;
+      --card:         #FFFFFF;
+      --text:         #0F172A;
+      --muted:        #64748B;
+      --border:       #E2E8F0;
+      --accent:       #E53E1A;
+      --brand-bg:     #100800;
+      --brand-text:   #FFF5E0;
+      --brand-accent: #E53E1A;
+      --green:        #25D366;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 99;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); height: 60px;
+      display: flex; align-items: center; padding: 0 2rem; justify-content: space-between;
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.04em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    .vendor-hero {
+      background: var(--brand-bg); padding: 5rem 0 3.5rem; margin-top: 60px;
+      position: relative; overflow: hidden;
+    }
+    .vendor-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(229,62,26,0.12) 0%, transparent 60%);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .vendor-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(229,62,26,0.15); border: 1px solid rgba(229,62,26,0.3);
+      color: var(--brand-accent); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.28rem 0.7rem; border-radius: 4px; margin-bottom: 1rem;
+    }
+    .vendor-name {
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800;
+      color: var(--brand-text); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem;
+    }
+    .vendor-meta { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .vendor-meta-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: rgba(255,245,224,0.6); }
+    .vendor-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1rem; }
+    .vendor-tag { font-size: 0.7rem; font-weight: 500; color: rgba(255,245,224,0.55); border: 1px solid rgba(255,245,224,0.18); padding: 0.2rem 0.65rem; border-radius: 4px; }
+    .hero-actions { display: flex; gap: 0.75rem; align-self: flex-end; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem; background: var(--green); color: white;
+      font-size: 0.85rem; font-weight: 700; border-radius: 8px;
+      transition: background 0.2s, transform 0.15s; white-space: nowrap;
+    }
+    .btn-wa:hover { background: #1DAB53; transform: translateY(-1px); }
+
+    .page-body { max-width: 1100px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.5rem; color: var(--text); }
+
+    .quick-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+    .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; }
+    .info-card-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .info-card-value { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+
+    .about-text { font-size: 0.93rem; color: var(--muted); line-height: 1.85; max-width: 720px; }
+
+    .especialidades-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .especialidad-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; }
+    .especialidad-card .esp-icon { font-size: 1.6rem; margin-bottom: 0.75rem; display: block; }
+    .especialidad-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 0.3rem; }
+    .especialidad-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+    .price-banner {
+      background: var(--brand-bg); border-radius: 12px; padding: 1.8rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .price-banner-text h4 { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,245,224,0.5); margin-bottom: 0.4rem; }
+    .price-banner-text .price-range { font-size: 1.6rem; font-weight: 800; color: var(--brand-text); letter-spacing: -0.03em; line-height: 1; }
+    .price-banner-text .price-range span { font-size: 0.85rem; font-weight: 400; color: rgba(255,245,224,0.45); }
+    .price-banner-note { font-size: 0.78rem; color: rgba(255,245,224,0.45); max-width: 280px; line-height: 1.6; }
+
+    .info-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .info-item { display: flex; align-items: flex-start; gap: 0.85rem; padding: 1rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
+    .info-item-icon { width: 30px; height: 30px; border-radius: 7px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+    .info-item-text { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+    .info-item-text strong { font-weight: 600; }
+
+    .contact-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; flex-wrap: wrap; padding: 2rem;
+      background: var(--brand-bg); border-radius: 14px;
+    }
+    .contact-bar-text h3 { font-size: 1.1rem; font-weight: 700; color: var(--brand-text); letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+    .contact-bar-text p { font-size: 0.82rem; color: rgba(255,245,224,0.4); }
+
+    @media (max-width: 860px) { .hero-inner { flex-direction: column; align-items: flex-start; } .hero-actions { align-self: flex-start; } }
+    @media (max-width: 560px) { .quick-info { grid-template-columns: 1fr 1fr; } .contact-bar { flex-direction: column; align-items: flex-start; } .hero-actions { flex-direction: column; width: 100%; } .btn-wa { justify-content: center; } .section { padding: 2.5rem 0; } .price-banner { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 420px) { .quick-info { grid-template-columns: 1fr; } .page-body { padding: 0 1rem 4rem; } }
+    @media (max-width: 360px) { .vendor-name { font-size: 1.75rem; } }
+
+    button.btn-wa { border: none; cursor: pointer; }
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(15,23,42,0.6); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-panel { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal-close-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--muted); line-height: 1; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.15s; }
+    .modal-close-btn:hover { background: var(--border); }
+    .modal-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .modal-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+    .modal-sub { font-size: 0.83rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+    .modal-form { display: flex; flex-direction: column; gap: 0.85rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .form-label { font-size: 0.72rem; font-weight: 600; color: var(--text); }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.85rem; color: var(--text); background: var(--bg); transition: border-color 0.15s; outline: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #94A3B8; }
+    .form-textarea { resize: vertical; min-height: 70px; }
+    .modal-submit-btn { padding: 0.8rem; background: var(--green); color: white; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
+    .modal-submit-btn:hover { background: #1DAB53; }
+    .modal-success-view { text-align: center; padding: 1rem 0; }
+    .success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .modal-success-view h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .modal-success-view p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 480px) { .modal-panel { border-radius: 12px; padding: 1.5rem; } .form-row { grid-template-columns: 1fr; } }
+    .vendor-logo-bg {
+      position: absolute; inset: 0; opacity: 0.1; pointer-events: none; z-index: 0;
+    }
+    .vendor-logo-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .product-section-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .product-row { display: flex; align-items: center; gap: 0.65rem; padding: 0.38rem 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .product-row:last-child { border-bottom: none; }
+    .product-check { display: none; }
+    .product-circle { width: 17px; height: 17px; border-radius: 50%; flex-shrink: 0; border: 2px solid #CBD5E1; background: white; transition: border-color 0.12s, background 0.12s, box-shadow 0.12s; }
+    .product-check:checked ~ .product-circle { border-color: var(--accent); background: var(--accent); box-shadow: inset 0 0 0 3px #fff; }
+    .product-name { flex: 1; font-size: 0.84rem; font-weight: 500; color: var(--text); user-select: none; }
+    .product-qty { width: 52px; padding: 0.2rem 0.35rem; border: 1px solid var(--border); border-radius: 5px; font-size: 0.82rem; text-align: center; font-family: inherit; background: transparent; color: var(--text); outline: none; opacity: 0; pointer-events: none; transition: opacity 0.12s; }
+    .product-qty:focus { border-color: var(--accent); }
+    .product-qty-unit { font-size: 0.7rem; color: var(--muted); opacity: 0; transition: opacity 0.12s; flex-shrink: 0; }
+    .product-row.active .product-qty, .product-row.active .product-qty-unit { opacity: 1; pointer-events: auto; }
+    .btn-share { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 600; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s; white-space: nowrap; }
+    .btn-share:hover { background: rgba(255,255,255,0.16); }
+    .btn-share.copied { background: rgba(255,255,255,0.18); color: #fff; }
+    .gallery-carousel { position: relative; border-radius: 14px; overflow: hidden; user-select: none; }
+    .gallery-track { display: flex; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .gallery-slide { flex: 0 0 100%; aspect-ratio: 16/9; background: #F1F5F9; overflow: hidden; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.45); color: #fff; border: none; cursor: pointer; width: 38px; height: 38px; border-radius: 50%; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; transition: background 0.15s; z-index: 2; line-height: 1; }
+    .gallery-btn:hover { background: rgba(0,0,0,0.65); }
+    .gallery-prev { left: 0.75rem; }
+    .gallery-next { right: 0.75rem; }
+    .gallery-dots { position: absolute; bottom: 0.75rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.4rem; z-index: 2; }
+    .gallery-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background 0.15s, transform 0.15s; border: none; padding: 0; }
+    .gallery-dot.active { background: #fff; transform: scale(1.2); }
+    .gallery-slide.no-photo { display: flex; align-items: center; justify-content: center; background: #F1F5F9; }
+    .gallery-slide.no-photo img { display: none; }
+    .gallery-slide.no-photo::after { content: "Fotos proximas"; color: #94A3B8; font-size: 0.85rem; letter-spacing: 0.03em; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Convite</a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Ver más proveedores en Convite
+    </a>
+  </nav>
+
+  <div class="vendor-hero">
+    <div class="vendor-logo-bg"><img src="Salva-bajón.png.jpeg" alt="" /></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="vendor-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Proveedor verificado
+        </div>
+        <h1 class="vendor-name">Salva-Bajón</h1>
+        <div class="vendor-meta">
+          <div class="vendor-meta-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            R. Metropolitana · Valparaíso · O'Higgins
+          </div>
+          <div class="vendor-meta-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            3 a 5 horas de servicio
+          </div>
+          <div class="vendor-meta-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            40 a 400 personas
+          </div>
+        </div>
+        <div class="vendor-tags">
+          <span class="vendor-tag">Matrimonios</span>
+          <span class="vendor-tag">Cumpleaños</span>
+          <span class="vendor-tag">Corporativo</span>
+          <span class="vendor-tag">Fiestas privadas</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button onclick="openModal()" class="btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar cotización
+        </button>
+        <button onclick="shareProfile()" class="btn-share" id="shareBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Compartir perfil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <div class="section">
+      <div class="quick-info">
+        <div class="info-card">
+          <div class="info-card-label">Precio por persona</div>
+          <div class="info-card-value">$3.000 – $12.000</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Mínimo de personas</div>
+          <div class="info-card-value">40 personas</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Capacidad máxima</div>
+          <div class="info-card-value">Hasta 400 personas</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Anticipo requerido</div>
+          <div class="info-card-value">50% al reservar</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Plazo mínimo</div>
+          <div class="info-card-value">3 días de anticipación</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Duración del servicio</div>
+          <div class="info-card-value">3 a 5 horas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Sobre Salva-Bajón</h2>
+      <p class="about-text">
+        En Salva-Bajón ofrecemos comida rápida urbana con enfoque en sabor, rapidez y porciones contundentes. Nuestro fuerte son las papas fritas en distintos formatos, completos, churrascos y hamburguesas preparados con una atención rápida, limpia y pensada para realmente salvar el hambre en cualquier tipo de evento. Llegamos a la Región Metropolitana, Valparaíso y O'Higgins con todo el montaje listo.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Nuestras especialidades</h2>
+      <div class="especialidades-grid">
+        <div class="especialidad-card">
+          <span class="esp-icon">🌭</span>
+          <h4>Completos</h4>
+          <p>El clásico chileno bien hecho — completo italiano, dinámico y con todos los toppings que el bajón exige.</p>
+        </div>
+        <div class="especialidad-card">
+          <span class="esp-icon">🥩</span>
+          <h4>Churrascos</h4>
+          <p>Carne fina a la plancha con palta, tomate y mayo en pan tostado. Contundente y sabroso.</p>
+        </div>
+        <div class="especialidad-card">
+          <span class="esp-icon">🍔</span>
+          <h4>Hamburguesas</h4>
+          <p>Hamburguesas jugosas con queso fundido y salsas artesanales. Directo al grano.</p>
+        </div>
+        <div class="especialidad-card">
+          <span class="esp-icon">🍗</span>
+          <h4>Pollo frito</h4>
+          <p>Pollo crujiente y bien sazonado, otra opción para darle variedad al menú del evento.</p>
+        </div>
+        <div class="especialidad-card">
+          <span class="esp-icon">🍟</span>
+          <h4>Papas con toppings</h4>
+          <p>Papas fritas doradas en distintos formatos y combinaciones. El plato estrella de Salva-Bajón.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Precio referencial</h2>
+      <div class="price-banner">
+        <div class="price-banner-text">
+          <h4>Rango por persona</h4>
+          <div class="price-range">$3.000 – $12.000 <span>/ persona</span></div>
+        </div>
+        <p class="price-banner-note">El precio varía según el menú elegido y la cantidad de personas. Cotiza sin compromiso para tu fecha.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Información importante</h2>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="info-item-text"><strong>Cobertura amplia</strong> — operamos en la Región Metropolitana, Valparaíso y O'Higgins. Consulta disponibilidad para tu zona.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="info-item-text"><strong>3 a 5 horas de servicio</strong> — llegamos antes, montamos todo y dejamos el espacio ordenado al terminar. Tiempo según el formato del evento.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="info-item-text"><strong>Anticipo del 50%</strong> — confirma tu fecha con el pago anticipado. El saldo se cancela el día del evento.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="info-item-text"><strong>3 días mínimo de anticipación</strong> — reserva con tiempo para asegurar tu fecha.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <h2 class="section-title">Galería</h2>
+      <div class="gallery-carousel">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-slide"><img src="salva-bajon-g1.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="salva-bajon-g2.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="salva-bajon-g3.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+        </div>
+        <button class="gallery-btn gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
+        <button class="gallery-btn gallery-next" onclick="galleryNav(1)">&#8250;</button>
+        <div class="gallery-dots">
+          <button class="gallery-dot active" onclick="goToSlide(0)"></button>
+          <button class="gallery-dot" onclick="goToSlide(1)"></button>
+          <button class="gallery-dot" onclick="goToSlide(2)"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="border-bottom:none; padding-bottom: 0;">
+      <div class="contact-bar">
+        <div class="contact-bar-text">
+          <h3>¿Listo para cotizar?</h3>
+          <p>Cuéntanos tu evento y te respondemos rápido.</p>
+        </div>
+        <button onclick="openModal()" class="btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Solicitar cotización
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-overlay" id="consultModal">
+    <div class="modal-panel">
+      <button class="modal-close-btn" onclick="closeModal()">&#x2715;</button>
+      <p class="modal-eyebrow">Salva-Bajón</p>
+      <h3 class="modal-title">Solicitar cotización</h3>
+      <p class="modal-sub">Completa el formulario y te conectamos con el proveedor vía WhatsApp.</p>
+      <form id="consultForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tu nombre</label>
+            <input class="form-input" type="text" placeholder="Nombre" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Teléfono / WhatsApp</label>
+            <input class="form-input" type="tel" placeholder="+56 9..." required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fecha del evento</label>
+            <input class="form-input" type="date" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tipo de evento</label>
+            <select class="form-select" required>
+              <option value="">Seleccionar</option>
+              <option>Matrimonio</option>
+              <option>Cumpleaños</option>
+              <option>Corporativo</option>
+              <option>Fiesta privada</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Número de personas</label>
+          <input class="form-input" type="number" placeholder="Ej: 80" min="1" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Hora del evento</label>
+            <input class="form-input" type="time" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Comuna</label>
+            <select class="form-select" required>
+              <option value="">Seleccionar</option>
+              <option>Las Condes</option>
+              <option>Vitacura</option>
+              <option>Providencia</option>
+              <option>Ñuñoa</option>
+              <option>Santiago Centro</option>
+              <option>Maipú</option>
+              <option>La Florida</option>
+              <option>Puente Alto</option>
+              <option>San Bernardo</option>
+              <option>Peñalolén</option>
+              <option>La Reina</option>
+              <option>Macul</option>
+              <option>San Miguel</option>
+              <option>Lo Barnechea</option>
+              <option>Huechuraba</option>
+              <option>Otra</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Espacio del evento</label>
+          <select class="form-select" required>
+            <option value="">Seleccionar</option>
+            <option>Interior (indoor)</option>
+            <option>Exterior (outdoor)</option>
+            <option>No lo sé aún</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensaje adicional (opcional)</label>
+          <textarea class="form-textarea" placeholder="Cuéntanos más detalles del evento..."></textarea>
+        </div>
+        <div class="form-group">
+          <span class="product-section-label">¿Qué productos necesitas?</span>
+          <label class="product-row">
+            <input type="checkbox" class="product-check" />
+            <span class="product-circle"></span>
+            <span class="product-name">Hot Dogs</span>
+            <input type="number" class="product-qty" min="1" placeholder="0" />
+            <span class="product-qty-unit">und.</span>
+          </label>
+          <label class="product-row">
+            <input type="checkbox" class="product-check" />
+            <span class="product-circle"></span>
+            <span class="product-name">Churrascos / Sandwiches</span>
+            <input type="number" class="product-qty" min="1" placeholder="0" />
+            <span class="product-qty-unit">und.</span>
+          </label>
+          <label class="product-row">
+            <input type="checkbox" class="product-check" />
+            <span class="product-circle"></span>
+            <span class="product-name">Hamburguesas</span>
+            <input type="number" class="product-qty" min="1" placeholder="0" />
+            <span class="product-qty-unit">und.</span>
+          </label>
+          <label class="product-row">
+            <input type="checkbox" class="product-check" />
+            <span class="product-circle"></span>
+            <span class="product-name">Papas fritas</span>
+            <input type="number" class="product-qty" min="1" placeholder="0" />
+            <span class="product-qty-unit">und.</span>
+          </label>
+        </div>
+        <button type="submit" class="modal-submit-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar cotización por WhatsApp
+        </button>
+      </form>
+      <div class="modal-success-view" id="modalSuccess" style="display:none">
+        <div class="success-icon">✅</div>
+        <h4>¡Listo! Abriendo WhatsApp...</h4>
+        <p>Tu consulta fue registrada. En un momento se abrirá WhatsApp para conectarte con el proveedor.</p>
+        <p style="margin-top:0.5rem; font-size:0.78rem;">¿Necesitas corregir algo? Puedes mencionárselo directamente al proveedor en la conversación de WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+  <form name="cotizacion" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="nombre" />
+    <input type="text" name="contacto" />
+    <input type="text" name="fecha" />
+    <input type="text" name="tipo_evento" />
+    <input type="number" name="personas" />
+    <input type="text" name="hora" />
+    <input type="text" name="comuna" />
+    <input type="text" name="espacio" />
+    <textarea name="mensaje"></textarea>
+    <input type="text" name="vendedor" />
+    <input name="bot-field" />
+  </form>
+
+  <script>
+    const CALLMEBOT_KEY = "";
+    const VENDOR_WA = "56964145553";
+    const VENDOR_ID = "salva-bajon";
+    const VENDOR_NM = "Salva-Bajón";
+
+    function shareProfile() {
+      const url = window.location.href;
+      const btn = document.getElementById('shareBtn');
+      if (navigator.share) {
+        navigator.share({ title: VENDOR_NM + ' — Convite', text: 'Cotiza catering para tu evento con ' + VENDOR_NM + ' en Convite', url });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Link copiado';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2200);
+        }).catch(() => { prompt('Copia este link:', url); });
+      }
+    }
+
+    function openModal() {
+      const views = JSON.parse(localStorage.getItem('convite_views') || '{}');
+      views[VENDOR_ID] = (views[VENDOR_ID] || 0) + 1;
+      localStorage.setItem('convite_views', JSON.stringify(views));
+      document.getElementById('consultModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('consultModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('consultModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    document.getElementById('consultForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (this._submitting) return;
+      this._submitting = true;
+      const submitBtn = this.querySelector('.modal-submit-btn');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
+      const inputs = this.querySelectorAll('input:not(.product-check):not(.product-qty), select, textarea');
+      const name    = inputs[0].value;
+      const contact = inputs[1].value;
+      const date    = inputs[2].value;
+      const type    = inputs[3].value;
+      const guests  = inputs[4].value;
+      const hora    = inputs[5].value;
+      const comuna  = inputs[6].value;
+      const espacio = inputs[7].value;
+      const msg     = inputs[8].value;
+
+      const dateFormatted = date
+        ? new Date(date + 'T12:00:00').toLocaleDateString('es-CL', { day:'numeric', month:'long', year:'numeric' })
+        : 'Por definir';
+
+      const rawInq = JSON.parse(localStorage.getItem('convite_inquiries') || '{}');
+      const inqStore = Array.isArray(rawInq) ? {} : rawInq;
+      if (!Array.isArray(inqStore[VENDOR_ID])) inqStore[VENDOR_ID] = [];
+      inqStore[VENDOR_ID].push({ name, contact, date, guests, type, msg, ts: Date.now() });
+      localStorage.setItem('convite_inquiries', JSON.stringify(inqStore));
+
+      const fd = new FormData();
+      fd.append('form-name', 'cotizacion');
+      fd.append('nombre', name);
+      fd.append('contacto', contact);
+      fd.append('fecha', dateFormatted);
+      fd.append('tipo_evento', type);
+      fd.append('personas', guests);
+      fd.append('hora', hora);
+      fd.append('comuna', comuna);
+      fd.append('espacio', espacio);
+      fd.append('mensaje', msg || '');
+      fd.append('vendedor', VENDOR_NM);
+      fetch('/', { method: 'POST', body: fd }).catch(() => {});
+
+      const prodLines = [];
+      this.querySelectorAll('.product-check:checked').forEach(cb => {
+        const row = cb.closest('.product-row');
+        const pname = row.querySelector('.product-name').textContent;
+        const qty = row.querySelector('.product-qty').value || '?';
+        prodLines.push(`  • ${pname}: ${qty}`);
+      });
+      const productsLine = prodLines.length ? `Productos:\n${prodLines.join('\n')}\n` : '';
+
+      const waText = encodeURIComponent(
+        `Hola Salva-Bajon, te escribo desde Convite.\n` +
+        `--------------------\n` +
+        `Un cliente vio tu perfil y quiere cotizar:\n\n` +
+        `Nombre: ${name}\n` +
+        `Contacto: ${contact}\n` +
+        `Fecha del evento: ${dateFormatted}\n` +
+        `Tipo de evento: ${type}\n` +
+        `Personas: ${guests}\n` +
+        productsLine +
+        (msg ? `\nMensaje: ${msg}` : '') +
+        `\n--------------------\n` +
+        `Convite - convite.cl`
+      );
+
+      window.open(`https://wa.me/${VENDOR_WA}?text=${waText}`, '_blank');
+      if (CALLMEBOT_KEY) {
+        const notifMsg = encodeURIComponent('Nueva cotizacion - ' + VENDOR_NM + '\nCliente: ' + name + '\nPersonas: ' + guests + '\n' + dateFormatted);
+        fetch('https://api.callmebot.com/whatsapp.php?phone=56953838648&text=' + notifMsg + '&apikey=' + CALLMEBOT_KEY).catch(() => {});
+      }
+
+      document.getElementById('consultForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+
+      setTimeout(() => {
+        closeModal();
+        document.getElementById('consultForm').style.display = '';
+        document.getElementById('modalSuccess').style.display = 'none';
+        this._submitting = false;
+        const submitBtn2 = this.querySelector('.modal-submit-btn');
+        if (submitBtn2) { submitBtn2.disabled = false; submitBtn2.style.opacity = ''; }
+        this.reset();
+      }, 1500);
+    });
+    document.getElementById('consultForm').addEventListener('change', function(e) {
+      if (e.target.classList.contains('product-check')) {
+        e.target.closest('.product-row').classList.toggle('active', e.target.checked);
+        if (!e.target.checked) e.target.closest('.product-row').querySelector('.product-qty').value = '';
+      }
+    });
+    let _gIdx = 0;
+    function galleryNav(dir) {
+      const slides = document.querySelectorAll('.gallery-slide');
+      _gIdx = (_gIdx + dir + slides.length) % slides.length;
+      document.getElementById('galleryTrack').style.transform = `translateX(-${_gIdx * 100}%)`;
+      document.querySelectorAll('.gallery-dot').forEach((d,i) => d.classList.toggle('active', i === _gIdx));
+    }
+    function goToSlide(n) {
+      _gIdx = n;
+      document.getElementById('galleryTrack').style.transform = `translateX(-${n * 100}%)`;
+      document.querySelectorAll('.gallery-dot').forEach((d,i) => d.classList.toggle('active', i === n));
+    }
+    (function() {
+      const el = document.getElementById('galleryTrack');
+      if (!el) return;
+      let sx = 0;
+      el.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+      el.addEventListener('touchend', e => { if (Math.abs(sx - e.changedTouches[0].clientX) > 40) galleryNav(sx > e.changedTouches[0].clientX ? 1 : -1); }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>

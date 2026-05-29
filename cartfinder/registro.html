@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Registra tu carrito en Convite — Gratis por ahora" />
+  <title>Registra tu carrito — Convite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:           #F4F4F5;
+      --card:         #FFFFFF;
+      --text:         #18181B;
+      --muted:        #71717A;
+      --border:       #E4E4E7;
+      --accent:       #D97706;
+      --accent-hover: #B45309;
+      --accent-light: #FFFBEB;
+      --dark:         #0F172A;
+      --green:        #25D366;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 99;
+      background: rgba(244,244,245,0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* ── LAYOUT ───────────────────────────────────── */
+    .page {
+      min-height: 100vh;
+      padding-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── LADO IZQUIERDO ───────────────────────────── */
+    .left-panel {
+      background: var(--dark);
+      padding: 4rem 3.5rem;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .left-glow {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,119,6,0.2) 0%, transparent 65%);
+      top: -80px; right: -80px;
+      pointer-events: none;
+    }
+
+    .left-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(217,119,6,0.12);
+      border: 1px solid rgba(217,119,6,0.28);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      width: fit-content;
+    }
+
+    .left-title {
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .left-title span { color: var(--accent); }
+
+    .left-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 380px;
+    }
+
+    .perks {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .perk-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: rgba(217,119,6,0.12);
+      border: 1px solid rgba(217,119,6,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .perk-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.1rem;
+    }
+    .perk-text span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.25);
+      color: #4ADE80;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.6rem 1.1rem;
+      border-radius: 10px;
+    }
+
+    /* ── LADO DERECHO (FORMULARIO) ────────────────── */
+    .right-panel {
+      padding: 3.5rem 3rem 4rem;
+      overflow-y: auto;
+    }
+
+    .form-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-header p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Pasos */
+    .steps-indicator {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .step-dot {
+      height: 4px;
+      border-radius: 2px;
+      flex: 1;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .step-dot.active { background: var(--accent); }
+
+    /* Secciones del form */
+    .form-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .form-section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: white;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(240,90,40,0.1);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #A1A1AA; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group select { cursor: pointer; }
+    .form-group select option { color: var(--text); }
+
+    .form-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: -0.15rem;
+    }
+
+    /* Checkboxes de eventos */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-top: 0.1rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.18s;
+      background: white;
+      user-select: none;
+    }
+    .checkbox-item:hover { border-color: var(--accent); background: var(--accent-light); }
+    .checkbox-item input[type="checkbox"] { display: none; }
+    .checkbox-item.checked { border-color: var(--accent); background: var(--accent-light); }
+
+    .check-box {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      transition: all 0.18s;
+    }
+    .checkbox-item.checked .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .checkbox-item span:last-child { font-size: 0.78rem; font-weight: 500; }
+
+    /* Radio de verificación */
+    .radio-group {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 0.1rem;
+    }
+
+    .radio-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.18s;
+      background: white;
+      user-select: none;
+    }
+    .radio-item:hover { border-color: var(--accent); }
+    .radio-item input { display: none; }
+    .radio-item.selected { border-color: var(--accent); background: var(--accent-light); }
+
+    .radio-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.18s;
+    }
+    .radio-item.selected .radio-dot {
+      border-color: var(--accent);
+      background: var(--accent);
+      box-shadow: inset 0 0 0 3px white;
+    }
+    .radio-item span:last-child { font-size: 0.82rem; font-weight: 500; }
+
+    /* Botones de navegación */
+    .form-nav {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .btn-back {
+      flex: 1;
+      padding: 0.85rem;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--text); color: var(--text); }
+
+    .btn-next {
+      flex: 2;
+      padding: 0.85rem;
+      background: var(--accent);
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-next:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    /* Éxito */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .success-screen.show { display: block; }
+
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .success-screen h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .success-screen p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 380px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn-volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.8rem 1.8rem;
+      background: var(--text);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    .btn-volver:hover { background: #333; }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 860px) {
+      .page          { grid-template-columns: 1fr; }
+      .left-panel    { position: relative; top: 0; height: auto; padding: 3rem 2rem; }
+      .right-panel   { padding: 2.5rem 1.5rem 3rem; }
+      .form-grid     { grid-template-columns: 1fr; }
+      .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .radio-group   { flex-direction: column; }
+      .left-panel    { padding: 2.2rem 1.5rem; }
+      .right-panel   { padding: 2rem 1.25rem 2.5rem; }
+      .progress-dots { gap: 0.5rem; }
+    }
+    @media (max-width: 360px) {
+      .left-panel    { padding: 1.8rem 1.25rem; }
+      .right-panel   { padding: 1.5rem 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="convite-logo.jpeg.jpeg" alt="Convite" style="height:30px;width:auto;display:block;" /></a>
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <div class="page">
+
+    <!-- PANEL IZQUIERDO -->
+    <div class="left-panel">
+      <div class="left-glow"></div>
+      <div class="left-tag">Para vendedores</div>
+      <h2 class="left-title">Llega a más<br>eventos con<br><span>Convite</span></h2>
+      <p class="left-sub">
+        Personas buscando catering para matrimonios, cumpleaños y eventos corporativos. Pon tu carrito en el mapa y que los clientes te encuentren a ti.
+      </p>
+      <div class="perks">
+        <div class="perk">
+          <div class="perk-icon">📍</div>
+          <div class="perk-text">
+            <strong>Visibilidad en tu ciudad</strong>
+            <span>Apareces cuando alguien busca carritos cerca</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">📲</div>
+          <div class="perk-text">
+            <strong>Contacto directo por WhatsApp</strong>
+            <span>Los clientes te escriben directamente a ti, sin intermediarios</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">⭐</div>
+          <div class="perk-text">
+            <strong>Reseñas y sello verificado</strong>
+            <span>Construye reputación y destácate de la competencia</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">🎉</div>
+          <div class="perk-text">
+            <strong>Matrimonios, cumpleaños y más</strong>
+            <span>Accede a eventos de mayor ticket que buscan algo especial</span>
+          </div>
+        </div>
+      </div>
+      <div class="free-badge">✅ Gratis por ahora — sin tarjeta requerida</div>
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <div class="right-panel">
+      <div class="form-header">
+        <h2>Registra tu carrito</h2>
+        <p>Completa los datos y te agregamos a la plataforma en menos de 24 horas.</p>
+      </div>
+
+      <!-- Indicador de pasos -->
+      <div class="steps-indicator">
+        <div class="step-dot active" id="dot-0"></div>
+        <div class="step-dot" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+      </div>
+
+      <!-- FORMULARIO -->
+      <form id="registroForm" action="https://formspree.io/f/REEMPLAZA_ESTO" method="POST">
+
+        <!-- PASO 1: Datos del vendedor -->
+        <div class="form-section active" id="step-0">
+          <div class="section-label">Paso 1 — Tus datos personales</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nombre completo *</label>
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp de contacto *</label>
+              <input type="tel" name="whatsapp" placeholder="+56 9 1234 5678" required />
+            </div>
+            <div class="form-group full">
+              <label>Correo electrónico *</label>
+              <input type="email" name="email" placeholder="tu@email.com" required />
+              <span class="form-hint">Solo para que podamos contactarte, no se publica.</span>
+            </div>
+            <div class="form-group full">
+              <label>Instagram (opcional)</label>
+              <input type="text" name="instagram" placeholder="@tucarrito" />
+            </div>
+          </div>
+          <div class="form-nav">
+            <button type="button" class="btn-next" onclick="nextStep(1)">Continuar →</button>
+          </div>
+        </div>
+
+        <!-- PASO 2: Datos del carrito -->
+        <div class="form-section" id="step-1">
+          <div class="section-label">Paso 2 — Tu carrito</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Nombre del carrito *</label>
+              <input type="text" name="nombre_carrito" placeholder="Ej: La Smash Burger" required />
+            </div>
+            <div class="form-group">
+              <label>Tipo de comida *</label>
+              <select name="tipo_comida" required>
+                <option value="">Selecciona...</option>
+                <option>Hamburguesas</option>
+                <option>Hot Dogs</option>
+                <option>Tacos</option>
+                <option>Pizza</option>
+                <option>Sushi</option>
+                <option>Postres</option>
+                <option>Sándwiches</option>
+                <option>Mariscos</option>
+                <option>Vegano / Vegetariano</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Ciudad principal *</label>
+              <input type="text" name="ciudad" placeholder="Ej: Santiago" required />
+            </div>
+            <div class="form-group">
+              <label>¿Cuántas personas atiendes?</label>
+              <select name="capacidad">
+                <option value="">Selecciona...</option>
+                <option>Hasta 30 personas</option>
+                <option>Hasta 50 personas</option>
+                <option>Hasta 80 personas</option>
+                <option>Hasta 100 personas</option>
+                <option>Más de 100 personas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Precio base por evento</label>
+              <select name="precio">
+                <option value="">Selecciona...</option>
+                <option>Desde $30.000</option>
+                <option>Desde $50.000</option>
+                <option>Desde $75.000</option>
+                <option>Desde $100.000</option>
+                <option>Desde $150.000</option>
+                <option>A consultar</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Cuéntanos sobre tu carrito</label>
+              <textarea name="descripcion" placeholder="¿Qué te hace especial? ¿Qué ofreces? ¿Cuántos años llevas?"></textarea>
+            </div>
+            <div class="form-group full">
+              <label>Foto de tu carrito</label>
+              <input type="text" name="foto_link" placeholder="Link de Google Drive, Dropbox o Instagram con foto" />
+              <span class="form-hint">Si no tienes link, puedes enviarnos la foto por WhatsApp después del registro.</span>
+            </div>
+          </div>
+          <div class="form-nav">
+            <button type="button" class="btn-back" onclick="prevStep(0)">← Atrás</button>
+            <button type="button" class="btn-next" onclick="nextStep(2)">Continuar →</button>
+          </div>
+        </div>
+
+        <!-- PASO 3: Eventos y verificación -->
+        <div class="form-section" id="step-2">
+          <div class="section-label">Paso 3 — Eventos y disponibilidad</div>
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label>¿Para qué eventos estás disponible?</label>
+              <div class="checkbox-grid" id="eventosGrid">
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Matrimonios" />
+                  <div class="check-box"></div>
+                  <span>💍 Matrimonios</span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Cumpleaños" />
+                  <div class="check-box"></div>
+                  <span>🎂 Cumpleaños</span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Corporativo" />
+                  <div class="check-box"></div>
+                  <span>🏢 Corporativo</span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Fiestas" />
+                  <div class="check-box"></div>
+                  <span>🎉 Fiestas</span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Al aire libre" />
+                  <div class="check-box"></div>
+                  <span>🌿 Al aire libre</span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="eventos" value="Eventos masivos" />
+                  <div class="check-box"></div>
+                  <span>🎪 Eventos masivos</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label>¿Tu carrito tiene patente o permiso sanitario?</label>
+              <div class="radio-group" id="patenteGroup">
+                <label class="radio-item" onclick="selectRadio(this, 'patente')">
+                  <input type="radio" name="patente" value="Sí, tengo patente" />
+                  <div class="radio-dot"></div>
+                  <span>✅ Sí, tengo</span>
+                </label>
+                <label class="radio-item" onclick="selectRadio(this, 'patente')">
+                  <input type="radio" name="patente" value="En trámite" />
+                  <div class="radio-dot"></div>
+                  <span>🔄 En trámite</span>
+                </label>
+                <label class="radio-item" onclick="selectRadio(this, 'patente')">
+                  <input type="radio" name="patente" value="No tengo aún" />
+                  <div class="radio-dot"></div>
+                  <span>❌ No tengo aún</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label>¿Algo más que quieras contarnos?</label>
+              <textarea name="comentarios" placeholder="Zonas donde operas, restricciones, preguntas..."></textarea>
+            </div>
+
+            <div class="form-group full">
+              <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:0.75rem;">
+                <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#92400E;margin-bottom:0.25rem;">Declaraciones obligatorias</p>
+                <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#1C1917;">
+                  <input type="checkbox" name="decl_permisos" required style="margin-top:3px;flex-shrink:0;" />
+                  Declaro que cuento con todos los permisos y patentes vigentes para operar en eventos (o que estoy en proceso de obtenerlos).
+                </label>
+                <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#1C1917;">
+                  <input type="checkbox" name="decl_edad" required style="margin-top:3px;flex-shrink:0;" />
+                  Declaro ser mayor de 18 años, o contar con la autorización expresa de mi representante legal.
+                </label>
+                <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#1C1917;">
+                  <input type="checkbox" name="decl_fotos" required style="margin-top:3px;flex-shrink:0;" />
+                  Las fotos que envío son propias y reales — no imágenes de stock ni de terceros.
+                </label>
+                <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#1C1917;">
+                  <input type="checkbox" name="decl_terminos" required style="margin-top:3px;flex-shrink:0;" />
+                  He leído y acepto los <a href="terminos.html" target="_blank" style="color:#D97706;text-decoration:underline;">Términos y Condiciones</a> de Convite.
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn-back" onclick="prevStep(1)">← Atrás</button>
+            <button type="submit" class="btn-next">Enviar registro ✓</button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- PANTALLA DE ÉXITO -->
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">🎉</div>
+        <h2>¡Registro recibido!</h2>
+        <p>
+          Revisaremos tu información y te agregaremos a Convite en menos de 24 horas.
+          Te contactaremos al WhatsApp que dejaste para confirmar y pedirte la foto si hace falta.
+        </p>
+        <a href="index.html" class="btn-volver">← Volver a Convite</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+
+    function goToStep(step) {
+      document.querySelectorAll(".form-section").forEach((s, i) => {
+        s.classList.toggle("active", i === step);
+      });
+      document.querySelectorAll(".step-dot").forEach((d, i) => {
+        d.classList.toggle("active", i <= step);
+      });
+      currentStep = step;
+      document.querySelector(".right-panel").scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextStep(step) {
+      // Validación básica del paso actual
+      const current = document.getElementById(`step-${currentStep}`);
+      const required = current.querySelectorAll("[required]");
+      let valid = true;
+      required.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = "#EF4444";
+          field.addEventListener("input", () => field.style.borderColor = "", { once: true });
+          valid = false;
+        }
+      });
+      if (!valid) return;
+      goToStep(step);
+    }
+
+    function prevStep(step) {
+      goToStep(step);
+    }
+
+    function toggleCheck(label) {
+      label.classList.toggle("checked");
+      const cb = label.querySelector("input[type='checkbox']");
+      const box = label.querySelector(".check-box");
+      cb.checked = !cb.checked;
+      box.textContent = cb.checked ? "✓" : "";
+    }
+
+    function selectRadio(label, group) {
+      document.querySelectorAll(`input[name='${group}']`).forEach(r => {
+        r.closest(".radio-item").classList.remove("selected");
+      });
+      label.classList.add("selected");
+      label.querySelector("input").checked = true;
+    }
+
+    // Submit
+    document.getElementById("registroForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.style.display = "none";
+          document.querySelector(".steps-indicator").style.display = "none";
+          document.querySelector(".form-header").style.display = "none";
+          document.getElementById("successScreen").classList.add("show");
+        } else {
+          alert("Hubo un problema al enviar. Intenta de nuevo.");
+        }
+      } catch {
+        alert("Error de conexión. Intenta de nuevo.");
+      }
+    });
+  </script>
+
+</body>
+</html>
