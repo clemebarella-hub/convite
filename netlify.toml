@@ -1,0 +1,13 @@
+[build]
+  publish = "cartfinder"
+  functions = "netlify/functions"
+
+# Expone las functions como rutas limpias /api/v1/*
+[[redirects]]
+  from = "/api/v1/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
+
+[functions]
+  node_bundler = "esbuild"
