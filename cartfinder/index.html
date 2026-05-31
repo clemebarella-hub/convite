@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -1386,7 +1386,14 @@
     }
 
   </style>
-</head>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CONVITE2026"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CONVITE2026');
+  </script></head>
 <body>
 
   <!-- NAV -->
@@ -1484,9 +1491,7 @@
         <button class="filter-btn" data-filter="hotdogs">Hot Dogs</button>
         <button class="filter-btn" data-filter="tacos">Tacos</button>
         <button class="filter-btn" data-filter="asados">Asados</button>
-        <button class="filter-btn" data-filter="mechadas">Mechadas</button>
-        <button class="filter-btn" data-filter="aros">Aros de cebolla</button>
-      </div>
+        </div>
       <div class="cat-split">
         <div class="cat-card cat-salado" id="catSalado" onclick="setCatFilter('salado')">
           <div class="cat-icon">🧂</div>
@@ -1858,7 +1863,7 @@
       { id:"chili-fries", name:"Chili Fries", type:["papas"], category:"Papas Fritas Premium", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 350+ personas", priceRange:{min:1200,max:2875}, minPeople:80, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56966877747", verified:true, brandCard:true, brandBg:"#000000", brandText:"#FFF8E8", brandAccent:"#D4A020", profilePage:"chili-fries.html", image:"Chili.fries.png.jpeg", imageFit:"contain", logoBg:"#000000" },
       { id:"naturapura", name:"Naturapura Açaí Bar", type:["postres"], category:"Açaí & Bowls", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 200 personas", priceRange:{min:4000,max:8500}, minPeople:10, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56923825434", verified:true, brandCard:true, brandBg:"#1A0A2E", brandText:"#EDE4FF", brandAccent:"#7C3AED", profilePage:"naturapura.html", image:"naturapura.png.jpeg", imageFit:"contain" },
       { id:"wild-smash", name:"Wild Smash", type:["hamburguesas","papas","hotdogs"], category:"Smash & Hot Dogs", city:"Santiago", rating:5.0, reviews:0, capacity:"Flexible", priceRange:{min:5500,max:6000}, minPeople:30, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56963413321", verified:true, brandCard:true, brandBg:"#0F1A0A", brandText:"#E8F5E0", brandAccent:"#7BC043", profilePage:"wild-smash.html", image:"wild-smash.png.jpeg" },
-      { id:"a-la-medida", name:"A la Medida Gourmet", type:["hamburguesas","sandwiches","pizza","tacos","hotdogs","papas","mechadas","aros"], category:"Catering Multiformato", city:"Santiago y alrededores", rating:5.0, reviews:0, capacity:"A coordinar según evento", priceRange:{min:3400,max:8000}, minPeople:35, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56971258275", verified:true, brandCard:true, brandBg:"#1A1200", brandText:"#FFF8E0", brandAccent:"#C9A227", profilePage:"a-la-medida.html", image:"A-la-medida.png.jpeg", imageFit:"contain", logoBg:"#000" },
+      { id:"a-la-medida", name:"A la Medida Gourmet", type:["hamburguesas","sandwiches","pizza","tacos","hotdogs","papas",], category:"Catering Multiformato", city:"Santiago y alrededores", rating:5.0, reviews:0, capacity:"A coordinar según evento", priceRange:{min:3400,max:8000}, minPeople:35, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56971258275", verified:true, brandCard:true, brandBg:"#1A1200", brandText:"#FFF8E0", brandAccent:"#C9A227", profilePage:"a-la-medida.html", image:"A-la-medida.png.jpeg", imageFit:"contain", logoBg:"#000" },
       { id:"entrepanes", name:"Entrepanes", type:["sandwiches","hamburguesas"], category:"Churrascos & Burgers", city:"Región Metropolitana", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:1200,max:5500}, minPeople:20, tags:["Matrimonios","Cumpleaños","Corporativo"], whatsapp:"56961111667", verified:true, brandCard:true, brandBg:"#2A1A0E", brandText:"#F5EDD4", brandAccent:"#E8610A", profilePage:"entrepanes.html", image:"Entre-panes.png.jpeg", imageFit:"contain", logoBg:"#000" },
       { id:"churrascos-patagonia", name:"Churrascos Patagonia", type:["sandwiches","papas"], category:"Churrascos & Papas", city:"Santiago", rating:5.0, reviews:0, capacity:"Sin límite", priceRange:{min:1690,max:3190}, minPeople:25, tags:["Matrimonios","Cumpleaños","Corporativo","Fiestas privadas"], whatsapp:"56979913075", verified:true, brandCard:true, brandBg:"#0A0A0A", brandText:"#F5F0E8", brandAccent:"#C8B89A", profilePage:"churrascos-patagonia.html", image:"Churrascos-patagonia.png.jpeg", imageFit:"contain", logoBg:"#000000" },
       { id:"crispy-fries", name:"Crispy Fries & Burgers", type:["hamburguesas","papas"], category:"Papas & Burgers", city:"Santiago", rating:5.0, reviews:0, capacity:"Hasta 400 personas", priceRange:{min:850,max:2200}, minPeople:40, tags:["Matrimonios","Corporativo","Cumpleaños"], whatsapp:"56974888028", verified:true, brandCard:true, brandBg:"#454545", brandText:"#EEE9D6", brandAccent:"#D4A417", profilePage:"crispy-fries.html", image:"Crispy-fries-and-burgers.png.jpeg", imageFit:"75%", logoBg:"#454545" },
@@ -2174,7 +2179,7 @@
         hamburguesas:"Hamburguesas", sandwiches:"Churrascos / Sandwiches",
         pizza:"Pizza", tacos:"Tacos", hotdogs:"Hot Dogs",
         papas:"Papas fritas", empanadas:"Empanadas",
-        asados:"Asados / Parrilla", mechadas:"Mechadas", aros:"Aros de cebolla"
+        asados:"Asados / Parrilla"
       };
       const types = Array.isArray(currentVendorModal.type)
         ? currentVendorModal.type : [currentVendorModal.type];

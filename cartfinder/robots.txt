@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://convite.cl/sitemap.xml
+
+# No indexar páginas de admin
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /registro.html
