@@ -60,7 +60,7 @@ async function sendLeadNotification(lead, provider, body) {
       },
       body: JSON.stringify({
         personalizations: [{ to: [{ email: 'convitechile@gmail.com' }] }],
-        from: { email: 'noreply@convite.cl', name: 'Convite' },
+        from: { email: 'convitechile@gmail.com', name: 'Convite' },
         subject: `🎉 Nueva cotización — ${provider.name} · ${body.guest_count} personas · ${body.event_comuna}`,
         content: [{ type: 'text/html', value: html }],
       }),
