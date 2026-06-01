@@ -1458,7 +1458,7 @@
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <strong id="vendor-count">7</strong>
+          <strong id="vendor-count">+20</strong>
           <span>Proveedores verificados</span>
         </div>
         <div class="hero-stat">
@@ -1907,7 +1907,7 @@
       const noResults = document.getElementById("noResults");
       const count     = document.getElementById("resultsCount");
       const vc = document.getElementById("vendor-count");
-      if (vc) vc.textContent = vendors.length;
+      if (vc) vc.textContent = "+" + Math.floor(vendors.length / 10) * 10;
 
       const filtered = vendors.filter(v => {
         const types = Array.isArray(v.type) ? v.type : [v.type];
