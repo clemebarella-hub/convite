@@ -1426,7 +1426,6 @@
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li id="navPanelLink" style="display:none"><a href="dashboard.html">Mi panel</a></li>
         <li><a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank" class="btn-primary">Registra tu servicio</a></li>
-        <li><a href="admin.html" class="nav-admin-link">Admin</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Menú">
         <span></span><span></span><span></span>
@@ -1439,7 +1438,6 @@
     <a href="#como-funciona" class="mob-link">Cómo funciona</a>
     <a href="dashboard.html" class="mob-link" id="mobPanelLink" style="display:none">Mi panel</a>
     <a href="https://wa.me/56953838648?text=Hola%2C+quiero+registrar+mi+servicio+en+Convite" target="_blank" class="btn-primary mob-link">Registra tu servicio</a>
-    <a href="admin.html" class="mob-link" style="color:var(--muted);font-size:0.82rem;">Admin</a>
   </div>
 
   <!-- HERO -->
@@ -1477,6 +1475,11 @@
         </div>
         <div class="search-suggestions" id="searchSuggestions"></div>
       </div>
+      <p style="margin-top:0.8rem;">
+        <a href="#vendedores" style="font-size:0.8rem;color:rgba(255,255,255,0.45);text-decoration:none;">
+          ¿Tienes un carrito o banquetera? <span style="color:var(--accent);font-weight:600;">Súmate gratis →</span>
+        </a>
+      </p>
       <div class="hero-stats">
         <div class="hero-stat">
           <strong id="vendor-count">+20</strong>
@@ -1863,6 +1866,12 @@
   </form>
 
   <script>
+    const FOOD_LABELS = {
+      hamburguesas:"Hamburguesas", sandwiches:"Churrascos", pizza:"Pizza",
+      tacos:"Tacos", hotdogs:"Hot Dogs", papas:"Papas fritas",
+      empanadas:"Empanadas", asados:"Asados", postres:"Postres"
+    };
+
     const norm = s => s.toLowerCase()
       .normalize("NFD").replace(/[̀-ͯ]/g, "")
       .replace(/['\-&.,]/g, " ").replace(/\s+/g, " ").trim();
@@ -2016,6 +2025,9 @@
                 </div>
                 <span class="price-range-note">mín. ${v.minPeople || "—"} ${v.priceUnit || "personas"}</span>
               </div>
+            </div>
+            <div class="card-tags" style="margin-bottom:0.4rem;">
+              ${(Array.isArray(v.type) ? v.type : [v.type]).map(t => `<span class="tag" style="background:#FFF7ED;border-color:#FED7AA;color:#C2410C;font-weight:600;">${FOOD_LABELS[t] || t}</span>`).join("")}
             </div>
             <div class="card-tags">
               ${v.tags.map(t => `<span class="tag">${t}</span>`).join("")}
@@ -2196,19 +2208,13 @@
       document.getElementById("modalVendorName").textContent = currentVendorModal.name;
 
       // Renderizar productos del proveedor
-      const TYPE_LABELS = {
-        hamburguesas:"Hamburguesas", sandwiches:"Churrascos / Sandwiches",
-        pizza:"Pizza", tacos:"Tacos", hotdogs:"Hot Dogs",
-        papas:"Papas fritas", empanadas:"Empanadas",
-        asados:"Asados / Parrilla"
-      };
       const types = Array.isArray(currentVendorModal.type)
         ? currentVendorModal.type : [currentVendorModal.type];
       const rows = types.map(t => `
         <label class="product-row">
           <input type="checkbox" class="product-check" />
           <span class="product-circle"></span>
-          <span class="product-name">${TYPE_LABELS[t] || t}</span>
+          <span class="product-name">${FOOD_LABELS[t] || t}</span>
           <input type="number" class="product-qty" min="1" placeholder="0" />
           <span class="product-qty-unit">und.</span>
         </label>`).join('');
