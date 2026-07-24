@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -599,8 +599,25 @@
 
   <!-- BODY -->
   <div class="page-body">
-
-    <!-- Especificaciones estándar -->
+    <div class="section">
+      <h2 class="section-title">Galería</h2>
+      <div class="gallery-carousel">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-slide"><img src="dirty-smash-1.jpeg" alt="Dirty Smash — Smash burger" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="dirty-smash-2.jpeg" alt="Dirty Smash — Burger detalle" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="dirty-smash-3.jpeg" alt="Dirty Smash — Presentación" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="dirty-smash-4.jpeg" alt="Dirty Smash — Producto" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+        </div>
+        <button class="gallery-btn gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
+        <button class="gallery-btn gallery-next" onclick="galleryNav(1)">&#8250;</button>
+        <div class="gallery-dots">
+          <button class="gallery-dot active" onclick="goToSlide(0)"></button>
+          <button class="gallery-dot" onclick="goToSlide(1)"></button>
+          <button class="gallery-dot" onclick="goToSlide(2)"></button>
+          <button class="gallery-dot" onclick="goToSlide(3)"></button>
+        </div>
+      </div>
+    </div>
     <div class="section">
       <div class="quick-info">
         <div class="info-card">
@@ -629,16 +646,12 @@
         </div>
       </div>
     </div>
-
-    <!-- Sobre nosotros -->
     <div class="section">
       <h2 class="section-title">Sobre Dirty Smash</h2>
       <p class="about-text">
         Nos identificamos por nuestra originalidad y sabores únicos en nuestras Smash. Buscamos siempre mejorar y ofrecer lo mejor para tu evento, por lo que constantemente buscamos mejores ingredientes y salsas. Antes de partir con nuestro emprendimiento probamos más de 25 hamburgueserías distintas para sacar lo mejor de cada una y tener nuestras propias ideas. El resultado: una hamburguesa diferente, con carácter propio y que se recuerda.
       </p>
     </div>
-
-    <!-- Información importante -->
     <div class="section">
       <h2 class="section-title">Información importante</h2>
       <div class="info-list">
@@ -676,27 +689,6 @@
     </div>
 
 
-    <!-- Contacto final -->
-
-    <div class="section">
-      <h2 class="section-title">Galería</h2>
-      <div class="gallery-carousel">
-        <div class="gallery-track" id="galleryTrack">
-          <div class="gallery-slide"><img src="dirty-smash-1.jpeg" alt="Dirty Smash — Smash burger" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-          <div class="gallery-slide"><img src="dirty-smash-2.jpeg" alt="Dirty Smash — Burger detalle" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-          <div class="gallery-slide"><img src="dirty-smash-3.jpeg" alt="Dirty Smash — Presentación" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-          <div class="gallery-slide"><img src="dirty-smash-4.jpeg" alt="Dirty Smash — Producto" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-        </div>
-        <button class="gallery-btn gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
-        <button class="gallery-btn gallery-next" onclick="galleryNav(1)">&#8250;</button>
-        <div class="gallery-dots">
-          <button class="gallery-dot active" onclick="goToSlide(0)"></button>
-          <button class="gallery-dot" onclick="goToSlide(1)"></button>
-          <button class="gallery-dot" onclick="goToSlide(2)"></button>
-          <button class="gallery-dot" onclick="goToSlide(3)"></button>
-        </div>
-      </div>
-    </div>
 
     <div class="section" style="border-bottom:none; padding-bottom: 0;">
       <div class="contact-bar">

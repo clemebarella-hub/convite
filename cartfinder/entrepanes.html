@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -413,8 +413,23 @@
 
   <!-- BODY -->
   <div class="page-body">
-
-    <!-- Especificaciones -->
+    <div class="section">
+      <h2 class="section-title">Galería</h2>
+      <div class="gallery-carousel">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-slide"><img src="entrepanes-g1.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="entrepanes-g2.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+          <div class="gallery-slide"><img src="entrepanes-g3.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
+        </div>
+        <button class="gallery-btn gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
+        <button class="gallery-btn gallery-next" onclick="galleryNav(1)">&#8250;</button>
+        <div class="gallery-dots">
+          <button class="gallery-dot active" onclick="goToSlide(0)"></button>
+          <button class="gallery-dot" onclick="goToSlide(1)"></button>
+          <button class="gallery-dot" onclick="goToSlide(2)"></button>
+        </div>
+      </div>
+    </div>
     <div class="section">
       <div class="quick-info">
         <div class="info-card">
@@ -443,16 +458,12 @@
         </div>
       </div>
     </div>
-
-    <!-- Sobre Entrepanes -->
     <div class="section">
       <h2 class="section-title">Sobre Entrepanes</h2>
       <p class="about-text">
         Somos Entrepanes, un emprendimiento de comida de dos amigos del colegio que busca entregar el mejor servicio posible para que tu evento salga perfecto. Hacemos churrascos, lomitos y smash burgers — todo preparado en el lugar con ingredientes frescos y mucho cariño.
       </p>
     </div>
-
-    <!-- Especialidades -->
     <div class="section">
       <h2 class="section-title">Nuestras especialidades</h2>
       <div class="especialidades-grid">
@@ -473,8 +484,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Precio referencial -->
     <div class="section">
       <h2 class="section-title">Precio referencial</h2>
       <div class="price-banner">
@@ -485,8 +494,6 @@
         <p class="price-banner-note">El precio exacto depende del tipo de sándwich, la cantidad de personas y las opciones elegidas. Contáctanos para una cotización personalizada.</p>
       </div>
     </div>
-
-    <!-- Información importante -->
     <div class="section">
       <h2 class="section-title">Información importante</h2>
       <div class="info-list">
@@ -523,25 +530,6 @@
       </div>
     </div>
 
-    <!-- Contacto final -->
-
-    <div class="section">
-      <h2 class="section-title">Galería</h2>
-      <div class="gallery-carousel">
-        <div class="gallery-track" id="galleryTrack">
-          <div class="gallery-slide"><img src="entrepanes-g1.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-          <div class="gallery-slide"><img src="entrepanes-g2.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-          <div class="gallery-slide"><img src="entrepanes-g3.jpg" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-photo')" /></div>
-        </div>
-        <button class="gallery-btn gallery-prev" onclick="galleryNav(-1)">&#8249;</button>
-        <button class="gallery-btn gallery-next" onclick="galleryNav(1)">&#8250;</button>
-        <div class="gallery-dots">
-          <button class="gallery-dot active" onclick="goToSlide(0)"></button>
-          <button class="gallery-dot" onclick="goToSlide(1)"></button>
-          <button class="gallery-dot" onclick="goToSlide(2)"></button>
-        </div>
-      </div>
-    </div>
 
     <div class="section" style="border-bottom:none; padding-bottom: 0;">
       <div class="contact-bar">
