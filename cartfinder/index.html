@@ -453,22 +453,19 @@
       gap: 1.25rem;
     }
     .carousel-hint { display: none; }
-    .cat-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .cat-split { display: flex; gap: 0.4rem; margin-bottom: 0; }
     .cat-card {
-      border-radius: 12px; padding: 1rem 1.25rem;
-      display: flex; align-items: center; gap: 0.9rem;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.3rem 0.75rem; border-radius: 20px;
       border: 1px solid var(--border); background: var(--card);
+      cursor: pointer; font-size: 0.78rem; font-weight: 500; color: var(--muted);
+      transition: all 0.18s;
     }
-    .cat-card { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
-    .cat-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-    .cat-salado { border-left: 3px solid #94A3B8; }
-    .cat-dulce  { border-left: 3px solid #7C3AED; }
-    .cat-salado.active { border-color: #64748B; background: #F1F5F9; }
-    .cat-dulce.active  { border-color: #7C3AED; background: #F8F5FF; }
-    .cat-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; }
-    .cat-info strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; }
-    .cat-info span   { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
-    @media (max-width: 560px) { .cat-split { grid-template-columns: 1fr; } }
+    .cat-card:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .cat-salado.active { background: var(--text); border-color: var(--text); color: white; }
+    .cat-dulce.active  { background: var(--text); border-color: var(--text); color: white; }
+    .cat-icon { font-size: 0.85rem; line-height: 1; }
+    .cat-info span { display: none; }
     .section-divider {
       grid-column: 1 / -1;
       display: flex; align-items: center; gap: 1rem;
@@ -1515,23 +1512,16 @@
         <button class="filter-btn" data-filter="hotdogs">Hot Dogs</button>
         <button class="filter-btn" data-filter="tacos">Tacos</button>
         <button class="filter-btn" data-filter="asados">Asados</button>
-        </div>
-      <div class="cat-split">
+        <span style="width:1px;background:var(--border);height:18px;align-self:center;flex-shrink:0;"></span>
         <div class="cat-card cat-salado" id="catSalado" onclick="setCatFilter('salado')">
           <div class="cat-icon">🧂</div>
-          <div class="cat-info">
-            <strong>Salado</strong>
-            <span>Hamburguesas, sándwiches, pizzas, parrilla y más</span>
-          </div>
+          <div class="cat-info"><strong>Salado</strong></div>
         </div>
         <div class="cat-card cat-dulce" id="catDulce" onclick="setCatFilter('dulce')">
           <div class="cat-icon">🍬</div>
-          <div class="cat-info">
-            <strong>Dulce</strong>
-            <span>Açaí, bowls y opciones para endulzar tu evento</span>
-          </div>
+          <div class="cat-info"><strong>Dulce</strong></div>
         </div>
-      </div>
+        </div>
 
       <div class="vendor-grid" id="vendorGrid"></div>
       <div class="no-results" id="noResults">
